@@ -172,6 +172,9 @@ static jlong get_total_or_available_swap_space_size(JNIEnv* env, jboolean availa
     /*
      * XXXBSD: there's no way available to get swap info in
      *         FreeBSD.  Usage of libkvm is not an option here
+     *
+     * XXX: Investigate how swapinfo(8) does this.
+     *      Total swap is in vm.swap_total
      */
     // throw_internal_error(env, "Unimplemented in FreeBSD");
     return (0);
@@ -246,6 +249,8 @@ Java_com_sun_management_UnixOperatingSystem_getCommittedVirtualMemorySize
 #else /* _ALLBSD_SOURCE */
     /*
      * XXXBSD: there's no way available to do it in FreeBSD, AFAIK.
+     *
+     * XXX: Determine how linprocfs gets this.
      */
     // throw_internal_error(env, "Unimplemented in FreeBSD");
     return (64 * MB);
@@ -327,6 +332,8 @@ Java_com_sun_management_UnixOperatingSystem_getFreePhysicalMemorySize
 #elif defined(_ALLBSD_SOURCE)
     /*
      * XXXBSD: there's no way available to do it in FreeBSD, AFAIK.
+     *
+     * XXX: Investigate how top(8) gets this on FreeBSD.
      */
     // throw_internal_error(env, "Unimplemented in FreeBSD");
     return (128 * MB);
@@ -352,7 +359,11 @@ Java_com_sun_management_UnixOperatingSystem_getTotalPhysicalMemorySize
     size_t rlen;
 
     mib[0] = CTL_HW;
+#ifdef __APPLE__
     mib[1] = HW_MEMSIZE;
+#else
+    mib[1] = HW_PHYSMEM;
+#endif
     rlen = sizeof(result);
     if (sysctl(mib, 2, &result, &rlen, NULL, 0) != 0) {
         throw_internal_error(env, "sysctl failed");
@@ -424,6 +435,8 @@ Java_com_sun_management_UnixOperatingSystem_getOpenFileDescriptorCount
 #elif defined(_ALLBSD_SOURCE)
     /*
      * XXXBSD: there's no way available to do it in FreeBSD, AFAIK.
+     *
+     * XXX: Investigate getting this on FreeBSD.  Look at lsof.
      */
     // throw_internal_error(env, "Unimplemented in FreeBSD");
     return (100);

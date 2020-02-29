@@ -71,6 +71,48 @@ ifeq ($(uname), Linux)
   EXTRA_LIBS = -lc
 endif
 
+ifeq ($(uname), Darwin)
+  PLATFORM = bsd
+  archExpr = case "`$(UNAME) -m`" in  \
+		i[3-6]86) \
+                    $(ECHO) i586 \
+                    ;; \
+		sparc*)	 \
+                    $(ECHO) sparc \
+                    ;; \
+		*) \
+                    $(UNAME) -m	 \
+                    ;; \
+	   esac
+  ARCH	    := $(shell $(archExpr) )
+  CC = gcc
+  CFLAGS = -fno-strict-aliasing -fPIC -W -Wall
+  LD = ld
+  LDFLAGS_COMMON = -shared
+  EXTRA_LIBS = -lc
+endif
+
+ifeq ($(findstring BSD,$(uname)), BSD)
+  PLATFORM = bsd
+  archExpr = case "`$(UNAME) -m`" in  \
+		i[3-6]86) \
+                    $(ECHO) i586 \
+                    ;; \
+		sparc*)	 \
+                    $(ECHO) sparc \
+                    ;; \
+		*) \
+                    $(UNAME) -m	 \
+                    ;; \
+	   esac
+  ARCH	    := $(shell $(archExpr) )
+  CC = gcc
+  CFLAGS = -fno-strict-aliasing -fPIC -W -Wall
+  LD = ld
+  LDFLAGS_COMMON = -shared
+  EXTRA_LIBS = -lc
+endif
+
 LIBDIR=lib/$(PLATFORM)-$(ARCH)
 LAUNCHERLIB=$(LIBDIR)/libLauncher.so
 

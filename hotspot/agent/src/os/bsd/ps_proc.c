@@ -131,7 +131,7 @@ static bool process_get_lwp_info(struct ps_prochandle *ph, lwpid_t lwp_id, void 
 
 static bool ptrace_continue(pid_t pid, int signal) {
   // pass the signal to the process so we don't swallow it
-  if (ptrace(PTRACE_CONT, pid, NULL, signal) < 0) {
+  if (ptrace(PT_CONTINUE, pid, NULL, signal) < 0) {
     print_debug("ptrace(PTRACE_CONT, ..) failed for %d\n", pid);
     return false;
   }

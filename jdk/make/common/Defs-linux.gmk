@@ -445,6 +445,7 @@ override LIBTHREAD               =
 override LIBDL                   = -ldl
 override MOOT_PRIORITIES         = true
 override NO_INTERRUPTIBLE_IO     = true
+override OPENWIN_HOME            = $(X11_PATH)
 ifeq ($(ARCH), $(findstring $(ARCH), amd64 ppc64))
 override OPENWIN_LIB             = $(OPENWIN_HOME)/lib64
 else

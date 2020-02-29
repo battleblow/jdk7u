@@ -53,8 +53,13 @@ public class Platform {
         return isOs("linux");
     }
 
+    public static boolean isBSD() {
+        return isOs("bsd");
+    }
+
     private static boolean isOs(String osname) {
-        return osName.toLowerCase().startsWith(osname.toLowerCase());
+        return (osName.toLowerCase().startsWith(osname.toLowerCase()) ||
+                osName.toLowerCase().endsWith(osname.toLowerCase()));
     }
 
     public static String getOsName() {

@@ -84,7 +84,8 @@ public final class SunNativeProvider extends Provider {
                             String osname = System.getProperty("os.name");
                             if (osname.startsWith("SunOS")) {
                                 gssLibs = new String[]{ "libgss.so" };
-                            } else if (osname.startsWith("Linux")) {
+                            } else if (osname.startsWith("Linux") ||
+                                       osname.endsWith("BSD")) {
                                 gssLibs = new String[]{
                                     "libgssapi.so",
                                     "libgssapi_krb5.so",

@@ -26,7 +26,7 @@
 #ifndef OGLFuncs_h_Included
 #define OGLFuncs_h_Included
 
-#if defined(MACOSX) || defined(AIX)
+#if defined(MACOSX) || defined(_ALLBSD_SOURCE) || defined(AIX)
 #include <dlfcn.h>
 #endif
 #include "jni.h"

@@ -26,7 +26,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#ifdef MACOSX
+#ifdef _ALLBSD_SOURCE
 #include <unistd.h>
 #include <sys/param.h>
 #endif
@@ -90,7 +90,10 @@ void *__mlib_malloc(mlib_u32 size)
    * alignment. -- from stdlib.h of MS VC++5.0.
    */
   return (void *) malloc(size);
-#elif defined(MACOSX)
+#elif defined(__FreeBSD__) && (__FreeBSD_version >= 700013)
+  void *ret;
+  return posix_memalign(&ret, 8, size) ? NULL : ret;
+#elif defined(_ALLBSD_SOURCE)
   return valloc(size);
 #else
   return (void *) memalign(8, size);

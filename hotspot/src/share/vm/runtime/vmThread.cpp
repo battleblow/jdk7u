@@ -396,7 +396,7 @@ void VMThread::evaluate_operation(VM_Operation* op) {
       // Only write caller thread information for non-concurrent vm operations.
       // For concurrent vm operations, the thread id is set to 0 indicating thread is unknown.
       // This is because the caller thread could have exited already.
-      event.set_caller(is_concurrent ? 0 : op->calling_thread()->osthread()->thread_id());
+      event.set_caller(is_concurrent ? 0 : (uint64_t) op->calling_thread()->osthread()->thread_id());
       event.commit();
     }
 

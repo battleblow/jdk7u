@@ -93,17 +93,65 @@ $(LocaleDataMetaInfo_Dest):$(LocaleDataMetaInfo_Src) $(LOCALEGEN_SH)
 
 else
 
+ifeq ($(PLATFORM), bsd)
+
 $(LocaleDataMetaInfo_Dest):$(LocaleDataMetaInfo_Src) $(LOCALEGEN_SH)
 	@$(RM) $@.tmp.euro $@.tmp.noneuro;
 	@$(prep-target) 
-	@$(ECHO) $(subst .properties,'\n',$(Euro_Resources_properties)) > $@.tmp.euro;
-	@$(ECHO) $(subst .java,'\n',$(Euro_Resources_java)) >> $@.tmp.euro;	
-	@$(ECHO) $(subst .properties,'\n',$(NonEuro_Resources_properties)) > $@.tmp.noneuro;
-	@$(ECHO) $(subst .java,'\n',$(NonEuro_Resources_java)) >> $@.tmp.noneuro;
+	@$(ECHO) $(Euro_Resources_properties) | $(SED) -e s@.properties@'\
+'@g > $@.tmp.euro;
+	@$(ECHO) $(Euro_Resources_java) | $(SED) -e s@.java@'\
+'@g >> $@.tmp.euro;
+	@$(ECHO) $(NonEuro_Resources_properties) | $(SED) -e s@.properties@'\
+'@g > $@.tmp.noneuro;
+	@$(ECHO) $(NonEuro_Resources_java) | $(SED) -e s@.java@'\
+'@g >> $@.tmp.noneuro;
 	NAWK="$(NAWK)" SED="$(SED)" SORT="$(SORT)" \
 	     $(SH) $(LOCALEGEN_SH) $(RESOURCE_NAMES) $@.tmp.euro \
 		$@.tmp.noneuro $< $@
 	@$(RM) $@.tmp.euro $@.tmp.noneuro;
+
+else
+
+ifeq ($(PLATFORM), bsd)
+
+$(LocaleDataMetaInfo_Dest):$(LocaleDataMetaInfo_Src) $(LOCALEGEN_SH)
+	@$(RM) $@.tmp.euro $@.tmp.noneuro;
+	@$(prep-target) 
+	@$(ECHO) $(Euro_Resources_properties) | $(SED) -e s@.properties@'\
+'@g > $@.tmp.euro;
+	@$(ECHO) $(Euro_Resources_java) | $(SED) -e s@.java@'\
+'@g >> $@.tmp.euro;
+	@$(ECHO) $(NonEuro_Resources_properties) | $(SED) -e s@.properties@'\
+'@g > $@.tmp.noneuro;
+	@$(ECHO) $(NonEuro_Resources_java) | $(SED) -e s@.java@'\
+'@g >> $@.tmp.noneuro;
+	NAWK="$(NAWK)" SED="$(SED)" SORT="$(SORT)" \
+	     $(SH) $(LOCALEGEN_SH) $(RESOURCE_NAMES) $@.tmp.euro \
+		$@.tmp.noneuro $< $@
+	@$(RM) $@.tmp.euro $@.tmp.noneuro;
+
+else
+
+$(LocaleDataMetaInfo_Dest):$(LocaleDataMetaInfo_Src) $(LOCALEGEN_SH)
+	@$(RM) $@.tmp.euro $@.tmp.noneuro;
+	@$(prep-target) 
+	@$(ECHO) $(Euro_Resources_properties) | $(SED) -e s@.properties@'\
+'@g > $@.tmp.euro;
+	@$(ECHO) $(Euro_Resources_java) | $(SED) -e s@.java@'\
+'@g >> $@.tmp.euro;
+	@$(ECHO) $(NonEuro_Resources_properties) | $(SED) -e s@.properties@'\
+'@g > $@.tmp.noneuro;
+	@$(ECHO) $(NonEuro_Resources_java) | $(SED) -e s@.java@'\
+'@g >> $@.tmp.noneuro;
+	NAWK="$(NAWK)" SED="$(SED)" SORT="$(SORT)" \
+	     $(SH) $(LOCALEGEN_SH) $(RESOURCE_NAMES) $@.tmp.euro \
+		$@.tmp.noneuro $< $@
+	@$(RM) $@.tmp.euro $@.tmp.noneuro;
+endif
+
+endif
+
 endif
 	
 genlocales : $(LocaleDataMetaInfo_Dest)  

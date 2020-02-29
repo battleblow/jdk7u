@@ -19,7 +19,7 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH jinfo 1 "10 May 2011"
+.TH jinfo 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
@@ -34,7 +34,7 @@ jinfo \- Configuration Info
 .fl
 \f3jinfo\fP [ option ] executable core
 .fl
-\f3jinfo\fP [ option ] [server\-id@]remote\-hostname\-or\-IP
+\f3jinfo\fP [ option ] [server\-id@]remote\-hostname\-or\-IP 
 .fl
 .fi
 
@@ -43,43 +43,43 @@ jinfo \- Configuration Info
 .LP
 .RS 3
 .TP 3
-option
-Options are mutually exclusive. Option, if used, should follow immediately after the command name.
+option 
+Options are mutually exclusive. Option, if used, should follow immediately after the command name. 
 .RE
 
 .LP
 .RS 3
 .TP 3
-pid
-process id for which the configuration info is to be printed. The process must be a Java process. To get a list of Java processes running on a machine, jps(1) may be used.
+pid 
+process id for which the configuration info is to be printed. The process must be a Java process. To get a list of Java processes running on a machine, jps(1) may be used. 
 .RE
 
 .LP
 .RS 3
 .TP 3
-executable
-Java executable from which the core dump was produced.
+executable 
+Java executable from which the core dump was produced. 
 .RE
 
 .LP
 .RS 3
 .TP 3
-core
-core file for which the configuration info is to be printed.
+core 
+core file for which the configuration info is to be printed. 
 .RE
 
 .LP
 .RS 3
 .TP 3
-remote\-hostname\-or\-IP
-remote debug server's (see jsadebugd(1)) hostname or IP address.
+remote\-hostname\-or\-IP 
+remote debug server's (see jsadebugd(1)) hostname or IP address. 
 .RE
 
 .LP
 .RS 3
 .TP 3
-server\-id
-optional unique id, if multiple debug servers are running on the same remote host.
+server\-id 
+optional unique id, if multiple debug servers are running on the same remote host. 
 .RE
 
 .LP
@@ -100,35 +100,35 @@ jinfo \-J\-d64 \-sysprops pid
 .LP
 .RS 3
 .TP 3
-<no option>
+<no option> 
 prints both command line flags as well as System properties name, value pairs.
 .br
 .TP 3
-\-flag name
+\-flag name 
 prints the name and value of the given command line flag.
 .br
 .TP 3
-\-flag [+|\-]name
+\-flag [+|\-]name 
 enables or disables the given boolean command line flag.
 .br
 .TP 3
-\-flag name=value
+\-flag name=value 
 sets the given command line flag to the specified value.
 .br
 .TP 3
-\-flags
+\-flags 
 prints command line flags passed to the JVM. pairs.
 .br
 .TP 3
-\-sysprops
+\-sysprops 
 prints Java System properties as name, value pairs.
 .br
 .TP 3
-\-h
-prints a help message
+\-h 
+prints a help message 
 .TP 3
-\-help
-prints a help message
+\-help 
+prints a help message 
 .RE
 
 .LP
@@ -137,11 +137,11 @@ prints a help message
 .RS 3
 .TP 2
 o
-jps(1)
+jps(1) 
 .TP 2
 o
-jsadebugd(1)
+jsadebugd(1) 
 .RE
 
 .LP
-
+ 

@@ -25,10 +25,11 @@ else
 fi
 
 
-if [ $OS = SunOS -o $OS = Linux ]
-then
-    exit 0
-fi
+case "${OS}" in
+    SunOS | Linux | *BSD | Darwin )
+        exit 0
+        ;;
+esac
 # Windows
 
 if [ -z "${TESTJAVA}" ] ; then

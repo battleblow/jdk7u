@@ -56,7 +56,7 @@ Java_java_lang_ProcessEnvironment_environ(JNIEnv *env, jclass ign)
 
     for (i = 0; environ[i]; i++) {
         /* Ignore corrupted environment variables */
-        if (strchr(environ[i], '=') != NULL)
+        if (strchr(environ[i], '=') != NULL && *environ[i] != '=')
             count++;
     }
 
@@ -66,7 +66,7 @@ Java_java_lang_ProcessEnvironment_environ(JNIEnv *env, jclass ign)
     for (i = 0, j = 0; environ[i]; i++) {
         const char * varEnd = strchr(environ[i], '=');
         /* Ignore corrupted environment variables */
-        if (varEnd != NULL) {
+        if (varEnd != NULL && varEnd != environ[i]) {
             jbyteArray var, val;
             const char * valBeg = varEnd + 1;
             jsize varLength = varEnd - environ[i];

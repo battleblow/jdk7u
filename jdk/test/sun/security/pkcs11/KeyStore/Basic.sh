@@ -131,6 +131,27 @@ case "$OS" in
 	;;
     esac
     ;;
+  *BSD | Darwin )
+    ARCH=`uname -m`
+    case "$ARCH" in
+      i[3-6]86 )
+	FS="/"
+	PS=":"
+	CP="${FS}bin${FS}cp"
+	CHMOD="${FS}bin${FS}chmod"
+	;;
+      amd64* | x86_64 )
+	FS="/"
+	PS=":"
+	CP="${FS}bin${FS}cp"
+	CHMOD="${FS}bin${FS}chmod"
+	;;
+      * )
+	echo "Unsupported System: ${OS} ${ARCH}"
+	exit 0;
+	;;
+    esac
+    ;;
   Windows* )  
     FS="\\"
     PS=";"

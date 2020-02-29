@@ -41,10 +41,14 @@ if [ -z "$TESTJAVA" ]; then
 fi
 
 s="`uname -s`"
-if [ "$s" != Linux -a "$s" != SunOS ]; then
-  echo "$s: locale command not supported on this system, skipping..."
-  exit 0
-fi
+case "$s" in
+  Linux|SunOS|*BSD|Darwin)
+    ;;
+  *)
+    echo "$s: locale command not supported on this system, skipping..."
+    exit 0
+    ;;
+esac
 
 JAVA=$TESTJAVA/bin/java
 

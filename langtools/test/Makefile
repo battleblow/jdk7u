@@ -45,6 +45,14 @@ ifeq ($(OSNAME), Darwin)
     ARCH=i586
   endif
 endif
+ifeq ($(findstring BSD,$(OSNAME)), BSD)
+  PLATFORM = bsd
+  JT_PLATFORM = linux
+  ARCH = $(shell uname -m)
+  ifeq ($(ARCH), i386)
+    ARCH=i586
+  endif
+endif
 ifeq ($(OSNAME), Windows_NT)
   PLATFORM = windows
   JT_PLATFORM = win32
@@ -104,7 +112,7 @@ endif
 ifdef JPRT_JAVA_HOME
   JT_JAVA = $(JPRT_JAVA_HOME)
 else
-  JT_JAVA = $(SLASH_JAVA)/re/jdk/1.6.0/archive/fcs/binaries/$(PLATFORM)-$(ARCH)
+  JT_JAVA = $(TEST_ROOT)/../../build/$(PLATFORM)-$(ARCH)
 endif
 
 # Default JDK to test
@@ -199,7 +207,9 @@ EXIT_IF_FATAL = status=$$?; if [ $$status -ge $(1) ]; then exit $$status ; fi
 
 # The test directories to run
 DEFAULT_TESTDIRS = .
-TESTDIRS = $(DEFAULT_TESTDIRS)
+ifndef TESTDIRS
+  TESTDIRS = $(DEFAULT_TESTDIRS)
+endif
 
 # Root of all test results
 TEST_OUTPUT_DIR = $(TEST_ROOT)/../build/$(PLATFORM)-$(ARCH)/test/langtools

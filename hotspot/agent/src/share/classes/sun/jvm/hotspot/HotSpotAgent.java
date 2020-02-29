@@ -33,6 +33,7 @@ import sun.jvm.hotspot.debugger.proc.*;
 import sun.jvm.hotspot.debugger.remote.*;
 import sun.jvm.hotspot.debugger.windbg.*;
 import sun.jvm.hotspot.debugger.linux.*;
+import sun.jvm.hotspot.debugger.bsd.*;
 import sun.jvm.hotspot.memory.*;
 import sun.jvm.hotspot.oops.*;
 import sun.jvm.hotspot.runtime.*;

@@ -70,10 +70,14 @@ if [ $# -gt 0 ]; then
     L="$1"
     shift
     s=`uname -s`
-    if [ $s != Linux -a $s != SunOS -a $s != Darwin -a $s != AIX ]; then
-      echo "$L: Locales not supported on this system, skipping..."
-      exit 0
-    fi
+    case "$s" in
+      Linux|SunOS|*BSD|Darwin|AIX)
+        ;;
+      *)
+        echo "$L: Locales not supported on this system, skipping..."
+        exit 0
+       ;;
+    esac
     if [ "x`locale -a | grep $L`" != "x$L" ]; then
       echo "$L: Locale not supported, skipping..."
       exit 0
@@ -85,7 +89,7 @@ TMP=${TMP:-$TEMP}; TMP=${TMP:-/tmp}
 cd $TMP
 
 case `uname` in
-  SunOS | Linux | Darwin | AIX ) CPS=':' ;;
+  SunOS | Linux | *BSD | Darwin | AIX ) CPS=':' ;;
   Windows* )      CPS=';' ;;
   *)              echo "Unknown platform: `uname`"; exit 1 ;;
 esac

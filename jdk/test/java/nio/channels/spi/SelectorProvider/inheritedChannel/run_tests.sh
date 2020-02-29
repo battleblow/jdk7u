@@ -33,11 +33,14 @@
 # @run shell run_tests.sh
 
 os=`uname -s`
-
-if [ "$os" != "Linux" -a "$os" != "SunOS" ]; then
-    echo "Test not designed to run on this operating system, skipping..."
-    exit 0
-fi
+case "${os}" in
+    SunOS | Linux | *BSD | Darwin )
+        ;;
+    * )
+        echo "Test not designed to run on this operating system, skipping..."
+        exit 0
+        ;;
+esac
 
 
 # if TESTJAVA isn't set then we assume an interactive run. So that it's
@@ -67,7 +70,8 @@ export CLASSPATH
 # On Solaris we assume 64-bit if java -d64 works.
 
 DFLAG=
-if [ "$os" = "SunOS" ]; then
+case "${os}" in
+  SunOS )
     PLATFORM=solaris
     case "`uname -p`" in
 	i[3-9]86) 
@@ -84,9 +88,9 @@ if [ "$os" = "SunOS" ]; then
 	    fi
 	    ;;
     esac 
-fi
+    ;;
 
-if [ "$os" = "Linux" ]; then
+  Linux )
     PLATFORM=linux
     ARCH=unknown
     case "`uname -m`" in
@@ -100,7 +104,24 @@ if [ "$os" = "Linux" ]; then
 	    ARCH=amd64
 	    ;;
     esac
-fi
+    ;;
+
+  *BSD | Darwin )
+    PLATFORM=bsd
+    ARCH=unknown
+    case "`uname -m`" in
+	i[3-6]86)
+	    ARCH=i586
+	    ;;
+	ia64)
+	    ARCH=ia64
+	    ;;
+	x86_64)
+	    ARCH=amd64
+	    ;;
+    esac
+    ;;
+esac
 
 LIBDIR=lib/${PLATFORM}-${ARCH}
 LAUNCHERLIB=${LIBDIR}/libLauncher.so

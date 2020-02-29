@@ -99,8 +99,7 @@ else # PLATFORM
 #
 # Other extra flags needed for compiling.
 #
-CPPFLAGS += -I$(OPENWIN_HOME)/include \
-	    -I$(SHARE_SRC)/native/$(PKGDIR)/debug \
+CPPFLAGS += -I$(SHARE_SRC)/native/$(PKGDIR)/debug \
             -I$(SHARE_SRC)/native/$(PKGDIR)/image \
 	    -I$(SHARE_SRC)/native/$(PKGDIR)/image/cvutils \
 	    -I$(SHARE_SRC)/native/$(PKGDIR)/alphacomposite \
@@ -114,6 +113,7 @@ CPPFLAGS += -I$(OPENWIN_HOME)/include \
 	    -I$(SHARE_SRC)/native/$(PKGDIR)/../dc/doe \
 	    -I$(SHARE_SRC)/native/$(PKGDIR)/../dc/path \
             -I$(PLATFORM_SRC)/native/$(PKGDIR)/../jdga \
+            -I$(OPENWIN_HOME)/include \
 	    $(EVENT_MODEL)
 
 #
@@ -127,7 +127,7 @@ ifeq ($(PLATFORM), solaris)
   endif
 endif # PLATFORM
 
-ifeq ($(PLATFORM), linux)
+ifneq (,$(findstring $(PLATFORM), linux bsd))
   ifndef BUILD_HEADLESS_ONLY
     OTHER_LDLIBS = -L$(LIBDIR)/$(LIBARCH) -lawt -L$(LIBDIR)/$(LIBARCH)/xawt -lmawt
   else

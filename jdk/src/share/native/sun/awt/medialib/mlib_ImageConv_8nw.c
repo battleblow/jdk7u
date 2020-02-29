@@ -95,7 +95,7 @@
 #define D2I(x) CLAMP_S32((x) SAT_OFF)
 
 /***************************************************************/
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
 
 #define STORE2(res0, res1)                                      \
   dp[0    ] = res1;                                             \
@@ -107,7 +107,7 @@
   dp[0    ] = res0;                                             \
   dp[chan1] = res1
 
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
 
 /***************************************************************/
 #ifdef _NO_LONGLONG
@@ -118,17 +118,17 @@
 
 #else /* _NO_LONGLONG */
 
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
 
 #define LOAD_BUFF(buff)                                         \
   *(mlib_s64*)(buff + i) = (((mlib_s64)sp[chan1]) << 32) | S64TOS32((mlib_s64)sp[0])
 
-#else /* _LITTLE_ENDIAN */
+#else
 
 #define LOAD_BUFF(buff)                                         \
   *(mlib_s64*)(buff + i) = (((mlib_s64)sp[0]) << 32) | S64TOS32((mlib_s64)sp[chan1])
 
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
 #endif /* _NO_LONGLONG */
 
 /***************************************************************/

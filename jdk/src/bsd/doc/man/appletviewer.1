@@ -19,7 +19,7 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH appletviewer 1 "10 May 2011"
+.TH appletviewer 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
@@ -36,11 +36,14 @@ The \f3appletviewer\fP command allows you to run applets outside of a web browse
 .SH "DESCRIPTION"
 .LP
 .LP
-The \f3appletviewer\fP command connects to the documents or resources designated by \f2urls\fP and displays each applet referenced by the documents in its own window. Note: if the documents referred to by \f2urls\fP do not reference any applets with the \f2OBJECT\fP, \f2EMBED\fP, or \f2APPLET\fP tag, then \f3appletviewer\fP does nothing. For details on the HTML tags that \f3appletviewer\fP supports, see
+The \f3appletviewer\fP command connects to the documents or resources designated by \f2urls\fP and displays each applet referenced by the documents in its own window. Note: if the documents referred to by \f2urls\fP do not reference any applets with the \f2OBJECT\fP, \f2EMBED\fP, or \f2APPLET\fP tag, then \f3appletviewer\fP does nothing. For details on the HTML tags that \f3appletviewer\fP supports, see 
 .na
 \f2AppletViewer Tags\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/tools/appletviewertags.html.
+http://docs.oracle.com/javase/7/docs/technotes/tools/appletviewertags.html.
+.LP
+.LP
+\f3Note:\fP The \f3appletviewer\fP is intended for development purposes only. See About Sample / Test Applications and Code for more information.
 .LP
 .LP
 \f3Note:\fP The \f3appletviewer\fP requires encoded URLs according to the escaping mechanism defined in RFC2396. Only encoded URLs are supported. However, file names must be unencoded, as specified in RFC2396.
@@ -49,18 +52,18 @@ http://download.oracle.com/javase/7/docs/technotes/tools/appletviewertags.html.
 .LP
 .RS 3
 .TP 3
-\-debug
-Starts the applet viewer in the Java debugger, jdb(1), thus allowing you to debug the applets in the document.
+\-debug 
+Starts the applet viewer in the Java debugger, jdb(1), thus allowing you to debug the applets in the document. 
 .TP 3
-\-encoding \  \ encoding name
-Specify the input HTML file encoding name.
+\-encoding \  \ encoding name 
+Specify the input HTML file encoding name. 
 .TP 3
-\-Jjavaoption
-Passes through the string \f2javaoption\fP as a single argument to the Java interpreter which runs the appletviewer. The argument should not contain spaces. Multiple argument words must all begin with the prefix \f3\-J\fP, which is stripped. This is useful for adjusting the compiler's execution environment or memory usage.
+\-Jjavaoption 
+Passes through the string \f2javaoption\fP as a single argument to the Java interpreter which runs the appletviewer. The argument should not contain spaces. Multiple argument words must all begin with the prefix \f3\-J\fP, which is stripped. This is useful for adjusting the compiler's execution environment or memory usage. 
 .RE
 
 .LP
 .LP
 
 .LP
-
+ 

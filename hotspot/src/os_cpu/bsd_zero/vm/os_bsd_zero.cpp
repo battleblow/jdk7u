@@ -24,7 +24,7 @@
  */
 
 #if defined(_ALLBSD_SOURCE) && !defined(__APPLE__) && !defined(__NetBSD__)
-#include <pthread.h>
+# include <pthread.h>
 # include <pthread_np.h> /* For pthread_attr_get_np */
 #endif
 

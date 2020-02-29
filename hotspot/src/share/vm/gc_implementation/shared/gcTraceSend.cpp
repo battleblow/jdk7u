@@ -111,7 +111,7 @@ void YoungGCTracer::send_promotion_failed_event(const PromotionFailedInfo& pf_in
   if (e.should_commit()) {
     e.set_gcId(_shared_gc_info.id());
     e.set_data(to_trace_struct(pf_info));
-    e.set_thread(pf_info.thread()->thread_id());
+    e.set_thread((uint64_t) pf_info.thread()->thread_id());
     e.commit();
   }
 }

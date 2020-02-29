@@ -74,6 +74,14 @@ ifeq ($(PLATFORM), macosx)
   OTHER_LDLIBS += -liconv
 endif
 
+# Add location of iconv headers
+ifeq ($(PLATFORM), bsd)
+  ifneq ($(OS_NAME), netbsd)
+    CPPFLAGS += -I$(PACKAGE_PATH)/include
+    OTHER_LDLIBS += -L$(PACKAGE_PATH)/lib -liconv
+  endif
+endif
+
 #
 # Add to ambient vpath so we pick up the library files
 #

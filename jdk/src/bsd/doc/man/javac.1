@@ -19,7 +19,7 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH javac 1 "10 May 2011"
+.TH javac 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
@@ -42,17 +42,17 @@ Arguments may be in any order.
 .LP
 .RS 3
 .TP 3
-options
-Command\-line options.
+options 
+Command\-line options. 
 .TP 3
-sourcefiles
-One or more source files to be compiled (such as MyClass.java).
+sourcefiles 
+One or more source files to be compiled (such as MyClass.java). 
 .TP 3
-classes
-One or more classes to be processed for annotations (such as MyPackage.MyClass).
+classes 
+One or more classes to be processed for annotations (such as MyPackage.MyClass). 
 .TP 3
-@argfiles
-One or more files that lists options and source files. The \f2\-J\fP options are not allowed in these files.
+@argfiles 
+One or more files that lists options and source files. The \f2\-J\fP options are not allowed in these files. 
 .RE
 
 .LP
@@ -67,10 +67,10 @@ There are two ways to pass source code file names to \f3javac\fP:
 .RS 3
 .TP 2
 o
-For a small number of source files, simply list the file names on the command line.
+For a small number of source files, simply list the file names on the command line. 
 .TP 2
 o
-For a large number of source files, list the file names in a file, separated by blanks or line breaks. Then use the list file name on the \f3javac\fP command line, preceded by an \f3@\fP character.
+For a large number of source files, list the file names in a file, separated by blanks or line breaks. Then use the list file name on the \f3javac\fP command line, preceded by an \f3@\fP character. 
 .RE
 
 .LP
@@ -91,150 +91,150 @@ By default, the compiler puts each class file in the same directory as its sourc
 .LP
 The compiler has a set of standard options that are supported on the current development environment and will be supported in future releases. An additional set of non\-standard options are specific to the current virtual machine and compiler implementations and are subject to change in the future. Non\-standard options begin with \f3\-X\fP.
 .LP
-.SS
+.SS 
 Standard Options
 .LP
 .RS 3
 .TP 3
-\-Akey[=value]
-Options to pass to annotation processors. These are not interpreted by javac directly, but are made available for use by individual processors. \f2key\fP should be one or more identifiers separated by ".".
+\-Akey[=value] 
+Options to pass to annotation processors. These are not interpreted by javac directly, but are made available for use by individual processors. \f2key\fP should be one or more identifiers separated by ".". 
 .TP 3
-\-cp path or \-classpath path
+\-cp path or \-classpath path 
 Specify where to find user class files, and (optionally) annotation processors and source files. This class path overrides the user class path in the \f3CLASSPATH\fP environment variable. If neither \f3CLASSPATH\fP, \f3\-cp\fP nor \f3\-classpath\fP is specified, the user class path consists of the current directory. See Setting the Class Path for more details.
 .br
 .br
 >If the \f3\-sourcepath\fP option is not specified, the user class path is also searched for source files.
 .br
 .br
-If the \f3\-processorpath\fP option is not specified, the class path is also searched for annotation processors.
+If the \f3\-processorpath\fP option is not specified, the class path is also searched for annotation processors. 
 .TP 3
-\-Djava.ext.dirs=directories
-Override the location of installed extensions.
+\-Djava.ext.dirs=directories 
+Override the location of installed extensions. 
 .TP 3
-\-Djava.endorsed.dirs=directories
-Override the location of endorsed standards path.
+\-Djava.endorsed.dirs=directories 
+Override the location of endorsed standards path. 
 .TP 3
-\-d directory
+\-d directory 
 Set the destination directory for class files. The directory must already exist; \f3javac\fP will not create it. If a class is part of a package, \f3javac\fP puts the class file in a subdirectory reflecting the package name, creating directories as needed. For example, if you specify \f3\-d /home/myclasses\fP and the class is called \f2com.mypackage.MyClass\fP, then the class file is called \f2/home/myclasses/com/mypackage/MyClass.class\fP.
 .br
 .br
 If \f3\-d\fP is not specified, \f3javac\fP puts each class files in the same directory as the source file from which it was generated.
 .br
 .br
-\f3Note:\fP The directory specified by \f3\-d\fP is not automatically added to your user class path.
+\f3Note:\fP The directory specified by \f3\-d\fP is not automatically added to your user class path. 
 .TP 3
-\-deprecation
-Show a description of each use or override of a deprecated member or class. Without \f3\-deprecation\fP, \f3javac\fP shows a summary of the source files that use or override deprecated members or classes. \f3\-deprecation\fP is shorthand for \f3\-Xlint:deprecation\fP.
+\-deprecation 
+Show a description of each use or override of a deprecated member or class. Without \f3\-deprecation\fP, \f3javac\fP shows a summary of the source files that use or override deprecated members or classes. \f3\-deprecation\fP is shorthand for \f3\-Xlint:deprecation\fP. 
 .TP 3
-\-encoding encoding
-Set the source file encoding name, such as \f2EUC\-JP and UTF\-8\fP. If \f3\-encoding\fP is not specified, the platform default converter is used.
+\-encoding encoding 
+Set the source file encoding name, such as \f2EUC\-JP and UTF\-8\fP. If \f3\-encoding\fP is not specified, the platform default converter is used.  
 .TP 3
-\-endorseddirs directories
-Override the location of endorsed standards path.
+\-endorseddirs directories 
+Override the location of endorsed standards path. 
 .TP 3
-\-extdirs directories
+\-extdirs directories 
 Overrides the location of the \f2ext\fP directory. The \f2directories\fP variable is a colon\-separated list of directories. Each JAR archive in the specified directories is searched for class files. All JAR archives found are automatically part of the class path.
 .br
 .br
-If you are cross\-compiling (compiling classes against bootstrap and extension classes of a different Java platform implementation), this option specifies the directories that contain the extension classes. See Cross\-Compilation Options for more information.
+If you are cross\-compiling (compiling classes against bootstrap and extension classes of a different Java platform implementation), this option specifies the directories that contain the extension classes. See Cross\-Compilation Options for more information. 
 .TP 3
-\-g
-Generate all debugging information, including local variables. By default, only line number and source file information is generated.
+\-g 
+Generate all debugging information, including local variables. By default, only line number and source file information is generated. 
 .TP 3
-\-g:none
-Do not generate any debugging information.
+\-g:none 
+Do not generate any debugging information. 
 .TP 3
-\-g:{keyword list}
-Generate only some kinds of debugging information, specified by a comma separated list of keywords. Valid keywords are:
+\-g:{keyword list} 
+Generate only some kinds of debugging information, specified by a comma separated list of keywords. Valid keywords are: 
 .RS 3
 .TP 3
-source
-Source file debugging information
+source 
+Source file debugging information 
 .TP 3
-lines
-Line number debugging information
+lines 
+Line number debugging information 
 .TP 3
-vars
-Local variable debugging information
+vars 
+Local variable debugging information 
 .RE
 .TP 3
-\-help
-Print a synopsis of standard options.
+\-help 
+Print a synopsis of standard options. 
 .TP 3
-\-implicit:{class,none}
-Controls the generation of class files for implicitly loaded source files. To automatically generate class files, use \f3\-implicit:class\fP. To suppress class file generation, use \f3\-implicit:none\fP. If this option is not specified, the default is to automatically generate class files. In this case, the compiler will issue a warning if any such class files are generated when also doing annotation processing. The warning will not be issued if this option is set explicitly. See Searching For Types.
+\-implicit:{class,none} 
+Controls the generation of class files for implicitly loaded source files. To automatically generate class files, use \f3\-implicit:class\fP. To suppress class file generation, use \f3\-implicit:none\fP. If this option is not specified, the default is to automatically generate class files. In this case, the compiler will issue a warning if any such class files are generated when also doing annotation processing. The warning will not be issued if this option is set explicitly. See Searching For Types.  
 .TP 3
-\-Joption
+\-Joption 
 Pass \f2option\fP to the \f3java\fP launcher called by \f3javac\fP. For example, \f3\-J\-Xms48m\fP sets the startup memory to 48 megabytes. It is a common convention for \f3\-J\fP to pass options to the underlying VM executing applications written in Java.
 .br
 .br
-\f3Note:\fP \f3CLASSPATH\fP, \f3\-classpath\fP, \f3\-bootclasspath\fP, and \f3\-extdirs\fP do \f2not\fP specify the classes used to run \f3javac\fP. Fiddling with the implementation of the compiler in this way is usually pointless and always risky. If you do need to do this, use the \f3\-J\fP option to pass through options to the underlying \f3java\fP launcher.
+\f3Note:\fP \f3CLASSPATH\fP, \f3\-classpath\fP, \f3\-bootclasspath\fP, and \f3\-extdirs\fP do \f2not\fP specify the classes used to run \f3javac\fP. Fiddling with the implementation of the compiler in this way is usually pointless and always risky. If you do need to do this, use the \f3\-J\fP option to pass through options to the underlying \f3java\fP launcher. 
 .TP 3
-\-nowarn
-Disable warning messages. This has the same meaning as \f3\-Xlint:none\fP.
+\-nowarn 
+Disable warning messages. This has the same meaning as \f3\-Xlint:none\fP. 
 .TP 3
-\-proc: {none,only}
-Controls whether annotation processing and/or compilation is done. \f3\-proc:none\fP means that compilation takes place without annotation processing. \f3\-proc:only\fP means that only annotation processing is done, without any subsequent compilation.
+\-proc: {none,only} 
+Controls whether annotation processing and/or compilation is done. \f3\-proc:none\fP means that compilation takes place without annotation processing. \f3\-proc:only\fP means that only annotation processing is done, without any subsequent compilation. 
 .TP 3
-\-processor class1[,class2,class3...]
-Names of the annotation processors to run. This bypasses the default discovery process.
+\-processor class1[,class2,class3...] 
+Names of the annotation processors to run. This bypasses the default discovery process. 
 .TP 3
-\-processorpath path
-Specify where to find annotation processors; if this option is not used, the class path will be searched for processors.
+\-processorpath path 
+Specify where to find annotation processors; if this option is not used, the class path will be searched for processors. 
 .TP 3
-\-s dir
-Specify the directory where to place generated source files. The directory must already exist; \f3javac\fP will not create it. If a class is part of a package, the compiler puts the source file in a subdirectory reflecting the package name, creating directories as needed. For example, if you specify \f3\-s /home/mysrc\fP and the class is called \f2com.mypackage.MyClass\fP, then the source file will be placed in \f2/home/mysrc/com/mypackage/MyClass.java\fP.
+\-s dir 
+Specify the directory where to place generated source files. The directory must already exist; \f3javac\fP will not create it. If a class is part of a package, the compiler puts the source file in a subdirectory reflecting the package name, creating directories as needed. For example, if you specify \f3\-s /home/mysrc\fP and the class is called \f2com.mypackage.MyClass\fP, then the source file will be placed in \f2/home/mysrc/com/mypackage/MyClass.java\fP. 
 .TP 3
-\-source release
-Specifies the version of source code accepted. The following values for \f2release\fP are allowed:
+\-source release 
+Specifies the version of source code accepted. The following values for \f2release\fP are allowed: 
 .RS 3
 .TP 3
-1.3
-The compiler does \f2not\fP support assertions, generics, or other language features introduced after JDK 1.3.
+1.3 
+The compiler does \f2not\fP support assertions, generics, or other language features introduced after Java SE 1.3. 
 .TP 3
-1.4
-The compiler accepts code containing assertions, which were introduced in JDK 1.4.
+1.4 
+The compiler accepts code containing assertions, which were introduced in Java SE 1.4. 
 .TP 3
-1.5
-The compiler accepts code containing generics and other language features introduced in JDK 5.
+1.5 
+The compiler accepts code containing generics and other language features introduced in Java SE 5. 
 .TP 3
-5
-Synonym for 1.5.
+5 
+Synonym for 1.5. 
 .TP 3
-1.6
-This is the default value. No language changes were introduced in Java SE 6. However, encoding errors in source files are now reported as errors, instead of warnings, as previously.
+1.6 
+No language changes were introduced in Java SE 6. However, encoding errors in source files are now reported as errors instead of warnings as in previous releases of Java SE. 
 .TP 3
-6
-Synonym for 1.6.
+6 
+Synonym for 1.6. 
 .TP 3
-1.7
-The compiler accepts code with features introduced in JDK 7.
+1.7 
+This is the default value. The compiler accepts code with features introduced in Java SE 7. 
 .TP 3
-7
-Synonym for 1.7.
+7 
+Synonym for 1.7. 
 .RE
 .TP 3
-\-sourcepath sourcepath
+\-sourcepath sourcepath 
 Specify the source code path to search for class or interface definitions. As with the user class path, source path entries are separated by colons (\f3:\fP) and can be directories, JAR archives, or ZIP archives. If packages are used, the local path name within the directory or archive must reflect the package name.
 .br
 .br
-\f3Note:\fP Classes found through the class path may be subject to automatic recompilation if their sources are also found. See Searching For Types.
+\f3Note:\fP Classes found through the class path may be subject to automatic recompilation if their sources are also found. See Searching For Types. 
 .TP 3
-\-verbose
-Verbose output. This includes information about each class loaded and each source file compiled.
+\-verbose 
+Verbose output. This includes information about each class loaded and each source file compiled. 
 .TP 3
-\-version
-Print version information.
+\-version 
+Print version information.  
 .TP 3
-\-Werror
-Terminate compilation if warnings occur.
+\-Werror 
+Terminate compilation if warnings occur. 
 .TP 3
-\-X
-Display information about non\-standard options and exit.
+\-X 
+Display information about non\-standard options and exit. 
 .RE
 
 .LP
-.SS
+.SS 
 Cross\-Compilation Options
 .LP
 .LP
@@ -242,87 +242,92 @@ By default, classes are compiled against the bootstrap and extension classes of 
 .LP
 .RS 3
 .TP 3
-\-target version
-Generate class files that target a specified version of the VM. Class files will run on the specified target and on later versions, but not on earlier versions of the VM. Valid targets are \f31.1\fP \f31.2\fP \f31.3\fP \f31.4\fP \f31.5\fP (also \f35\fP) \f31.6\fP (also \f36\fP) and \f31.7\fP (also \f37\fP).
-.br
-.br
-The default for \f3\-target\fP depends on the value of \f3\-source\fP:
+\-target version 
+Generate class files that target a specified version of the VM. Class files will run on the specified target and on later versions, but not on earlier versions of the VM. Valid targets are \f31.1\fP, \f31.2\fP, \f31.3\fP, \f31.4\fP, \f31.5\fP (also \f35\fP), \f31.6\fP (also \f36\fP), and \f31.7\fP (also \f37\fP). 
+.LP
+The default for \f3\-target\fP depends on the value of \f3\-source\fP: 
 .RS 3
 .TP 2
 o
-If \-source is \f3not specified\fP, the value of \-target is \f31.7\fP
+If \-source is \f3not specified\fP, the value of \-target is \f31.7\fP 
 .TP 2
 o
-If \-source is \f31.2\fP, the value of \-target is \f31.4\fP
+If \-source is \f31.2\fP, the value of \-target is \f31.4\fP 
 .TP 2
 o
-If \-source is \f31.3\fP, the value of \-target is \f31.4\fP
+If \-source is \f31.3\fP, the value of \-target is \f31.4\fP 
 .TP 2
 o
-For \f3all other values\fP of \-source, the value of \f3\-target\fP is the value of \f3\-source\fP.
+If \-source is \f31.5\fP, the value of \-target is \f31.7\fP 
+.TP 2
+o
+If \-source is \f31.6\fP, the value of \-target is \f31.7\fP 
+.TP 2
+o
+For \f3all other values\fP of \-source, the value of \f3\-target\fP is the value of \f3\-source\fP. 
 .RE
 .TP 3
-\-bootclasspath bootclasspath
-Cross\-compile against the specified set of boot classes. As with the user class path, boot class path entries are separated by colons (\f3:\fP) and can be directories, JAR archives, or ZIP archives.
+\-bootclasspath bootclasspath 
+Cross\-compile against the specified set of boot classes. As with the user class path, boot class path entries are separated by colons (\f3:\fP) and can be directories, JAR archives, or ZIP archives. 
 .RE
 
 .LP
-.SS
+.SS 
 Non\-Standard Options
 .LP
 .RS 3
 .TP 3
-\-Xbootclasspath/p:path
-Prepend to the bootstrap class path.
+\-Xbootclasspath/p:path 
+Prepend to the bootstrap class path. 
 .TP 3
-\-Xbootclasspath/a:path
-Append to the bootstrap class path.
+\-Xbootclasspath/a:path 
+Append to the bootstrap class path. 
 .TP 3
-\-Xbootclasspath/:path
-Override location of bootstrap class files.
+\-Xbootclasspath/:path 
+Override location of bootstrap class files. 
 .TP 3
-\-Xlint
-Enable all recommended warnings. In this release, enabling all available warnings is recommended.
+\-Xlint 
+Enable all recommended warnings. In this release, enabling all available warnings is recommended. 
 .TP 3
-\-Xlint:all
-Enable all recommended warnings. In this release, enabling all available warnings is recommended.
+\-Xlint:all 
+Enable all recommended warnings. In this release, enabling all available warnings is recommended. 
 .TP 3
-\-Xlint:none
-Disable all warnings.
+\-Xlint:none 
+Disable all warnings. 
 .TP 3
-\-Xlint:name
-Enable warning \f2name\fP. See the section Warnings That Can Be Enabled or Disabled with \-Xlint Option for a list of warnings you can enable with this option.
+\-Xlint:name 
+Enable warning \f2name\fP. See the section Warnings That Can Be Enabled or Disabled with \-Xlint Option for a list of warnings you can enable with this option. 
 .TP 3
-\-Xlint:\-name
-Disable warning \f2name\fP. See the section Warnings That Can Be Enabled or Disabled with \-Xlint Option for a list of warnings you can disable with this option.
+\-Xlint:\-name 
+Disable warning \f2name\fP. See the section Warnings That Can Be Enabled or Disabled with \-Xlint Option for a list of warnings you can disable with this option. 
 .TP 3
-\-Xmaxerrs number
-Set the maximum number of errors to print.
+\-Xmaxerrs number 
+Set the maximum number of errors to print. 
 .TP 3
-\-Xmaxwarns number
-Set the maximum number of warnings to print.
+\-Xmaxwarns number 
+Set the maximum number of warnings to print. 
 .TP 3
-\-Xstdout filename
-Send compiler messages to the named file. By default, compiler messages go to \f2System.err\fP.
+\-Xstdout filename 
+Send compiler messages to the named file. By default, compiler messages go to \f2System.err\fP. 
 .TP 3
-\-Xprefer:{newer,source}
-Specify which file to read when both a source file and class file are found for a type. (See Searching For Types). If \f2\-Xprefer:newer\fP is used, it reads the newer of the source or class file for a type (default). If the \f2\-Xprefer:source\fP option is used, it reads source file. Use \f2\-Xprefer:source\fP when you want to be sure that any annotation processors can access annotations declared with a retention policy of \f2SOURCE\fP.
+\-Xprefer:{newer,source} 
+Specify which file to read when both a source file and class file are found for a type. (See Searching For Types). If \f2\-Xprefer:newer\fP is used, it reads the newer of the source or class file for a type (default). If the \f2\-Xprefer:source\fP option is used, it reads source file. Use \f2\-Xprefer:source\fP when you want to be sure that any annotation processors can access annotations declared with a retention policy of \f2SOURCE\fP.  
 .TP 3
-\-Xpkginfo:{always,legacy,nonempty}
-Specify handling of package\-info files
+\-Xpkginfo:{always,legacy,nonempty} 
+Specify handling of package\-info files 
 .TP 3
-\-Xprint
-Print out textual representation of specified types for debugging purposes; perform neither annotation processing nor compilation. The format of the output may change.
+\-Xprint 
+Print out textual representation of specified types for debugging purposes; perform neither annotation processing nor compilation. The format of the output may change. 
 .TP 3
-\-XprintProcessorInfo
-Print information about which annotations a processor is asked to process.
+\-XprintProcessorInfo 
+Print information about which annotations a processor is asked to process. 
 .TP 3
-\-XprintRounds
-Print information about initial and subsequent annotation processing rounds.
+\-XprintRounds 
+Print information about initial and subsequent annotation processing rounds. 
 .RE
 
 .LP
-.SS
+.SS 
 Warnings That Can Be Enabled or Disabled with \-Xlint Option
 .LP
 .LP
@@ -330,8 +335,8 @@ Enable warning \f2name\fP with the option \f3\-Xlint:\fP\f2name\fP, where \f2nam
 .LP
 .RS 3
 .TP 3
-cast
-Warn about unnecessary and redundant casts. For example:
+cast 
+Warn about unnecessary and redundant casts. For example: 
 .nf
 \f3
 .fl
@@ -340,11 +345,11 @@ String s = (String)"Hello!"
 \fP
 .fi
 .TP 3
-classfile
-Warn about issues related to classfile contents.
+classfile 
+Warn about issues related to classfile contents. 
 .TP 3
-deprecation
-Warn about use of deprecated items. For example:
+deprecation 
+Warn about use of deprecated items. For example: 
 .nf
 \f3
 .fl
@@ -354,10 +359,10 @@ Warn about use of deprecated items. For example:
 .fl
 \fP
 .fi
-The method \f2java.util.Date.getDay\fP has been deprecated since JDK 1.1.
+The method \f2java.util.Date.getDay\fP has been deprecated since JDK 1.1. 
 .TP 3
-dep\-ann
-Warn about items that are documented with an \f2@deprecated\fP Javadoc comment, but do not have a \f2@Deprecated\fP annotation. For example:
+dep\-ann 
+Warn about items that are documented with an \f2@deprecated\fP Javadoc comment, but do not have a \f2@Deprecated\fP annotation. For example: 
 .nf
 \f3
 .fl
@@ -378,8 +383,8 @@ Warn about items that are documented with an \f2@deprecated\fP Javadoc comment, 
 \fP
 .fi
 .TP 3
-divzero
-Warn about division by constant integer 0. For example:
+divzero 
+Warn about division by constant integer 0. For example: 
 .nf
 \f3
 .fl
@@ -388,8 +393,8 @@ Warn about division by constant integer 0. For example:
 \fP
 .fi
 .TP 3
-empty
-Warn about empty statements after \f2if\fP statements. For example:
+empty 
+Warn about empty statements after \f2if\fP statements. For example: 
 .nf
 \f3
 .fl
@@ -406,8 +411,8 @@ class E {
 \fP
 .fi
 .TP 3
-fallthrough
-Check \f2switch\fP blocks for fall\-through cases and provide a warning message for any that are found. Fall\-through cases are cases in a \f2switch\fP block, other than the last case in the block, whose code does not include a \f2break\fP statement, allowing code execution to "fall through" from that case to the next case. For example, the code following the \f2case 1\fP label in this \f2switch\fP block does not end with a \f2break\fP statement:
+fallthrough 
+Check \f2switch\fP blocks for fall\-through cases and provide a warning message for any that are found. Fall\-through cases are cases in a \f2switch\fP block, other than the last case in the block, whose code does not include a \f2break\fP statement, allowing code execution to "fall through" from that case to the next case. For example, the code following the \f2case 1\fP label in this \f2switch\fP block does not end with a \f2break\fP statement: 
 .nf
 \f3
 .fl
@@ -427,10 +432,10 @@ case 2:
 .fl
 \fP
 .fi
-If the \f2\-Xlint:fallthrough\fP flag were used when compiling this code, the compiler would emit a warning about "possible fall\-through into case," along with the line number of the case in question.
+If the \f2\-Xlint:fallthrough\fP flag were used when compiling this code, the compiler would emit a warning about "possible fall\-through into case," along with the line number of the case in question. 
 .TP 3
-finally
-Warn about \f2finally\fP clauses that cannot complete normally. For example:
+finally 
+Warn about \f2finally\fP clauses that cannot complete normally. For example: 
 .nf
 \f3
 .fl
@@ -456,13 +461,13 @@ Warn about \f2finally\fP clauses that cannot complete normally. For example:
 .fl
 \fP
 .fi
-The compiler generates a warning for \f2finally\fP block in this example. When this method is called, it returns a value of \f20\fP, not \f21\fP. A \f2finally\fP block always executes when the \f2try\fP block exits. In this example, if control is transferred to the \f2catch\fP, then the method exits. However, the \f2finally\fP block must be executed, so it is executed, even though control has already been transferred outside the method.
+The compiler generates a warning for \f2finally\fP block in this example. When this method is called, it returns a value of \f20\fP, not \f21\fP. A \f2finally\fP block always executes when the \f2try\fP block exits. In this example, if control is transferred to the \f2catch\fP, then the method exits. However, the \f2finally\fP block must be executed, so it is executed, even though control has already been transferred outside the method. 
 .TP 3
-options
-Warn about issues relating to the use of command line options. See Cross\-Compilation Example for an example of this kind of warning.
+options 
+Warn about issues relating to the use of command line options. See Cross\-Compilation Example for an example of this kind of warning. 
 .TP 3
-overrides
-Warn about issues regarding method overrides. For example, consider the following two classes:
+overrides 
+Warn about issues regarding method overrides. For example, consider the following two classes: 
 .nf
 \f3
 .fl
@@ -493,10 +498,10 @@ The compiler generates a warning similar to the following:
 \f2warning: [override] varargsMethod(String[]) in ClassWithOverridingMethod overrides varargsMethod(String...) in ClassWithVarargsMethod; overriding method is missing '...'\fP
 .br
 .br
-When the compiler encounters a varargs method, it translates the varargs formal parameter into an array. In the method \f2ClassWithVarargsMethod.varargsMethod\fP, the compiler translates the varargs formal parameter \f2String... s\fP to the formal parameter \f2String[] s\fP, an array, which matches the formal parameter of the method \f2ClassWithOverridingMethod.varargsMethod\fP. Consequently, this example compiles.
+When the compiler encounters a varargs method, it translates the varargs formal parameter into an array. In the method \f2ClassWithVarargsMethod.varargsMethod\fP, the compiler translates the varargs formal parameter \f2String... s\fP to the formal parameter \f2String[] s\fP, an array, which matches the formal parameter of the method \f2ClassWithOverridingMethod.varargsMethod\fP. Consequently, this example compiles. 
 .TP 3
-path
-Warn about invalid path elements and nonexistent path directories on the command line (with regards to the class path, the source path, and other paths). Such warnings cannot be suppressed with the \f2@SuppressWarnings\fP annotation. For example:
+path 
+Warn about invalid path elements and nonexistent path directories on the command line (with regards to the class path, the source path, and other paths). Such warnings cannot be suppressed with the \f2@SuppressWarnings\fP annotation. For example: 
 .nf
 \f3
 .fl
@@ -505,11 +510,11 @@ javac \-Xlint:path \-classpath /nonexistentpath Example.java
 \fP
 .fi
 .TP 3
-processing
+processing 
 Warn about issues regarding annotation processing. The compiler generates this warning if you have a class that has an annotation, and you use an annotation processor that cannot handle that type of exception. For example, the following is a simple annotation processor:
 .br
 .br
-\f3Source file \fP\f4AnnoProc.java\fP:
+\f3Source file \fP\f4AnnoProc.java\fP: 
 .nf
 \f3
 .fl
@@ -545,7 +550,7 @@ public class AnnoProc extends AbstractProcessor {
 .fl
 \fP
 .fi
-\f3Source file \fP\f4AnnosWithoutProcessors.java\fP\f3:\fP
+\f3Source file \fP\f4AnnosWithoutProcessors.java\fP\f3:\fP 
 .nf
 \f3
 .fl
@@ -559,15 +564,14 @@ class AnnosWithoutProcessors { }
 .fl
 \fP
 .fi
-The following commands compile the annotation processor \f2AnnoProc\fP, then run this annotation processor against the source file \f2AnnosWithoutProcessors.java\fP:
+The following commands compile the annotation processor \f2AnnoProc\fP, then run this annotation processor against the source file \f2AnnosWithoutProcessors.java\fP: 
 .nf
 \f3
 .fl
-% javac AnnoProc.java
+% \fP\f3javac AnnoProc.java\fP
 .fl
-% javac \-cp . \-Xlint:processing \-processor AnnoProc \-proc:only AnnosWithoutProcessors.java
+% \f3javac \-cp . \-Xlint:processing \-processor AnnoProc \-proc:only AnnosWithoutProcessors.java\fP
 .fl
-\fP
 .fi
 When the compiler runs the annotation processor against the source file \f2AnnosWithoutProcessors.java\fP, it generates the following warning:
 .br
@@ -575,10 +579,10 @@ When the compiler runs the annotation processor against the source file \f2Annos
 \f2warning: [processing] No processor claimed any of these annotations: Anno\fP
 .br
 .br
-To resolve this issue, you can rename the annotation defined and used in the class \f2AnnosWithoutProcessors\fP from \f2Anno\fP to \f2NotAnno\fP.
+To resolve this issue, you can rename the annotation defined and used in the class \f2AnnosWithoutProcessors\fP from \f2Anno\fP to \f2NotAnno\fP. 
 .TP 3
-rawtypes
-Warn about unchecked operations on raw types. The following statement generates a \f2rawtypes\fP warning:
+rawtypes 
+Warn about unchecked operations on raw types. The following statement generates a \f2rawtypes\fP warning: 
 .nf
 \f3
 .fl
@@ -586,7 +590,7 @@ void countElements(List l) { ... }
 .fl
 \fP
 .fi
-The following does not generate a \f2rawtypes\fP warning:
+The following does not generate a \f2rawtypes\fP warning: 
 .nf
 \f3
 .fl
@@ -594,10 +598,10 @@ void countElements(List<?> l) { ... }
 .fl
 \fP
 .fi
-\f2List\fP is a raw type. However, \f2List<?>\fP is a unbounded wildcard parameterized type. Because \f2List\fP is a parameterized interface, you should always specify its type argument. In this example, the \f2List\fP formal argument is specified with a unbounded wildcard (\f2?\fP) as its formal type parameter, which means that the \f2countElements\fP method can accept any instantiation of the \f2List\fP interface.
+\f2List\fP is a raw type. However, \f2List<?>\fP is a unbounded wildcard parameterized type. Because \f2List\fP is a parameterized interface, you should always specify its type argument. In this example, the \f2List\fP formal argument is specified with a unbounded wildcard (\f2?\fP) as its formal type parameter, which means that the \f2countElements\fP method can accept any instantiation of the \f2List\fP interface. 
 .TP 3
-serial
-Warn about missing \f2serialVersionUID\fP definitions on serializable classes. For example:
+serial 
+Warn about missing \f2serialVersionUID\fP definitions on serializable classes. For example: 
 .nf
 \f3
 .fl
@@ -633,10 +637,10 @@ The compiler generates the following warning:
 \f2warning: [serial] serializable class PersistentTime has no definition of serialVersionUID\fP
 .br
 .br
-If a serializable class does not explicitly declare a field named \f2serialVersionUID\fP, then the serialization runtime will calculate a default \f2serialVersionUID\fP value for that class based on various aspects of the class, as described in the Java Object Serialization Specification. However, it is strongly recommended that all serializable classes explicitly declare \f2serialVersionUID\fP values because the default process of computing \f2serialVersionUID\fP vales is highly sensitive to class details that may vary depending on compiler implementations, and can thus result in unexpected \f2InvalidClassExceptions\fP during deserialization. Therefore, to guarantee a consistent \f2serialVersionUID\fP value across different Java compiler implementations, a serializable class must declare an explicit \f2serialVersionUID\fP value.
+If a serializable class does not explicitly declare a field named \f2serialVersionUID\fP, then the serialization runtime will calculate a default \f2serialVersionUID\fP value for that class based on various aspects of the class, as described in the Java Object Serialization Specification. However, it is strongly recommended that all serializable classes explicitly declare \f2serialVersionUID\fP values because the default process of computing \f2serialVersionUID\fP vales is highly sensitive to class details that may vary depending on compiler implementations, and can thus result in unexpected \f2InvalidClassExceptions\fP during deserialization. Therefore, to guarantee a consistent \f2serialVersionUID\fP value across different Java compiler implementations, a serializable class must declare an explicit \f2serialVersionUID\fP value. 
 .TP 3
-static
-Warn about issues relating to use of statics. For example:
+static 
+Warn about issues relating to use of statics. For example: 
 .nf
 \f3
 .fl
@@ -650,7 +654,7 @@ class XLintStatic {
 .fl
 \fP
 .fi
-The compiler generates the following warning:
+The compiler generates the following warning: 
 .nf
 \f3
 .fl
@@ -658,7 +662,7 @@ warning: [static] static method should be qualified by type name, XLintStatic, i
 .fl
 \fP
 .fi
-To resolve this issue, you can call the static method \f2m1\fP as follows:
+To resolve this issue, you can call the static method \f2m1\fP as follows: 
 .nf
 \f3
 .fl
@@ -666,10 +670,10 @@ XLintStatic.m1();
 .fl
 \fP
 .fi
-Alternatively, you can remove the \f2static\fP keyword from the declaration of the method \f2m1\fP.
+Alternatively, you can remove the \f2static\fP keyword from the declaration of the method \f2m1\fP. 
 .TP 3
-try
-Warn about issues relating to use of \f2try\fP blocks, including try\-with\-resources statements. For example, a warning is generated for the following statement because the resource \f2ac\fP declared in the \f2try\fP statement is not used:
+try 
+Warn about issues relating to use of \f2try\fP blocks, including try\-with\-resources statements. For example, a warning is generated for the following statement because the resource \f2ac\fP declared in the \f2try\fP statement is not used: 
 .nf
 \f3
 .fl
@@ -682,8 +686,8 @@ try ( AutoCloseable ac = getResource() ) {
 \fP
 .fi
 .TP 3
-unchecked
-Give more detail for unchecked conversion warnings that are mandated by the Java Language Specification. For example:
+unchecked 
+Give more detail for unchecked conversion warnings that are mandated by the Java Language Specification. For example: 
 .nf
 \f3
 .fl
@@ -699,10 +703,10 @@ During type erasure, the types \f2ArrayList<Number>\fP and \f2List<String>\fP be
 The variable \f2ls\fP has the parameterized type \f2List<String>\fP. When the \f2List\fP referenced by \f2l\fP is assigned to \f2ls\fP, the compiler generates an unchecked warning; the compiler is unable to determine at compile time, and moreover knows that the JVM will not be able to determine at runtime, if \f2l\fP refers to a \f2List<String>\fP type; it does not. Consequently, heap pollution occurs.
 .br
 .br
-In detail, a heap pollution situation occurs when the \f2List\fP object \f2l\fP, whose static type is \f2List<Number>\fP, is assigned to another \f2List\fP object, \f2ls\fP, that has a different static type, \f2List<String>\fP. However, the compiler still allows this assignment. It must allow this assignment to preserve backwards compatibility with versions of Java SE that do not support generics. Because of type erasure, \f2List<Number>\fP and \f2List<String>\fP both become \f2List\fP. Consequently, the compiler allows the assignment of the object \f2l\fP, which has a raw type of \f2List\fP, to the object \f2ls\fP.
+In detail, a heap pollution situation occurs when the \f2List\fP object \f2l\fP, whose static type is \f2List<Number>\fP, is assigned to another \f2List\fP object, \f2ls\fP, that has a different static type, \f2List<String>\fP. However, the compiler still allows this assignment. It must allow this assignment to preserve backwards compatibility with versions of Java SE that do not support generics. Because of type erasure, \f2List<Number>\fP and \f2List<String>\fP both become \f2List\fP. Consequently, the compiler allows the assignment of the object \f2l\fP, which has a raw type of \f2List\fP, to the object \f2ls\fP. 
 .TP 3
-varargs
-Warn about unsafe usages of variable arguments (varargs) methods, in particular, those that contain non\-reifiable arguments. For example:
+varargs 
+Warn about unsafe usages of variable arguments (varargs) methods, in particular, those that contain non\-reifiable arguments. For example: 
 .nf
 \f3
 .fl
@@ -722,7 +726,7 @@ public class ArrayBuilder {
 .fl
 \fP
 .fi
-The compiler generates the following warning for the definition of the method \f2ArrayBuilder.addToList\fP:
+The compiler generates the following warning for the definition of the method \f2ArrayBuilder.addToList\fP: 
 .nf
 \f3
 .fl
@@ -730,7 +734,7 @@ warning: [varargs] Possible heap pollution from parameterized vararg type T
 .fl
 \fP
 .fi
-When the compiler encounters a varargs method, it translates the varargs formal parameter into an array. However, the Java programming language does not permit the creation of arrays of parameterized types. In the method \f2ArrayBuilder.addToList\fP, the compiler translates the varargs formal parameter \f2T... elements\fP to the formal parameter \f2T[] elements\fP, an array. However, because of type erasure, the compiler converts the varargs formal parameter to \f2Object[] elements\fP. Consequently, there is a possibility of heap pollution.
+When the compiler encounters a varargs method, it translates the varargs formal parameter into an array. However, the Java programming language does not permit the creation of arrays of parameterized types. In the method \f2ArrayBuilder.addToList\fP, the compiler translates the varargs formal parameter \f2T... elements\fP to the formal parameter \f2T[] elements\fP, an array. However, because of type erasure, the compiler converts the varargs formal parameter to \f2Object[] elements\fP. Consequently, there is a possibility of heap pollution. 
 .RE
 
 .LP
@@ -748,7 +752,7 @@ Filenames within an argument file are relative to the current directory, not the
 .LP
 When executing javac, pass in the path and name of each argument file with the '\f2@\fP' leading character. When javac encounters an argument beginning with the character `\f2@\fP', it expands the contents of that file into the argument list.
 .LP
-.SS
+.SS 
 Example \- Single Arg File
 .LP
 .LP
@@ -765,7 +769,7 @@ You could use a single argument file named "\f2argfile\fP" to hold all javac arg
 .LP
 This argument file could contain the contents of both files shown in the next example.
 .LP
-.SS
+.SS 
 Example \- Two Arg Files
 .LP
 .LP
@@ -820,7 +824,7 @@ You would then run \f3javac\fP with:
 .fi
 
 .LP
-.SS
+.SS 
 Example \- Arg Files with Paths
 .LP
 .LP
@@ -842,7 +846,7 @@ The argument files can have paths, but any filenames inside the files are relati
 .LP
 The API for annotation processors is defined in the \f2javax.annotation.processing\fP and \f2javax.lang.model\fP packages and subpackages.
 .LP
-.SS
+.SS 
 Overview of annotation processing
 .LP
 .LP
@@ -857,7 +861,7 @@ If any processors generate any new source files, another round of annotation pro
 .LP
 After a round occurs where no new source files are generated, the annotation processors will be invoked one last time, to give them a chance to complete any work they may need to do. Finally, unless the \f3\-proc:only\fP option is used, the compiler will compile the original and all the generated source files.
 .LP
-.SS
+.SS 
 Implicitly loaded source files
 .LP
 .LP
@@ -894,7 +898,7 @@ The compiler may not discover the need for some type information until after ann
 .LP
 \f3javac\fP supports the new Java Compiler API defined by the classes and interfaces in the \f2javax.tools\fP package.
 .LP
-.SS
+.SS 
 Example
 .LP
 .LP
@@ -917,7 +921,7 @@ This will write any diagnostics to the standard output stream, and return the ex
 .LP
 You can use other methods on the \f2javax.tools.JavaCompiler\fP interface to handle diagnostics, control where files are read from and written to, and so on.
 .LP
-.SS
+.SS 
 Old Interface
 .LP
 .LP
@@ -951,7 +955,7 @@ Note that all \f3other\fP classes and methods found in a package whose name star
 .LP
 .SH "EXAMPLES"
 .LP
-.SS
+.SS 
 Compiling a Simple Program
 .LP
 .LP
@@ -1005,7 +1009,7 @@ Hello Everyone
 .fi
 
 .LP
-.SS
+.SS 
 Compiling Multiple Source Files
 .LP
 .LP
@@ -1033,7 +1037,7 @@ Aloha.java          GutenTag.java       Hello.java          Hi.java
 .fi
 
 .LP
-.SS
+.SS 
 Specifying a User Class Path
 .LP
 .LP
@@ -1068,7 +1072,7 @@ If we change \f2greetings.Hi\fP again, to use a banner utility, that utility als
 .nf
 \f3
 .fl
-% \fP\f3javac \-classpath /examples:/lib/Banners.jar \\
+% \fP\f3javac \-classpath /examples:/lib/Banners.jar \\ 
 .fl
             /examples/greetings/Hi.java\fP
 .fl
@@ -1086,7 +1090,7 @@ To execute a class in \f2greetings\fP, we need access both to \f2greetings\fP an
 .fi
 
 .LP
-.SS
+.SS 
 Separating Source Files and Class Files
 .LP
 .LP
@@ -1113,7 +1117,7 @@ Banners.jar
 .fl
 % \f3ls classes\fP
 .fl
-% \f3javac \-sourcepath src \-classpath classes:lib/Banners.jar \\
+% \f3javac \-sourcepath src \-classpath classes:lib/Banners.jar \\ 
 .fl
             src/farewells/GoodBye.java \-d classes\fP
 .fl
@@ -1131,16 +1135,16 @@ Base.class      GoodBye.class
 .LP
 \f3Note:\fP The compiler compiled \f2src/farewells/Base.java\fP, even though we didn't specify it on the command line. To trace automatic compiles, use the \f3\-verbose\fP option.
 .LP
-.SS
+.SS 
 Cross\-Compilation Example
 .LP
 .LP
-Here we use \f3javac\fP to compile code that will run on a 1.6 VM.
+The following example uses \f3javac\fP to compile code that will run on a 1.6 VM.
 .LP
 .nf
 \f3
 .fl
-% \fP\f3javac \-source 1.6 \-target 1.6 \-bootclasspath jdk1.6.0/lib/rt.jar \\
+% \fP\f3javac \-source 1.6 \-target 1.6 \-bootclasspath jdk1.6.0/lib/rt.jar \\ 
 .fl
             \-extdirs "" OldCode.java\fP
 .fl
@@ -1174,32 +1178,32 @@ o
 .na
 \f2The javac Guide\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/javac/index.html
+http://docs.oracle.com/javase/7/docs/technotes/guides/javac/index.html 
 .TP 2
 o
-java(1) \- the Java Application Launcher
+java(1) \- the Java Application Launcher 
 .TP 2
 o
-jdb(1) \- Java Application Debugger
+jdb(1) \- Java Application Debugger 
 .TP 2
 o
-javah(1) \- C Header and Stub File Generator
+javah(1) \- C Header and Stub File Generator 
 .TP 2
 o
-javap(1) \- Class File Disassembler
+javap(1) \- Class File Disassembler 
 .TP 2
 o
-javadoc(1) \- API Documentation Generator
+javadoc(1) \- API Documentation Generator 
 .TP 2
 o
-jar(1) \- JAR Archive Tool
+jar(1) \- JAR Archive Tool 
 .TP 2
 o
 .na
 \f2The Java Extensions Framework\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/extensions/index.html
+http://docs.oracle.com/javase/7/docs/technotes/guides/extensions/index.html 
 .RE
 
 .LP
-
+ 

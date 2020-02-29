@@ -151,7 +151,7 @@ static int ParseLocale(int cat, char ** std_language, char ** std_script,
     lc = setlocale(cat, NULL);
 #endif
 
-#ifndef __linux__
+#if !defined(__linux__) && !defined(__OpenBSD__)
     if (lc == NULL) {
         return 0;
     }
@@ -503,12 +503,19 @@ GetJavaProperties(JNIEnv *env)
                     &(sprops.format_country),
                     &(sprops.format_variant),
                     &(sprops.encoding))) {
+#ifdef __OpenBSD__
+        sprops.language = sprops.format_language;
+        sprops.script = sprops.format_script;
+        sprops.country = sprops.format_country;
+        sprops.variant = sprops.format_variant;
+#else
         ParseLocale(LC_MESSAGES,
                     &(sprops.language),
                     &(sprops.script),
                     &(sprops.country),
                     &(sprops.variant),
                     NULL);
+#endif
     } else {
         sprops.language = "en";
         sprops.encoding = "ISO8859-1";

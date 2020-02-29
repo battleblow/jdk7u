@@ -79,6 +79,11 @@ ifeq ($(UNAME_S), Linux)
   endif
   OS_VERSION := $(shell $(UNAME) -r)
 endif
+ifeq ($(findstring BSD,$(UNAME_S)), BSD)
+  OS_NAME     = bsd
+  OS_ARCH    := $(shell $(UNAME) -m)
+  OS_VERSION := $(shell $(UNAME) -r)
+endif
 ifeq ($(UNAME_S), Darwin)
   OS_NAME     = macosx
   OS_ARCH    := $(shell $(UNAME) -m)

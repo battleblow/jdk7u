@@ -72,6 +72,21 @@ ifeq ($(PLATFORM), linux)
 
 endif
 
+ifeq ($(PLATFORM), bsd)
+
+  # Settings specific to BSD
+  CC             = $(COMPILER_PATH)gcc
+  CPP            = $(COMPILER_PATH)gcc -E
+  CXX            = $(COMPILER_PATH)g++
+
+  # Option used to create a shared library
+  ifeq ($(OS_VENDOR), Apple)
+    SHARED_LIBRARY_FLAG = -dynamiclib 
+  else
+    SHARED_LIBRARY_FLAG = -shared
+  endif
+endif
+
 ifeq ($(PLATFORM), solaris)
 
   # Settings specific to Solaris

@@ -34,7 +34,7 @@
 
 OS=`uname -s`
 case "$OS" in
-  SunOS | Linux | Darwin | AIX ) ;;
+  SunOS | Linux | *BSD | Darwin | AIX ) ;;
   # Skip locale test for Windows
   Windows* | CYGWIN* )
     echo "Passed"; exit 0 ;;

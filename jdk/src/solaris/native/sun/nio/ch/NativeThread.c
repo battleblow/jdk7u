@@ -33,12 +33,19 @@
 #include "nio_util.h"
 
 
-#ifdef __linux__
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
 #include <pthread.h>
+#if defined(__linux__)
 #include <sys/signal.h>
 
 /* Also defined in src/solaris/native/java/net/linux_close.c */
 #define INTERRUPT_SIGNAL (__SIGRTMAX - 2)
+#else
+#include <signal.h>
+
+/* Also defined in src/solaris/native/java/net/bsd_close.c */
+#define INTERRUPT_SIGNAL SIGIO
+#endif
 
 static void
 nullHandler(int sig)
@@ -51,7 +58,7 @@ nullHandler(int sig)
 JNIEXPORT void JNICALL
 Java_sun_nio_ch_NativeThread_init(JNIEnv *env, jclass cl)
 {
-#ifdef __linux__
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
 
     /* Install the null handler for INTERRUPT_SIGNAL.  This might overwrite the
      * handler previously installed by java/net/linux_close.c, but that's okay
@@ -74,7 +81,7 @@ Java_sun_nio_ch_NativeThread_init(JNIEnv *env, jclass cl)
 JNIEXPORT jlong JNICALL
 Java_sun_nio_ch_NativeThread_current(JNIEnv *env, jclass cl)
 {
-#ifdef __linux__
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
     return (long)pthread_self();
 #else
     return -1;
@@ -84,7 +91,7 @@ Java_sun_nio_ch_NativeThread_current(JNIEnv *env, jclass cl)
 JNIEXPORT void JNICALL
 Java_sun_nio_ch_NativeThread_signal(JNIEnv *env, jclass cl, jlong thread)
 {
-#ifdef __linux__
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
     if (pthread_kill((pthread_t)thread, INTERRUPT_SIGNAL))
         JNU_ThrowIOExceptionWithLastError(env, "Thread signal failed");
 #endif

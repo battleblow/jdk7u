@@ -52,6 +52,9 @@ AUTO_FILES_JAVA_DIRS = sun/awt/X11
 AUTO_JAVA_PRUNE = WrapperGenerator.java
 
 LDFLAGS += -L$(OPENWIN_LIB)
+ifeq ($(OS_NAME), netbsd)
+LDFLAGS += -Wl,-R$(OPENWIN_LIB)
+endif
 
 # For Xrender extension.
 ifeq ($(PLATFORM), solaris)
@@ -60,6 +63,11 @@ endif
 
 ifeq ($(PLATFORM), linux)
 LDFLAGS += -lpthread
+dummy := $(shell $(MKDIR) -p $(LIB_LOCATION))
+endif
+
+ifeq ($(PLATFORM), bsd)
+LDFLAGS += -pthread
 dummy := $(shell $(MKDIR) -p $(LIB_LOCATION))
 endif
 
@@ -117,8 +125,6 @@ CPPFLAGS += -DFUNCPROTO=15
 dummy := $(shell $(MKDIR) -p $(LIB_LOCATION))
 endif
 
-CPPFLAGS += -I$(CUPS_HEADERS_PATH)
-
 CPPFLAGS += -DXAWT -DXAWT_HACK \
         -I$(TEMPDIR)/../../sun.awt/awt/CClassHeaders \
         -I$(PLATFORM_SRC)/native/sun/awt \
@@ -144,6 +150,8 @@ CPPFLAGS += -DXAWT -DXAWT_HACK \
         -I$(PLATFORM_SRC)/native/sun/font \
         -I$(SHARE_SRC)/native/sun/awt \
         -I$(PLATFORM_SRC)/native/sun/awt
+
+CPPFLAGS += -I$(CUPS_HEADERS_PATH)
 
 ifeq ($(PLATFORM), linux)
   ifndef CROSS_COMPILE_ARCH
@@ -178,6 +186,11 @@ ifeq ($(PLATFORM), solaris)
        CFLAGS+= -DSOLARIS10_NO_XRENDER_STRUCTS
      endif
  endif
+endif
+
+ifeq ($(PLATFORM), bsd)
+  CPPFLAGS += -I$(OPENWIN_HOME)/include/X11/extensions -I$(OPENWIN_HOME)/include
+  CPPFLAGS += -DX11_PATH=\"$(X11_PATH)\" -DPACKAGE_PATH=\"$(PACKAGE_PATH)\"
 endif
 
 ifeq ($(PLATFORM), macosx)

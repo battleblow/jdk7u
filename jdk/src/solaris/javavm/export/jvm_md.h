@@ -75,7 +75,11 @@
 #define JVM_O_O_APPEND   O_APPEND
 #define JVM_O_EXCL       O_EXCL
 #define JVM_O_CREAT      O_CREAT
+#if !defined(__APPLE__) && defined(_ALLBSD_SOURCE)
+#define JVM_O_DELETE     0x10000000
+#else
 #define JVM_O_DELETE     0x10000
+#endif
 
 /* Signals */
 

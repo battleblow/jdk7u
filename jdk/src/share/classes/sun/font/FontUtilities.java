@@ -48,6 +48,8 @@ public final class FontUtilities {
 
     public static boolean isLinux;
 
+    public static boolean isBSD;
+
     public static boolean isMacOSX;
 
     public static boolean isSolaris8;
@@ -77,6 +79,11 @@ public final class FontUtilities {
                 isSolaris = osName.startsWith("SunOS");
 
                 isLinux = osName.startsWith("Linux");
+
+
+                isBSD = (osName.startsWith("FreeBSD") ||
+                         osName.startsWith("NetBSD") ||
+                         osName.startsWith("OpenBSD"));
 
                 isMacOSX = osName.contains("OS X"); // TODO: MacOSX
 

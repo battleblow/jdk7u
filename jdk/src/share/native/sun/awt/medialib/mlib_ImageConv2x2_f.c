@@ -86,7 +86,7 @@ typedef struct {
 #endif /* MLIB_USE_FTOI_CLAMPING */
 
 /***************************************************************/
-#if defined(_LITTLE_ENDIAN) && !defined(_NO_LONGLONG)
+#if (BYTE_ORDER == LITTLE_ENDIAN) && !defined(_NO_LONGLONG)
 
 /* NB: Explicit cast to DTYPE is necessary to avoid warning from Microsoft VC compiler.
       And we need to explicitly define cast behavior if source exceeds destination range.
@@ -103,7 +103,7 @@ typedef struct {
   dp[0    ] = (DTYPE) ((res0) & DTYPE_MASK);                      \
   dp[chan1] = (DTYPE) ((res1) & DTYPE_MASK)
 
-#endif /* defined(_LITTLE_ENDIAN) && !defined(_NO_LONGLONG) */
+#endif /* (BYTE_ORDER == LITTLE_ENDIAN) && !defined(_NO_LONGLONG) */
 
 /***************************************************************/
 #ifdef _NO_LONGLONG
@@ -114,17 +114,17 @@ typedef struct {
 
 #else /* _NO_LONGLONG */
 
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
 
 #define LOAD_BUFF(buff)                                         \
   *(mlib_s64*)(buff + i) = (((mlib_s64)sp[chan1]) << 32) | ((mlib_s64)sp[0] & 0xffffffff)
 
-#else /* _LITTLE_ENDIAN */
+#else
 
 #define LOAD_BUFF(buff)                                         \
   *(mlib_s64*)(buff + i) = (((mlib_s64)sp[0]) << 32) | ((mlib_s64)sp[chan1] & 0xffffffff)
 
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
 
 #endif /* _NO_LONGLONG */
 

@@ -76,6 +76,8 @@ public class Basic {
             checkSupported(fs, "posix", "unix", "owner", "acl", "user");
         if (os.equals("Linux"))
             checkSupported(fs, "posix", "unix", "owner", "dos", "user");
+        if (os.endsWith("BSD"))
+            checkSupported(fs, "posix", "unix", "owner");
         if (os.contains("OS X"))
             checkSupported(fs, "posix", "unix", "owner");
         if (os.equals("Windows"))

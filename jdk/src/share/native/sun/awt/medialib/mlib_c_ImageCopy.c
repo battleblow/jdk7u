@@ -275,11 +275,11 @@ void mlib_ImageCopy_bit_al(const mlib_u8 *sa,
       for (i = 0; j <= (b_size - 4); j += 4, i++) {
         src0 = src1;
         src1 = pws[i + 1];
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
         pwd[i] = (src0 >> lshift) | (src1 << rshift);
 #else
         pwd[i] = (src0 << lshift) | (src1 >> rshift);
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
       }
 
       sa += i << 2;
@@ -381,11 +381,11 @@ void mlib_c_ImageCopy_u8(const mlib_image *src,
         for (; j <= (src_width - 4); j += 4) {
           src0 = src1;
           src1 = ps[1];
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
           *((mlib_s32 *) (pdst_row + j)) = (src0 >> shl) | (src1 << shr);
 #else
           *((mlib_s32 *) (pdst_row + j)) = (src0 << shl) | (src1 >> shr);
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
           ps++;
         }
       }
@@ -414,11 +414,11 @@ void mlib_c_ImageCopy_u8(const mlib_image *src,
         for (; j <= (src_width - 8); j += 8) {
           src0 = src1;
           src1 = ps[1];
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
           *((mlib_s64 *) (pdst_row + j)) = (src0 >> shl) | (src1 << shr);
 #else
           *((mlib_s64 *) (pdst_row + j)) = (src0 << shl) | (src1 >> shr);
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
           ps++;
         }
       }
@@ -484,11 +484,11 @@ void mlib_c_ImageCopy_s16(const mlib_image       *src,
         for (; j <= (src_width - 2); j += 2) {
           src0 = src1;
           src1 = ps[1];
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
           *((mlib_s32 *) (pdst_row + j)) = (src0 >> 16) | (src1 << 16);
 #else
           *((mlib_s32 *) (pdst_row + j)) = (src0 << 16) | (src1 >> 16);
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
           ps++;
         }
       }
@@ -516,11 +516,11 @@ void mlib_c_ImageCopy_s16(const mlib_image       *src,
         for (; j <= (src_width - 4); j += 4) {
           src0 = src1;
           src1 = ps[1];
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
           *((mlib_s64 *) (pdst_row + j)) = (src0 >> shl) | (src1 << shr);
 #else
           *((mlib_s64 *) (pdst_row + j)) = (src0 << shl) | (src1 >> shr);
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
           ps++;
         }
       }
@@ -585,11 +585,11 @@ void mlib_c_ImageCopy_s32(const mlib_image       *src,
         for (; j <= (src_width - 2); j += 2) {
           src0 = src1;
           src1 = ps[1];
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
           *((mlib_s64 *) (pdst_row + j)) = (src0 >> 32) | (src1 << 32);
 #else
           *((mlib_s64 *) (pdst_row + j)) = (src0 << 32) | (src1 >> 32);
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
           ps++;
         }
       }
@@ -687,11 +687,11 @@ void mlib_ImageCopy_na(const mlib_u8 *sp,
 #endif /* __SUNPRO_C */
       for (; n > SIZE; n -= SIZE) {
         s1 = *tmp++;
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
         *(TYPE *) dp = (s0 >> shl) | (s1 << shr);
 #else
         *(TYPE *) dp = (s0 << shl) | (s1 >> shr);
-#endif /* _LITTLE_ENDIAN */
+#endif /* BYTE_ORDER == LITTLE_ENDIAN */
         s0 = s1;
         dp += SIZE;
         sp += SIZE;

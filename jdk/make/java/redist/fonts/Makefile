@@ -42,7 +42,7 @@ SHARED_FONTFILES =					\
 	$(LIBDIR)/fonts/LucidaSansRegular.ttf       	\
 	$(LIBDIR)/fonts/LucidaSansDemiBold.ttf       	\
 
-ifeq ($(PLATFORM), linux)
+ifneq (,$(findstring $(PLATFORM), linux bsd))
 
 # The oblique versions of the font are derived from the base versions
 # and since 2D can do this derivation on the fly at run time there is no
@@ -82,7 +82,7 @@ $(LIBDIR)/fonts/%.ttf: $(CLOSED_SRC)/share/lib/fonts/%.ttf
 $(FONTSDIRFILE): $(PLATFORM_SRC)/classes/sun/awt/motif/java.fonts.dir
 	$(install-file)
 
-ifeq ($(PLATFORM), linux)
+ifneq (,$(findstring $(PLATFORM), linux bsd))
 
 # The oblique fonts are only needed/wanted on Linux.
 
@@ -96,7 +96,7 @@ $(LIBDIR)/oblique-fonts/%.ttf: $(CLOSED_SRC)/share/lib/fonts/oblique/%.ttf
 $(OBLFONTSDIRFILE): $(PLATFORM_SRC)/classes/sun/awt/motif/java.oblique-fonts.dir
 	$(install-file)
 
-endif # linux
+endif # linux || bsd
 
 all build : $(INTERNAL_IMPORT_LIST)
 

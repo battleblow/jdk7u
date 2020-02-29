@@ -19,7 +19,7 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH jstack 1 "10 May 2011"
+.TH jstack 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
@@ -48,27 +48,27 @@ Options are mutually exclusive. Option, if used, should follow immediately after
 .LP
 .RS 3
 .TP 3
-pid
-process id for which the stack trace is to be printed. The process must be a Java process. To get a list of Java processes running on a machine, jps(1) may be used.
+pid 
+process id for which the stack trace is to be printed. The process must be a Java process. To get a list of Java processes running on a machine, jps(1) may be used. 
 .RE
 
 .LP
 .RS 3
 .TP 3
-executable
-Java executable from which the core dump was produced.
+executable 
+Java executable from which the core dump was produced. 
 .br
 .TP 3
-core
-core file for which the stack trace is to be printed.
+core 
+core file for which the stack trace is to be printed. 
 .br
 .TP 3
-remote\-hostname\-or\-IP
-remote debug server's (see jsadebugd(1)) hostname or IP address.
+remote\-hostname\-or\-IP 
+remote debug server's (see jsadebugd(1)) hostname or IP address. 
 .br
 .TP 3
-server\-id
-optional unique id, if multiple debug servers are running on the same remote host.
+server\-id 
+optional unique id, if multiple debug servers are running on the same remote host. 
 .RE
 
 .LP
@@ -98,25 +98,25 @@ For example, \f2set PATH=<jdk>\\jre\\bin\\client;%PATH%\fP
 .LP
 .RS 3
 .TP 3
-\-F
-Force a stack dump when 'jstack [\-l] pid' does not respond.
+\-F 
+Force a stack dump when 'jstack [\-l] pid' does not respond. 
 .TP 3
-\-l
-Long listing. Prints additional information about locks such as list of owned java.util.concurrent
+\-l 
+Long listing. Prints additional information about locks such as list of owned java.util.concurrent 
 .na
 \f2ownable synchronizers\fP @
 .fi
-http://download.oracle.com/javase/7/docs/api/java/util/concurrent/locks/AbstractOwnableSynchronizer.html.
+http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/AbstractOwnableSynchronizer.html. 
 .TP 3
-\-m
-prints mixed mode (both Java and native C/C++ frames) stack trace.
+\-m 
+prints mixed mode (both Java and native C/C++ frames) stack trace. 
 .TP 3
-\-h
+\-h 
 prints a help message.
 .br
 .br
 .TP 3
-\-help
+\-help 
 prints a help message
 .br
 .RE
@@ -127,16 +127,16 @@ prints a help message
 .RS 3
 .TP 2
 o
-pstack(1)
+pstack(1) 
 .TP 2
 o
-c++filt(1)
+c++filt(1) 
 .TP 2
 o
-jps(1)
+jps(1) 
 .TP 2
 o
-jsadebugd(1)
+jsadebugd(1) 
 .RE
 
 .LP
@@ -145,4 +145,4 @@ jsadebugd(1)
 .LP
 Mixed mode stack trace, the \-m option, does not work with the remote debug server.
 .LP
-
+ 

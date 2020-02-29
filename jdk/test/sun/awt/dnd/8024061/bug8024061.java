@@ -107,8 +107,8 @@ public class bug8024061 {
 
     public static void main(String[] args) throws AWTException, InvocationTargetException, InterruptedException {
         OSType type = OSInfo.getOSType();
-        if (type != OSType.LINUX && type != OSType.SOLARIS) {
-            System.out.println("This test is for Linux and Solaris only... " +
+        if (type != OSType.LINUX && type != OSType.SOLARIS && type != OSType.BSD) {
+            System.out.println("This test is for BSD, Linux and Solaris only... " +
                                "skipping!");
             return;
         }

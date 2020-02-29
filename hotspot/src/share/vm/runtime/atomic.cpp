@@ -57,6 +57,12 @@
 #ifdef TARGET_OS_ARCH_windows_x86
 # include "atomic_windows_x86.inline.hpp"
 #endif
+#ifdef TARGET_OS_ARCH_bsd_x86
+# include "atomic_bsd_x86.inline.hpp"
+#endif
+#ifdef TARGET_OS_ARCH_bsd_zero
+# include "atomic_bsd_zero.inline.hpp"
+#endif
 #ifdef TARGET_OS_ARCH_linux_arm
 # include "atomic_linux_arm.inline.hpp"
 #endif

@@ -753,6 +753,9 @@ LIBSOCKET = -lsocket
 # Network Services library
 LIBNSL = -lnsl
 
+# Dynamic Loading library
+LIBDL = -ldl
+
 # service configuration facility library
 LIBSCF = -lscf
 

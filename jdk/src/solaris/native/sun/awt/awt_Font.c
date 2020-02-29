@@ -334,7 +334,7 @@ loadFont(Display * display, char *name, int32_t pointSize)
             if (strcmp(style, "regular") == 0) {
                 altstyle = "roman";
             }
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
             if (!strcmp(family, "lucidasans")) {
                 family = "lucida";
             }

@@ -25,9 +25,13 @@
 
 ifneq ($(PLATFORM),windows)
 ifneq ($(PLATFORM),macosx)
+ifneq ($(OS_VENDOR),NetBSD)
+ifneq ($(OS_VENDOR),OpenBSD)
 FILES_c = \
 	SctpNet.c \
         SctpChannelImpl.c \
         SctpServerChannelImpl.c
 endif	
 endif	
+endif
+endif

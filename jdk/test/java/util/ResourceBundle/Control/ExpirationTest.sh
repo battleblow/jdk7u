@@ -72,10 +72,10 @@ case "`uname`" in
 Windows* | CYGWIN* )
     DEL=";"
     ;;
-SunOS | Darwin)
+SunOS | Darwin )
     DEL=":"
     ;;
-Linux | AIX)
+Linux | *BSD | AIX)
     DEL=":"
     HAS_S=YES
     ;;

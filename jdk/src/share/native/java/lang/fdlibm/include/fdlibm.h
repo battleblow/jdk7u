@@ -24,6 +24,9 @@
  * questions.
  */
 
+#ifdef __OpenBSD__
+#include <sys/types.h>
+#endif
 #ifdef _ALLBSD_SOURCE
 #include <machine/endian.h>
 #elif __linux__
@@ -31,6 +34,12 @@
 #include <endian.h>
 #endif
 #include "jfdlibm.h"
+
+/* BSD's always define both _LITTLE_ENDIAN && _BIG_ENDIAN */
+#if defined(_LITTLE_ENDIAN) && defined(_BIG_ENDIAN) && \
+    _BYTE_ORDER == _BIG_ENDIAN
+#undef _LITTLE_ENDIAN
+#endif
 
 #ifdef __NEWVALID       /* special setup for Sun test regime */
 #if defined(i386) || defined(i486) || \

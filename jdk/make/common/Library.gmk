@@ -299,8 +299,12 @@ endif # WRITE_LIBVERSION
             ifeq ($(PLATFORM), solaris)
 	      $(STRIP) -x $@
             else
-              # assume Linux
-	      $(STRIP) -g $@
+              ifeq ($(PLATFORM), linux)
+	        $(STRIP) -g $@
+              else
+                # assume BSD
+	        $(STRIP) -S $@
+              endif
             endif
           # implied else here is no stripping at all
           endif

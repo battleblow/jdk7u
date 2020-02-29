@@ -33,6 +33,10 @@
 #include <sys/time.h>
 #define CounterGet()              (gethrtime()/1000)
 #define Counter2Micros(counts)    (counts)
+#elif !defined(MACOSX) && defined(_ALLBSD_SOURCE)
+/* CounterGet() is implemented in java_md_solinux.c */
+int64_t CounterGet(void);
+#define Counter2Micros(counts)    (counts)
 #else  /* ! HAVE_GETHRTIME */
 #define CounterGet()              (0)
 #define Counter2Micros(counts)    (1)
@@ -48,6 +52,9 @@ extern char **environ;
 #ifdef __linux__
 static const char *system_dir   = "/usr/java";
 static const char *user_dir     = "/java";
+#elif !defined(MACOSX) && defined(_ALLBSD_SOURCE)
+static const char *system_dir  = PACKAGE_PATH "/openjdk7";
+static const char *user_dir    = "/java";
 #else /* Solaris */
 static const char *system_dir   = "/usr/jdk";
 static const char *user_dir     = "/jdk";

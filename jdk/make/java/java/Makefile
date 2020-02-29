@@ -179,7 +179,9 @@ OTHER_INCLUDES += -I$(PLATFORM_SRC)/native/java/util
 #
 ifneq ($(PLATFORM), windows)
 ifneq ($(PLATFORM), macosx)
+ifneq ($(PLATFORM), bsd)
 HAVE_ALTZONE=true
+endif
 endif
 endif
 
@@ -467,6 +469,9 @@ ifeq ($(PLATFORM), solaris)
 endif
 ifeq ($(PLATFORM), macosx)
     HELPER_EXE = $(LIBDIR)/jspawnhelper
+    BUILDHELPER = 1
+endif
+ifeq ($(PLATFORM), bsd)
     BUILDHELPER = 1
 endif
 

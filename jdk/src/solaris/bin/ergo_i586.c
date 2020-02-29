@@ -106,7 +106,7 @@ ServerClassMachineImpl(void) {
 
 #endif /* __solaris__ */
 
-#ifdef __linux__
+#if !defined(MACOSX) && (defined(__linux__) || defined(_ALLBSD_SOURCE))
 
 /*
  * A utility method for asking the CPU about itself.
@@ -171,6 +171,12 @@ get_cpuid(uint32_t arg,
 #endif /* _LP64 */
 }
 
+#ifdef __linux__
+#define OSNAMEPREFIX "linux_"
+#else
+#define OSNAMEPREFIX "bsd_"
+#endif
+
 /* The definition of a server-class machine for linux-i586 */
 jboolean
 ServerClassMachineImpl(void) {
@@ -193,11 +199,11 @@ ServerClassMachineImpl(void) {
       result = JNI_TRUE;
     }
   }
-  JLI_TraceLauncher("linux_" LIBARCHNAME "_ServerClassMachine: %s\n",
+  JLI_TraceLauncher(OSNAMEPREFIX LIBARCHNAME "_ServerClassMachine: %s\n",
            (result == JNI_TRUE ? "true" : "false"));
   return result;
 }
-#endif /* __linux__ */
+#endif /* !MACOSX && (__linux__ || _ALLBSD_SOURCE) */
 
 /*
  * Routines shared by solaris-i586 and linux-i586.
@@ -308,6 +314,15 @@ logical_processors_per_package(void) {
 /* Compute the number of physical processors, not logical processors */
 static unsigned long
 physical_processors(void) {
+#if !defined(MACOSX) && defined(_ALLBSD_SOURCE)
+  unsigned long result;
+  int name[2] = { CTL_HW, HW_NCPU };
+  size_t rlen = sizeof(result);
+
+  if (sysctl(name, 2, &result, &rlen, NULL, 0) == -1)
+       result = 1;
+  return result;
+#else
   const long sys_processors = sysconf(_SC_NPROCESSORS_CONF);
   unsigned long result      = sys_processors;
 
@@ -320,4 +335,5 @@ physical_processors(void) {
   }
   JLI_TraceLauncher("physical processors: %lu\n", result);
   return result;
+#endif
 }

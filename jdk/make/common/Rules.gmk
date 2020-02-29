@@ -51,7 +51,7 @@ $(CLASSDESTDIR) $(CLASSHDRDIR) $(OBJDIR) $(OUTPUTDIR) $(BINDIR) $(LIBDIR) $(LIBD
 #
 # All source tree areas for java/properties files (a few may be closed)
 #
-ifeq ($(PLATFORM), macosx)
+ifneq (,$(findstring $(PLATFORM), bsd macosx))
   ifdef OPENJDK
     ALL_CLASSES_SRC = $(call JavaSrcDirList,,classes)
   else
@@ -212,7 +212,7 @@ endif
 $(CLASSDESTDIR)/%.class: $(GENSRCDIR)/%.java
 	@$(add-java-file)
 
-ifeq ($(PLATFORM), macosx)
+ifneq (,$(findstring $(PLATFORM), bsd macosx))
 # TODO(cpc): need to document why this is necessary...
 $(CLASSDESTDIR)/%.class: $(JDK_TOPDIR)/src/macosx/classes/%.java
 	@$(add-java-file)

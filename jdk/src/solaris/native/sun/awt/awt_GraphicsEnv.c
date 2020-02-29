@@ -123,7 +123,7 @@ static char *x11GraphicsConfigClassName = "sun/awt/X11GraphicsConfig";
  */
 
 #define MAXFRAMEBUFFERS 16
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
 typedef struct {
    int   screen_number;
    short x_org;
@@ -652,7 +652,7 @@ void checkNewXineramaScreen(JNIEnv* env, jobject peer, struct FrameData* wdata,
 #endif /* HEADLESS */
 
 #ifndef HEADLESS
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
 static void xinerama_init_linux()
 {
     void* libHandle = NULL;
@@ -703,7 +703,7 @@ static void xinerama_init_linux()
     }
 }
 #endif
-#if !defined(__linux__) && !defined(MACOSX) /* Solaris */
+#if !defined(__linux__) && !defined(_ALLBSD_SOURCE) /* Solaris */
 static void xinerama_init_solaris()
 {
     void* libHandle = NULL;
@@ -763,11 +763,11 @@ static void xineramaInit(void) {
     }
 
     DTRACE_PRINTLN("Xinerama extension is available");
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
     xinerama_init_linux();
 #else /* Solaris */
     xinerama_init_solaris();
-#endif /* __linux__ || MACOSX */
+#endif /* __linux__ || _ALLBSD_SOURCE */
 }
 #endif /* HEADLESS */
 
@@ -1650,7 +1650,7 @@ Java_sun_awt_X11GraphicsEnvironment_getXineramaCenterPoint(JNIEnv *env,
 {
     jobject point = NULL;
 #ifndef HEADLESS    /* return NULL in HEADLESS, Linux */
-#if !defined(__linux__) && !defined(MACOSX)
+#if !defined(__linux__) && !defined(_ALLBSD_SOURCE)
     int x,y;
 
     AWT_LOCK();
@@ -1663,7 +1663,7 @@ Java_sun_awt_X11GraphicsEnvironment_getXineramaCenterPoint(JNIEnv *env,
         DTRACE_PRINTLN("unable to call XineramaSolarisCenterFunc: symbol is null");
     }
     AWT_FLUSH_UNLOCK();
-#endif /* __linux __ || MACOSX */
+#endif /* __linux __ || _ALLBSD_SOURCE */
 #endif /* HEADLESS */
     return point;
 }

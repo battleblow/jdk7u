@@ -45,7 +45,10 @@ enum wmgr_t {
     KDE2_WM,
     SAWFISH_WM,
     ICE_WM,
-    METACITY_WM
+    METACITY_WM,
+    AFTERSTEP_WM,
+    WINDOWMAKER_WM,
+    FVWM2_WM
 };
 
 extern void awt_wm_init(void);

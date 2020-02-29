@@ -123,7 +123,7 @@ case `uname -s` in
     esac
     libloc=${jreloc}/lib/${libarch}
     ;;
-  Linux|AIX)
+  Linux | AIX | *BSD )
     xx=`find ${jreloc}/lib -name libdt_socket.so`
     libloc=`dirname ${xx}`
     ;;

@@ -51,7 +51,7 @@ typedef unsigned long UNSIGNED_JINT;
 
 /* On little endian machines, convert java big endian numbers. */
 
-#if defined(_LITTLE_ENDIAN)
+#if (BYTE_ORDER == LITTLE_ENDIAN)
 
 #define HOST_TO_JAVA_CHAR(x) (((x & 0xff) << 8) | ((x >> 8) & (0xff)))
 #define HOST_TO_JAVA_SHORT(x) (((x & 0xff) << 8) | ((x >> 8) & (0xff)))

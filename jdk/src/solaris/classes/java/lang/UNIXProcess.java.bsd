@@ -95,7 +95,14 @@ final class UNIXProcess extends Process {
             public LaunchMechanism run() {
                 String javahome = System.getProperty("java.home");
 
-                helperpath = toCString(javahome + "/lib/jspawnhelper");
+                String osname = System.getProperty("os.name");
+                if (osname.endsWith("BSD")) {
+                    String osArch = System.getProperty("os.arch");
+                    helperpath = toCString(javahome + "/lib/" + osArch + "/jspawnhelper");
+                } else {
+                    helperpath = toCString(javahome + "/lib/jspawnhelper");
+                }
+
                 String s = System.getProperty(
                     "jdk.lang.Process.launchMechanism", "posix_spawn");
 

@@ -84,14 +84,12 @@ echo "VMOPTS : $VMOPTS "
 
 
 # set platform-dependent variables
-if [ `uname` = "SunOS" ] ; then
+case `uname` in
+    SunOS | Linux | *BSD | Darwin )
         PATH_SEP=":"
-
-elif [ `uname` = "Linux" ] ; then
-        PATH_SEP=":"
-else
+    * )
         PATH_SEP=";"
-fi
+esac
 
 export PATH_SEP
 mainpid=$$

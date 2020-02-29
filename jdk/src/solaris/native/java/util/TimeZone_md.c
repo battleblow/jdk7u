@@ -123,7 +123,7 @@ findZoneinfoFile(char *buf, size_t size, const char *dir)
         return NULL;
     }
 
-#if defined(AIX) || defined(__linux__) || defined(MACOSX) || (defined(__solaris__) \
+#if defined(AIX) || defined(__linux__) || defined(_ALLBSD_SOURCE) || defined(MACOSX) || (defined(__solaris__) \
     && (defined(_POSIX_PTHREAD_SEMANTICS) || defined(_LP64)))
     while (readdir_r(dirp, entry, &dp) == 0 && dp != NULL) {
 #else
@@ -211,7 +211,7 @@ findZoneinfoFile(char *buf, size_t size, const char *dir)
     return tz;
 }
 
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
 
 /*
  * Performs Linux specific mapping and returns a zone ID
@@ -685,7 +685,7 @@ findJavaTZ_md(const char *java_home_dir, const char *country)
  * Returns a GMT-offset-based zone ID. (e.g., "GMT-08:00")
  */
 
-#ifdef MACOSX
+#ifdef _ALLBSD_SOURCE
 
 char *
 getGMTOffsetID()
@@ -745,4 +745,4 @@ getGMTOffsetID()
             sign, (int)(offset/3600), (int)((offset%3600)/60));
     return strdup(buf);
 }
-#endif /* MACOSX */
+#endif /* _ALLBSD_SOURCE */

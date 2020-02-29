@@ -34,10 +34,25 @@
 # include "orderAccess_bsd_x86.inline.hpp"
 # include "prefetch_bsd_x86.inline.hpp"
 #endif
+#ifdef TARGET_OS_ARCH_bsd_sparc
+# include "atomic_bsd_sparc.inline.hpp"
+# include "orderAccess_bsd_sparc.inline.hpp"
+# include "prefetch_bsd_sparc.inline.hpp"
+#endif
 #ifdef TARGET_OS_ARCH_bsd_zero
 # include "atomic_bsd_zero.inline.hpp"
 # include "orderAccess_bsd_zero.inline.hpp"
 # include "prefetch_bsd_zero.inline.hpp"
+#endif
+#ifdef TARGET_OS_ARCH_bsd_arm
+# include "atomic_bsd_arm.inline.hpp"
+# include "orderAccess_bsd_arm.inline.hpp"
+# include "prefetch_bsd_arm.inline.hpp"
+#endif
+#ifdef TARGET_OS_ARCH_bsd_ppc
+# include "atomic_bsd_ppc.inline.hpp"
+# include "orderAccess_bsd_ppc.inline.hpp"
+# include "prefetch_bsd_ppc.inline.hpp"
 #endif
 
 // Contains inlined functions for class Thread and ThreadLocalStorage

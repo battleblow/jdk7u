@@ -170,6 +170,7 @@ public class UnixPrintServiceLookup extends PrintServiceLookup
 
     static boolean isBSD() {
         return (osname.equals("Linux") ||
+                osname.endsWith("BSD") ||
                 osname.contains("OS X"));
     }
 

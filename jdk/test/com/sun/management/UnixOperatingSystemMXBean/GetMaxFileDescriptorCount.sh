@@ -48,7 +48,7 @@ runOne()
 
 # Test GetMaxFileDescriptorCount if we are running on Unix
 case `uname -s` in
-    SunOS | Linux )
+    SunOS | Linux | *BSD | Darwin )
        runOne GetMaxFileDescriptorCount
        ;;
     * )

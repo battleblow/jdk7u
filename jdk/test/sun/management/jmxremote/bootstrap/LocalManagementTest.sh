@@ -86,10 +86,12 @@ fi
 #    on Windows 98.
 
 os=`uname -s`
-if [ "$os" != "Linux" -a "$os" != "SunOS" ]; then
-    echo "Test not designed to run on this operating system, skipping..."
-    exit 0
-fi
+case "${os}" in
+    Windows* | CYGWIN* )
+        echo "Test not designed to run on this operating system, skipping..."
+        exit 0
+        ;;
+esac
 
 JAVA=${TESTJAVA}/bin/java
 CLASSPATH=${TESTCLASSES}

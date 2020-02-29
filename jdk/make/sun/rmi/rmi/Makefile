@@ -63,6 +63,9 @@ ifeq ($(PLATFORM), solaris)
     BUILD_TARGETS += bin
   endif
 endif
+ifeq ($(PLATFORM), bsd)
+  BUILD_TARGETS += bin
+endif
 
 build: $(BUILD_TARGETS)
 

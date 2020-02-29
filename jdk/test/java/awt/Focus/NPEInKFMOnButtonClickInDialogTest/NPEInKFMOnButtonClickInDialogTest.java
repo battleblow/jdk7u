@@ -50,8 +50,8 @@ public class NPEInKFMOnButtonClickInDialogTest {
 
     public static void main(String[] args) {
         OSInfo.OSType osType = OSInfo.getOSType();
-        if ((osType != OSInfo.OSType.LINUX) && (osType != OSInfo.OSType.SOLARIS)) {
-            System.out.println("This test is only for Linux OS and Solaris OS.");
+        if ((osType != OSInfo.OSType.LINUX) && (osType != OSInfo.OSType.SOLARIS) && (osType != OSInfo.OSType.BSD)) {
+            System.out.println("This test is only for BSD, Linux, and Solaris.");
             return;
         }
 

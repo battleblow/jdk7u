@@ -50,6 +50,8 @@ FILES_java = \
 
 ifneq ($(PLATFORM), windows)
 ifneq ($(PLATFORM), macosx)
+ifneq ($(OS_VENDOR), NetBSD)
+ifneq ($(OS_VENDOR), OpenBSD)
 FILES_java += \
 	sun/nio/ch/SctpAssocChange.java \
 	sun/nio/ch/SctpAssociationImpl.java \
@@ -62,5 +64,7 @@ FILES_java += \
 	sun/nio/ch/SctpSendFailed.java \
 	sun/nio/ch/SctpServerChannelImpl.java \
 	sun/nio/ch/SctpShutdown.java
+endif
+endif
 endif
 endif

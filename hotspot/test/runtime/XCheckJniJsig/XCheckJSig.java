@@ -36,8 +36,8 @@ public class XCheckJSig {
     public static void main(String args[]) throws Throwable {
 
         System.out.println("Regression test for bugs 7051189 and 8023393");
-        if (!Platform.isSolaris() && !Platform.isLinux() && !Platform.isOSX()) {
-            System.out.println("Test only applicable on Solaris, Linux, and Mac OSX, skipping");
+        if (!Platform.isSolaris() && !Platform.isLinux() && !Platform.isOSX() && !Platform.isBSD()) {
+            System.out.println("Test only applicable on Solaris, Linux, BSD, and Mac OSX, skipping");
             return;
         }
 

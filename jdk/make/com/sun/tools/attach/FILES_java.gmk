@@ -43,7 +43,7 @@ FILES_java += \
 	sun/tools/attach/LinuxAttachProvider.java
 endif
 
-ifeq ($(PLATFORM), macosx)
+ifneq (,$(findstring $(PLATFORM), bsd macosx))
 FILES_java += \
 	sun/tools/attach/BsdAttachProvider.java
 endif

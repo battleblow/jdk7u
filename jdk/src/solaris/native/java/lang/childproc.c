@@ -62,6 +62,16 @@ isAsciiDigit(char c)
   return c >= '0' && c <= '9';
 }
 
+#if defined(__OpenBSD__)
+int
+closeDescriptors(void)
+{
+    int err;
+    RESTARTABLE(closefrom(FAIL_FILENO + 1), err);
+    return err;
+}
+#else
+
 #ifdef _ALLBSD_SOURCE
 #define FD_DIR "/dev/fd"
 #define dirent64 dirent
@@ -104,6 +114,7 @@ closeDescriptors(void)
 
     return 1;
 }
+#endif
 
 int
 moveDescriptor(int fd_from, int fd_to)

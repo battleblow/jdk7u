@@ -92,6 +92,14 @@ case "$OS" in
       TMP="/tmp"
       ;;
 
+   *BSD )
+      VAR="A different value for BSD"
+      DEFAULT_JDK=/
+      FILESEP="/"
+      PATHSEP=":"
+      TMP="/tmp"
+      ;;
+
    AIX )
       VAR="A different value for AIX"
       DEFAULT_JDK=/

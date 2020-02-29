@@ -19,7 +19,7 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH jsadebugd 1 "10 May 2011"
+.TH jsadebugd 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
@@ -41,28 +41,28 @@ jsadebugd \- Serviceability Agent Debug Daemon
 .LP
 .RS 3
 .TP 3
-pid
-process id of the process to which the debug server should attach. The process must be a Java process. To get a list of Java processes running on a machine, jps(1) may be used. At most one instance of the debug server may be attached to a single process.
+pid 
+process id of the process to which the debug server should attach. The process must be a Java process. To get a list of Java processes running on a machine, jps(1) may be used. At most one instance of the debug server may be attached to a single process. 
 .TP 3
-executable
-Java executable from which the core dump was produced
+executable 
+Java executable from which the core dump was produced 
 .TP 3
-core
-Core file to which the debug server should attach.
+core 
+Core file to which the debug server should attach. 
 .TP 3
-server\-id
-Optional unique id, needed if multiple debug servers are started on the same machine. This ID must be used by remote clients to identify the particular debug server to attach. Within a single machine, this ID must be unique.
+server\-id 
+Optional unique id, needed if multiple debug servers are started on the same machine. This ID must be used by remote clients to identify the particular debug server to attach. Within a single machine, this ID must be unique. 
 .RE
 
 .LP
 .SH "DESCRIPTION"
 .LP
 .LP
-\f3jsadebugd\fP attaches to a Java process or core file and acts as a debug server. Remote clients such as jstack(1), jmap(1), and jinfo(1) can attach to the server using Java Remote Method Invocation (RMI). Before starting \f2jsadebugd\fP,
+\f3jsadebugd\fP attaches to a Java process or core file and acts as a debug server. Remote clients such as jstack(1), jmap(1), and jinfo(1) can attach to the server using Java Remote Method Invocation (RMI). Before starting \f2jsadebugd\fP, 
 .na
 \f2rmiregistry\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/tools/index.html#rmi must be started with:
+http://docs.oracle.com/javase/7/docs/technotes/tools/index.html#rmi must be started with:
 .LP
 .nf
 \f3
@@ -87,23 +87,23 @@ For example, \f2set PATH=<jdk>\\jre\\bin\\client;%PATH%\fP
 .RS 3
 .TP 2
 o
-jinfo(1)
+jinfo(1) 
 .TP 2
 o
-jmap(1)
+jmap(1) 
 .TP 2
 o
-jps(1)
+jps(1) 
 .TP 2
 o
-jstack(1)
+jstack(1) 
 .TP 2
 o
 .na
 \f2rmiregistry\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/tools/index.html#rmi
+http://docs.oracle.com/javase/7/docs/technotes/tools/index.html#rmi 
 .RE
 
 .LP
-
+ 

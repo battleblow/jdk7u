@@ -30,7 +30,7 @@
 typedef union {
   mlib_d64 db;
   struct {
-#ifdef _LITTLE_ENDIAN
+#if (BYTE_ORDER == LITTLE_ENDIAN)
     mlib_s32 int1, int0;
 #else
     mlib_s32 int0, int1;

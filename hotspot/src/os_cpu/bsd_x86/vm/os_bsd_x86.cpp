@@ -946,7 +946,7 @@ static void current_stack_region(address * bottom, size_t * size) {
   if (rslt != 0)
     fatal(err_msg("pthread_stackseg_np failed with err = %d", rslt));
 
-  *bottom = (address)((char *)ss.ss_sp - ss.ss_size);
+  *bottom = (address)(align_size_up((intptr_t)ss.ss_sp, os::vm_page_size()) - ss.ss_size);
   *size   = ss.ss_size;
 #elif defined(_ALLBSD_SOURCE)
   pthread_attr_t attr;

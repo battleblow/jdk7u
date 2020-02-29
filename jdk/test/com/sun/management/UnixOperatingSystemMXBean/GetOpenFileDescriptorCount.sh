@@ -48,7 +48,7 @@ runOne()
 
 # Test GetOpenFileDescriptorCount if we are running on Unix
 case `uname -s` in
-    SunOS | Linux )
+    SunOS | Linux | *BSD | Darwin )
        runOne GetOpenFileDescriptorCount
        ;;
     * )

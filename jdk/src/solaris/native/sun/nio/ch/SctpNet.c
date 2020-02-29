@@ -58,6 +58,7 @@ static int preCloseFD = -1;     /* File descriptor to which we dup other fd's
  */
 jboolean loadSocketExtensionFuncs
   (JNIEnv* env) {
+#if !defined(__FreeBSD__) || __FreeBSD__ < 7 /* On FreeBSD 7.x these functions are in libc */
     if (dlopen(nativeSctpLib, RTLD_GLOBAL | RTLD_LAZY) == NULL) {
         JNU_ThrowByName(env, "java/lang/UnsupportedOperationException",
               dlerror());
@@ -105,6 +106,7 @@ jboolean loadSocketExtensionFuncs
               dlerror());
         return JNI_FALSE;
     }
+#endif /* __FreeBSD__ */
 
     funcsLoaded = JNI_TRUE;
     return JNI_TRUE;

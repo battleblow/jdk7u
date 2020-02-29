@@ -60,7 +60,7 @@ Now we can use the content + data type in declaring event fields.
  <types>
   <content_types>
     <content_type id="Thread" hr_name="Thread"
-                  type="U4" builtin_type="OSTHREAD">
+                  type="thread_id_t" builtin_type="OSTHREAD">
       <value type="UTF8" field="name" label="Thread name"/>
     </content_type>
 
@@ -294,8 +294,8 @@ Now we can use the content + data type in declaring event fields.
                   type="u8" sizeop="sizeof(u8)"/>
 
     <!-- OS Thread ID -->
-    <primary_type symbol="OSTHREAD" datatype="U4" contenttype="OSTHREAD"
-                  type="u4" sizeop="sizeof(u4)"/>
+    <primary_type symbol="OSTHREAD" datatype="U8" contenttype="OSTHREAD"
+                  type="u8" sizeop="sizeof(u8)"/>
 
     <!-- VM Thread ID Note: changed from U2 to U8 for hotspot -->
     <primary_type symbol="VMTHREAD" datatype="U8" contenttype="VMTHREAD"

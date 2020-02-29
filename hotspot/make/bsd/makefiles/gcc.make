@@ -179,6 +179,7 @@ ACCEPTABLE_WARNINGS = -Wpointer-arith -Wsign-compare
 else
 ACCEPTABLE_WARNINGS = -Wpointer-arith -Wconversion -Wsign-compare
 endif
+ACCEPTABLE_WARNINGS += -Wno-deprecated-declarations
 
 CFLAGS_WARN/DEFAULT = $(WARNINGS_ARE_ERRORS) $(ACCEPTABLE_WARNINGS)
 # Special cases
@@ -216,7 +217,11 @@ endif
 
 # Flags for generating make dependency flags.
 ifneq ("${CC_VER_MAJOR}", "2")
-DEPFLAGS = -fpch-deps -MMD -MP -MF $(DEP_DIR)/$(@:%=%.d)
+DEPFLAGS =
+ifeq (,$(findstring clang,$(shell $(CC) -v 2>&1)))
+DEPFLAGS += -fpch-deps
+endif
+DEPFLAGS += -MMD -MP -MF $(DEP_DIR)/$(@:%=%.d)
 endif
 
 # -DDONT_USE_PRECOMPILED_HEADER will exclude all includes in precompiled.hpp.

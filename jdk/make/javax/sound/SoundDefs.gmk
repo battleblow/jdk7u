@@ -40,6 +40,10 @@ ifeq ($(PLATFORM), linux)
   CPPFLAGS += -DX_PLATFORM=X_LINUX
 endif # PLATFORM linux
 
+ifeq ($(PLATFORM), bsd)
+  CPPFLAGS += -DX_PLATFORM=X_BSD
+endif # PLATFORM bsd
+
 ifeq ($(PLATFORM), macosx)
   CPPFLAGS += -DX_PLATFORM=X_MACOSX
 endif # PLATFORM macosx

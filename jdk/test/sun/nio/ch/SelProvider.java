@@ -39,7 +39,7 @@ public class SelProvider {
                 expected = "sun.nio.ch.DevPollSelectorProvider";
             } else if ("Linux".equals(osname)) {
                 expected = "sun.nio.ch.EPollSelectorProvider";
-            } else if (osname.contains("OS X")) {
+            } else if (osname.contains("OS X") || osname.endsWith("BSD")) {
                 expected = "sun.nio.ch.KQueueSelectorProvider";
             } else {
                 return;

@@ -54,6 +54,10 @@ ifeq ($(PLATFORM), macosx)
     FILES_c += bsd_close.c
 endif
 
+ifeq ($(OS_VENDOR), FreeBSD)
+    FILES_c += bsd_close.c
+endif
+
 ifeq ($(PLATFORM), windows)
     FILES_c += TwoStacksPlainSocketImpl.c
     FILES_c += DualStackPlainSocketImpl.c

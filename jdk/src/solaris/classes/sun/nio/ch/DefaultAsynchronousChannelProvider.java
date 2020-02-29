@@ -50,7 +50,7 @@ public class DefaultAsynchronousChannelProvider {
             return new SolarisAsynchronousChannelProvider();
         if (osname.equals("Linux"))
             return new LinuxAsynchronousChannelProvider();
-        if (osname.contains("OS X"))
+        if (osname.contains("OS X") || osname.endsWith("BSD"))
             return new BsdAsynchronousChannelProvider();
         if (osname.equals("AIX"))
             return new AixAsynchronousChannelProvider();

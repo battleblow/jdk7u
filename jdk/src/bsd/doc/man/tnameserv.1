@@ -19,18 +19,18 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH tnameserv 1 "10 May 2011"
+.TH tnameserv 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
 Java IDL: Transient Naming Service \- \f2tnameserv\fP
 .LP
 .LP
-This document discusses using the Java IDL Transient Naming Service, \f2tnameserv\fP. Java IDL also includes the Object Request Broker Daemon (ORBD). ORBD is a daemon process containing a Bootstrap Service, a Transient Naming Service, a \f3Persistent\fP Naming Service, and a Server Manager. The Java IDL tutorials all use ORBD, however, you can substitute \f2tnameserv\fP for \f2orbd\fP in any of the examples that use a Transient Naming Service. For documentation on the \f2orbd\fP tool, link to its orbd(1) or the
+This document discusses using the Java IDL Transient Naming Service, \f2tnameserv\fP. Java IDL also includes the Object Request Broker Daemon (ORBD). ORBD is a daemon process containing a Bootstrap Service, a Transient Naming Service, a \f3Persistent\fP Naming Service, and a Server Manager. The Java IDL tutorials all use ORBD, however, you can substitute \f2tnameserv\fP for \f2orbd\fP in any of the examples that use a Transient Naming Service. For documentation on the \f2orbd\fP tool, link to its orbd(1) or the 
 .na
 \f2Java IDL Naming Service Included with ORBD\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html topic.
+http://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html topic.
 .LP
 .LP
 Topics in this section include:
@@ -38,19 +38,19 @@ Topics in this section include:
 .RS 3
 .TP 2
 o
-Java\ IDL Transient Naming Service
+Java\ IDL Transient Naming Service 
 .TP 2
 o
-Starting the Java\ IDL Transient Naming Service
+Starting the Java\ IDL Transient Naming Service 
 .TP 2
 o
-Stopping the Java\ IDL Transient Naming Service
+Stopping the Java\ IDL Transient Naming Service 
 .TP 2
 o
-Sample Client: Adding Objects to the Namespace
+Sample Client: Adding Objects to the Namespace 
 .TP 2
 o
-Sample Client: Browsing the Namespace
+Sample Client: Browsing the Namespace 
 .RE
 
 .LP
@@ -109,22 +109,22 @@ From an MS\-DOS system prompt (Windows), enter:
 .LP
 Clients of the name server must be made aware of the new port number. Do this by setting the \f2org.omg.CORBA.ORBInitialPort\fP property to the new port number when creating the ORB object.
 .LP
-.SS
+.SS 
 Running the server and client on different hosts
 .LP
 .LP
 In most of the Java IDL and RMI\-IIOP tutorials, the Naming Service, Server, and Client are all running on the development machine. In real world deployment, it is likely that the client and server will run on different host machines than the Naming Service.
 .LP
 .LP
-For the client and server to find the Naming Service, they must be made aware of the port number and host on which the naming service is running. Do this by setting the \f2org.omg.CORBA.ORBInitialPort\fP and \f2org.omg.CORBA.ORBInitialHost\fP properties in the client and server files to the machine name and port number on which the Naming Service is running. An example of this is shown in
+For the client and server to find the Naming Service, they must be made aware of the port number and host on which the naming service is running. Do this by setting the \f2org.omg.CORBA.ORBInitialPort\fP and \f2org.omg.CORBA.ORBInitialHost\fP properties in the client and server files to the machine name and port number on which the Naming Service is running. An example of this is shown in 
 .na
 \f2The Hello World Example Using RMI\-IIOP\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/rmi\-iiop/rmiiiopexample.html. You could also use the command line options \f2\-ORBInitialPort\fP \f2nameserverport#\fP and \f2\-ORBInitialHost\fP \f2nameserverhostname\fP to tell the client and server where to find the Naming Service.
+http://docs.oracle.com/javase/7/docs/technotes/guides/rmi\-iiop/rmiiiopexample.html. You could also use the command line options \f2\-ORBInitialPort\fP \f2nameserverport#\fP and \f2\-ORBInitialHost\fP \f2nameserverhostname\fP to tell the client and server where to find the Naming Service. 
 .na
 \f2Java IDL: Running the Hello World Example on TWO Machines\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/idl/tutorial/jidl2machines.html shows one way of doing this using the command line option.
+http://docs.oracle.com/javase/7/docs/technotes/guides/idl/tutorial/jidl2machines.html shows one way of doing this using the command line option.
 .LP
 .LP
 For example, suppose the Transient Naming Service, \f2tnameserv\fP is running on port 1050 on host \f2nameserverhost\fP. The client is running on host \f2clienthost\fP and the server is running on host \f2serverhost\fP.
@@ -132,7 +132,7 @@ For example, suppose the Transient Naming Service, \f2tnameserv\fP is running on
 .RS 3
 .TP 2
 o
-Start \f2tnameserv\fP on the host \f2nameserverhost\fP, as follows:
+Start \f2tnameserv\fP on the host \f2nameserverhost\fP, as follows: 
 .nf
 \f3
 .fl
@@ -144,7 +144,7 @@ Start \f2tnameserv\fP on the host \f2nameserverhost\fP, as follows:
 .fi
 .TP 2
 o
-Start the server on the \f2serverhost\fP, as follows:
+Start the server on the \f2serverhost\fP, as follows: 
 .nf
 \f3
 .fl
@@ -154,7 +154,7 @@ Start the server on the \f2serverhost\fP, as follows:
 .fi
 .TP 2
 o
-Start the client on the \f2clienthost\fP, as follows:
+Start the client on the \f2clienthost\fP, as follows: 
 .nf
 \f3
 .fl
@@ -165,14 +165,14 @@ Start the client on the \f2clienthost\fP, as follows:
 .RE
 
 .LP
-.SS
+.SS 
 The \-J option
 .LP
-This command\-line option is available for use with \f2tnameserve\fP:
+This command\-line option is available for use with \f2tnameserve\fP: 
 .RS 3
 .TP 3
-\-Joption
-Pass \f2option\fP to the Java virtual machine, where \f2option\fP is one of the options described on the reference page for java(1). For example, \f3\-J\-Xms48m\fP sets the startup memory to 48 megabytes. It is a common convention for \f3\-J\fP to pass options to the underlying virtual machine.
+\-Joption 
+Pass \f2option\fP to the Java virtual machine, where \f2option\fP is one of the options described on the reference page for java(1). For example, \f3\-J\-Xms48m\fP sets the startup memory to 48 megabytes. It is a common convention for \f3\-J\fP to pass options to the underlying virtual machine. 
 .RE
 
 .LP
@@ -189,21 +189,21 @@ The following sample program illustrates how to add names to the namespace. It i
 .RS 3
 .TP 2
 o
-\f4Initial Naming Context\fP
+\f4Initial Naming Context\fP 
 .RS 3
 .TP 2
 *
-\f3plans\fP
+\f3plans\fP 
 .TP 2
 *
-\f4Personal\fP
+\f4Personal\fP 
 .RS 3
 .TP 2
 -
-\f3calendar\fP
+\f3calendar\fP 
 .TP 2
 -
-\f3schedule\fP
+\f3schedule\fP 
 .RE
 .RE
 .RE
@@ -237,7 +237,7 @@ public class NameClient
 .fi
 
 .LP
-In the above section, Starting the Java IDL Transient Naming Service, the nameserver was started on port 1050. The following code ensures that the client program is aware of this port number.
+In the above section, Starting the Java IDL Transient Naming Service, the nameserver was started on port 1050. The following code ensures that the client program is aware of this port number. 
 .nf
 \f3
 .fl
@@ -253,7 +253,7 @@ In the above section, Starting the Java IDL Transient Naming Service, the namese
 .fi
 
 .LP
-This code obtains the initial naming context and assigns it to \f3ctx\fP. The second line copies \f3ctx\fP into a dummy object reference \f3objref\fP that we'll attach to various names and add into the namespace.
+This code obtains the initial naming context and assigns it to \f3ctx\fP. The second line copies \f3ctx\fP into a dummy object reference \f3objref\fP that we'll attach to various names and add into the namespace. 
 .nf
 \f3
 .fl
@@ -269,7 +269,7 @@ NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
 .fi
 
 .LP
-This code creates a name "plans" of type "text" and binds it to our dummy object reference. "plans" is then added under the initial naming context using \f2rebind\fP. The \f2rebind\fP method allows us to run this program over and over again without getting the exceptions we'd get from using \f2bind\fP.
+This code creates a name "plans" of type "text" and binds it to our dummy object reference. "plans" is then added under the initial naming context using \f2rebind\fP. The \f2rebind\fP method allows us to run this program over and over again without getting the exceptions we'd get from using \f2bind\fP. 
 .nf
 \f3
 .fl
@@ -279,7 +279,7 @@ This code creates a name "plans" of type "text" and binds it to our dummy object
 .fl
         ctx.rebind(name1, objref);
 .fl
-        System.out.println("plans rebind sucessful!");
+        System.out.println("plans rebind successful!");
 .fl
 
 .fl
@@ -287,7 +287,7 @@ This code creates a name "plans" of type "text" and binds it to our dummy object
 .fi
 
 .LP
-This code creates a naming context called "Personal" of type "directory". The resulting object reference, \f3ctx2\fP, is bound to the name and added under the initial naming context.
+This code creates a naming context called "Personal" of type "directory". The resulting object reference, \f3ctx2\fP, is bound to the name and added under the initial naming context. 
 .nf
 \f3
 .fl
@@ -305,7 +305,7 @@ This code creates a naming context called "Personal" of type "directory". The re
 .fi
 
 .LP
-The remainder of the code binds the dummy object reference using the names "schedule" and "calendar" under the "Personal" naming context (\f3ctx2\fP).
+The remainder of the code binds the dummy object reference using the names "schedule" and "calendar" under the "Personal" naming context (\f3ctx2\fP). 
 .nf
 \f3
 .fl
@@ -315,7 +315,7 @@ The remainder of the code binds the dummy object reference using the names "sche
 .fl
         ctx2.rebind(name3, objref);
 .fl
-        System.out.println("schedule rebind sucessful!");
+        System.out.println("schedule rebind successful!");
 .fl
 
 .fl
@@ -325,7 +325,7 @@ The remainder of the code binds the dummy object reference using the names "sche
 .fl
         ctx2.rebind(name4, objref);
 .fl
-        System.out.println("calender rebind sucessful!");
+        System.out.println("calender rebind successful!");
 .fl
 
 .fl
@@ -375,7 +375,7 @@ public class NameClientList
 .fi
 
 .LP
-In the above section, Starting the Java IDL Transient Naming Service, the nameserver was started on port 1050. The following code ensures that the client program is aware of this port number.
+In the above section, Starting the Java IDL Transient Naming Service, the nameserver was started on port 1050. The following code ensures that the client program is aware of this port number. 
 .nf
 \f3
 .fl
@@ -395,7 +395,7 @@ In the above section, Starting the Java IDL Transient Naming Service, the namese
 .fi
 
 .LP
-The following code obtains the intial naming context.
+The following code obtains the initial naming context. 
 .nf
 \f3
 .fl
@@ -409,7 +409,7 @@ NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
 .fi
 
 .LP
-The \f2list\fP method lists the bindings in the naming context. In this case, up to 1000 bindings from the initial naming context will be returned in the BindingListHolder; any remaining bindings are returned in the BindingIteratorHolder.
+The \f2list\fP method lists the bindings in the naming context. In this case, up to 1000 bindings from the initial naming context will be returned in the BindingListHolder; any remaining bindings are returned in the BindingIteratorHolder. 
 .nf
 \f3
 .fl
@@ -425,7 +425,7 @@ The \f2list\fP method lists the bindings in the naming context. In this case, up
 .fi
 
 .LP
-This code gets the array of bindings out of the returned BindingListHolder. If there are no bindings, the program ends.
+This code gets the array of bindings out of the returned BindingListHolder. If there are no bindings, the program ends. 
 .nf
 \f3
 .fl
@@ -439,7 +439,7 @@ This code gets the array of bindings out of the returned BindingListHolder. If t
 .fi
 
 .LP
-The remainder of the code loops through the bindings and prints the names out.
+The remainder of the code loops through the bindings and prints the names out. 
 .nf
 \f3
 .fl
@@ -491,4 +491,4 @@ bindings[i].binding_name[lastIx].id);
 .fi
 
 .LP
-
+ 

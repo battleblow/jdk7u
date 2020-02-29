@@ -27,9 +27,21 @@
 #ifndef MLIB_IMAGE_H
 #define MLIB_IMAGE_H
 
-#ifdef MACOSX
-#include <machine/endian.h>
+#ifdef __OpenBSD__
+#include <sys/types.h>
 #endif
+
+#ifdef _ALLBSD_SOURCE
+#include <machine/endian.h>
+
+/* BSD's always define both _LITTLE_ENDIAN && _BIG_ENDIAN */
+#if defined(_LITTLE_ENDIAN) && defined(_BIG_ENDIAN) && \
+    _BYTE_ORDER == _BIG_ENDIAN
+#undef _LITTLE_ENDIAN
+#endif
+
+#endif /* _ALLBSD_SOURCE */
+
 #include <mlib_types.h>
 #include <mlib_status.h>
 #include <mlib_sys.h>

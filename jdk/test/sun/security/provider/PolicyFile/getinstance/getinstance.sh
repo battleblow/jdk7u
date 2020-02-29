@@ -47,15 +47,7 @@ fi
 # set platform-dependent variables
 OS=`uname -s`
 case "$OS" in
-  SunOS )
-    PS=":"
-    FS="/"
-    ;;
-  Linux )
-    PS=":"
-    FS="/"
-    ;;
-  Darwin )
+  SunOS | Linux | *BSD | Darwin )
     PS=":"
     FS="/"
     ;;

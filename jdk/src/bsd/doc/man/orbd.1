@@ -19,7 +19,7 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH orbd 1 "10 May 2011"
+.TH orbd 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
@@ -29,11 +29,11 @@ orbd \- The Object Request Broker Daemon
 \f3orbd\fP is used to enable clients to transparently locate and invoke persistent objects on servers in the CORBA environment.
 .LP
 .LP
-\f3See also:\fP
+\f3See also:\fP 
 .na
 \f2Naming Service\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html
+http://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html
 .LP
 .SH "SYNOPSIS"
 .LP
@@ -54,10 +54,10 @@ The Server Manager included with the \f3orbd\fP tool is used to enable clients t
 .RS 3
 .TP 2
 o
-The object reference in the Naming Service remains independent of the server life cycle. For example, the object reference could be published by the server in the Naming Service when it is first installed, and then, independent of how many times the server is started or shutdown, the ORBD will always return the correct object reference to the invoking client.
+The object reference in the Naming Service remains independent of the server life cycle. For example, the object reference could be published by the server in the Naming Service when it is first installed, and then, independent of how many times the server is started or shutdown, the ORBD will always return the correct object reference to the invoking client. 
 .TP 2
 o
-The client needs to lookup the object reference in the Naming Service only once, and can keep re\-using this reference independent of the changes introduced due to server life cycle.
+The client needs to lookup the object reference in the Naming Service only once, and can keep re\-using this reference independent of the changes introduced due to server life cycle. 
 .RE
 
 .LP
@@ -65,79 +65,79 @@ The client needs to lookup the object reference in the Naming Service only once,
 To access ORBD's Server Manager, the server must be started using servertool(1), which is a command\-line interface for application programmers to register, unregister, startup, and shutdown a persistent server. For more information on the Server Manager, see the section in this document titled \f2Server Manager\fP.
 .LP
 .LP
-When \f2orbd\fP starts up, it also starts a naming service. For more information on the naming service, link to
+When \f2orbd\fP starts up, it also starts a naming service. For more information on the naming service, link to 
 .na
 \f2Naming Service\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html.
+http://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html.
 .LP
 .SH "OPTIONS"
 .LP
-.SS
+.SS 
 Required Options
 .LP
 .RS 3
 .TP 3
-\-ORBInitialPort nameserverport
-Specifies the port on which the name server should be started. Once started, \f2orbd\fP will listen for incoming requests on this port. Note that when using Solaris software, you must become root to start a process on a port under 1024. For this reason, we recommend that you use a port number greater than or equal to 1024. (required)
+\-ORBInitialPort nameserverport 
+Specifies the port on which the name server should be started. Once started, \f2orbd\fP will listen for incoming requests on this port. Note that when using Solaris software, you must become root to start a process on a port under 1024. For this reason, we recommend that you use a port number greater than or equal to 1024. (required) 
 .RE
 
 .LP
 .LP
 
 .LP
-.SS
+.SS 
 OTHER OPTIONS
 .LP
 .RS 3
 .TP 3
-\-port port
-Specifies the activation port where ORBD should be started, and where ORBD will be accepting requests for persistent objects. The default value for this port is 1049. This port number is added to the port field of the persistent Interoperable Object References (IOR). (optional)
+\-port port 
+Specifies the activation port where ORBD should be started, and where ORBD will be accepting requests for persistent objects. The default value for this port is 1049. This port number is added to the port field of the persistent Interoperable Object References (IOR). (optional) 
 .RE
 
 .LP
 .RS 3
 .TP 3
-\-defaultdb directory
-Specifies the base where the ORBD persistent storage directory \f2orb.db\fP is created. If this option is not specified, the default value is "./orb.db". (optional)
+\-defaultdb directory 
+Specifies the base where the ORBD persistent storage directory \f2orb.db\fP is created. If this option is not specified, the default value is "./orb.db". (optional) 
 .RE
 
 .LP
 .RS 3
 .TP 3
-\-serverPollingTime milliseconds
-Specifies how often ORBD checks for the health of persistent servers registered via \f2servertool\fP. The default value is 1,000 ms. The value specified for \f2milliseconds\fP must be a valid positive integer. (optional)
+\-serverPollingTime milliseconds 
+Specifies how often ORBD checks for the health of persistent servers registered via \f2servertool\fP. The default value is 1,000 ms. The value specified for \f2milliseconds\fP must be a valid positive integer. (optional) 
 .RE
 
 .LP
 .RS 3
 .TP 3
-\-serverStartupDelay milliseconds
-Specifies how long ORBD waits before sending a location forward exception after a persistent server that is registered via \f2servertool\fP is restarted. The default value is 1,000 ms. The value specified for \f2milliseconds\fP must be a valid positive integer. (optional)
+\-serverStartupDelay milliseconds 
+Specifies how long ORBD waits before sending a location forward exception after a persistent server that is registered via \f2servertool\fP is restarted. The default value is 1,000 ms. The value specified for \f2milliseconds\fP must be a valid positive integer. (optional) 
 .RE
 
 .LP
 .RS 3
 .TP 3
-\-Joption
-Pass \f2option\fP to the Java virtual machine, where \f2option\fP is one of the options described on the reference page for java(1). For example, \f3\-J\-Xms48m\fP sets the startup memory to 48 megabytes. It is a common convention for \f3\-J\fP to pass options to the underlying virtual machine.
+\-Joption 
+Pass \f2option\fP to the Java virtual machine, where \f2option\fP is one of the options described on the reference page for java(1). For example, \f3\-J\-Xms48m\fP sets the startup memory to 48 megabytes. It is a common convention for \f3\-J\fP to pass options to the underlying virtual machine. 
 .TP 3
-
+ 
 .RE
 
 .LP
 .SH "Starting and Stopping the Naming Service"
 .LP
 .LP
-A Naming Service is a CORBA service that allows
+A Naming Service is a CORBA service that allows 
 .na
 \f2CORBA objects\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#CORBA%20object to be named by means of binding a name to an object reference. The
+http://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#CORBA%20object to be named by means of binding a name to an object reference. The 
 .na
 \f2name binding\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#name%20binding may be stored in the naming service, and a client may supply the name to obtain the desired object reference.
+http://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#name%20binding may be stored in the naming service, and a client may supply the name to obtain the desired object reference.
 .LP
 .LP
 Prior to running a client or a server, you will start ORBD. ORBD includes a persistent Naming Service and a transient Naming Service, both of which are an implementation of the COS Naming Service.
@@ -146,7 +146,7 @@ Prior to running a client or a server, you will start ORBD. ORBD includes a pers
 The \f4Persistent\fP\f3 Naming Service\fP provides persistence for naming contexts. This means that this information is persistent across service shutdowns and startups, and is recoverable in the event of a service failure. If ORBD is restarted, the Persistent Naming Service will restore the naming context graph, so that the binding of all clients' and servers' names remains intact (persistent).
 .LP
 .LP
-\
+\ 
 .LP
 .LP
 For backward compatibility, \f2tnameserv\fP, a \f4Transient\fP\f3 Naming Service\fP shipped with older versions of the JDK, is also included in this release of J2SE. A transient naming service retains naming contexts as long as it is running. If there is a service interruption, the naming context graph is lost.
@@ -212,26 +212,26 @@ In this example, the Naming Service is running on port 1050 on host "MyHost". An
 To stop the naming service, use the relevant operating system command, such as \f2pkill orbd\fP on Solaris, or \f2Ctrl+C\fP in the DOS window in which \f2orbd\fP is running. Note that names registered with the naming service may disappear when the service is terminated if the naming service is transient. The Java IDL naming service will run until it is explicitly stopped.
 .LP
 .LP
-For more information on the Naming Service included with ORBD, see
+For more information on the Naming Service included with ORBD, see 
 .na
 \f2Naming Service\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html.
+http://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html.
 .LP
 .SH "Server Manager"
 .LP
 .LP
 To access ORBD's Server Manager and run a persistent server, the server must be started using servertool(1), which is a command\-line interface for application programmers to register, unregister, startup, and shutdown a persistent server. When a server is started using \f2servertool\fP, it must be started on the same host and port on which \f2orbd\fP is executing. If the server is run on a different port, the information stored in the database for local contexts will be invalid and the service will not work properly.
 .LP
-.SS
+.SS 
 Server Manager: an Example
 .LP
 .LP
-Using the
+Using the 
 .na
 \f2sample tutorial\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/idl/jidlExample.html for our demonstration, you would run the \f2idlj\fP compiler and \f2javac\fP compiler as shown in the tutorial. To run the Server Manager, follow these steps for running the application:
+http://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlExample.html for our demonstration, you would run the \f2idlj\fP compiler and \f2javac\fP compiler as shown in the tutorial. To run the Server Manager, follow these steps for running the application:
 .LP
 .LP
 Start \f2orbd\fP.
@@ -240,12 +240,12 @@ Start \f2orbd\fP.
 To start \f2orbd\fP from a UNIX command shell, enter:
 .LP
 .LP
-\
+\ 
 .LP
 .nf
 \f3
 .fl
-  orbd \-ORBInitialPort 1050
+  orbd \-ORBInitialPort 1050 
 .fl
 \fP
 .fi
@@ -314,7 +314,7 @@ The \f2servertool\fP registers the server, assigns it the name of "HelloServerAp
 Run the client application from another terminal window or prompt:
 .LP
 .LP
-\
+\ 
 .LP
 .nf
 \f3
@@ -332,10 +332,10 @@ For this example, you can omit \f2\-ORBInitialHost localhost\fP since the name s
 Specify the name server (\f2orbd\fP) port as done in the previous step, for example, \f2\-ORBInitialPort 1050\fP.
 .LP
 .LP
-\
+\ 
 .LP
 .LP
-\
+\ 
 .LP
 .LP
 When you have finished experimenting with the Server Manager, be sure to shut down or kill the name server (\f2orbd\fP) and \f2servertool\fP.
@@ -354,15 +354,15 @@ o
 .na
 \f2Naming Service\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html
+http://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlNaming.html
 .br
 .TP 2
 o
-servertool(1)
+servertool(1) 
 .RE
 
 .LP
 .br
 
 .LP
-
+ 

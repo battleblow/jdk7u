@@ -60,6 +60,9 @@ elif [ -n "$ROOTDIR" -a -x "$ROOTDIR/mksnt/sysinf" ]; then
   # Windows/MKS
   MEM=`"$ROOTDIR/mksnt/sysinf" memory -v | grep "Total Physical Memory: " | sed 's/Total Physical Memory: *//g'`
   MEM="$(($machine_memory / 1024))"
+elif [ -n `sysctl -n hw.physmem64 2> /dev/null` -o -n `sysctl -n hw.physmem 2> /dev/null` ];
+  # BSD
+  MEM=`sysctl -n hw.physmem64 2> /dev/null || sysctl -n hw.physmem) | awk '{print int($$NF / 1048576); }'`
 else
   echo "Unable to determine amount of physical memory on the machine"
 fi

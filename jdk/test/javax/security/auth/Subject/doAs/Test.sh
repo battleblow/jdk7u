@@ -33,17 +33,7 @@
 # set platform-dependent variables
 OS=`uname -s`
 case "$OS" in
-  SunOS )
-    PS=":"
-    FS="/"
-    RM="/bin/rm -f"
-    ;;
-  Linux )
-    PS=":"
-    FS="/"
-    RM="/bin/rm -f"
-    ;;
-  Darwin )
+  SunOS | Linux | *BSD | Darwin )
     PS=":"
     FS="/"
     RM="/bin/rm -f"

@@ -928,8 +928,9 @@ LoadJavaVM(const char *jvmpath, InvocationFunctions *ifn)
  * onwards the filename returned in DL_info structure from dladdr is
  * an absolute pathname so technically realpath isn't required.
  * On Linux we read the executable name from /proc/self/exe.
- * As a fallback, and for platforms other than Solaris and Linux,
- * we use FindExecName to compute the executable name.
+ * On *BSD we read the executable name from /proc/curproc/file.
+ * As a fallback, and for platforms other than Solaris, Linux, and
+ * *BSD, we use FindExecName to compute the executable name.
  */
 const char*
 SetExecname(char **argv)
@@ -956,9 +957,13 @@ SetExecname(char **argv)
             }
         }
     }
-#elif defined(__linux__)
+#elif defined(__linux__) || defined(_ALLBSD_SOURCE)
     {
+#if defined(_ALLBSD_SOURCE)
+        const char* self = "/proc/curproc/file";
+#else
         const char* self = "/proc/self/exe";
+#endif
         char buf[PATH_MAX+1];
         int len = readlink(self, buf, PATH_MAX);
         if (len >= 0) {
@@ -966,7 +971,7 @@ SetExecname(char **argv)
             exec_path = JLI_StringDup(buf);
         }
     }
-#else /* !__solaris__ && !__linux__ */
+#else /* !__solaris__ && !__linux__ && !_ALLBSD_SOURCE */
     {
         /* Not implemented */
     }
@@ -978,6 +983,19 @@ SetExecname(char **argv)
     execname = exec_path;
     return exec_path;
 }
+
+#if !defined(MACOSX) && defined(_ALLBSD_SOURCE)
+/*
+ * BSD's implementation of CounterGet()
+ */
+int64_t
+CounterGet()
+{
+       struct timeval tv;
+       gettimeofday(&tv, NULL);
+       return (tv.tv_sec * 1000) + tv.tv_usec;
+}
+#endif
 
 /* --- Splash Screen shared library support --- */
 static const char* SPLASHSCREEN_SO = JNI_LIB_NAME("splashscreen");

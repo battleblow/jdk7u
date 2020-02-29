@@ -119,9 +119,9 @@ ifeq ($(PLATFORM), solaris)
   LIBARCH_DEFINES += -DLIBARCH64NAME='"$(LIBARCH64)"'
 endif # PLATFORM
 
-ifeq ($(PLATFORM), macosx)
+ifneq (,$(findstring $(PLATFORM), macosx bsd))
   OTHER_CPPFLAGS += $(LIBARCH_DEFINES) -DPACKAGE_PATH=\"$(PACKAGE_PATH)\"
-else # ! MACOSX
+else # ! MACOSX || BSD
   OTHER_CPPFLAGS += $(LIBARCH_DEFINES)
 endif #PLATFORM
 
@@ -134,7 +134,7 @@ ifneq ($(PLATFORM), windows)	# UNIX systems
     # Note: it is important to keep this order, meaning -lc as the
     # last library, otherwise it could cause compatibility issues
     # by pulling in SUNW_private symbols from libc
-    LDLIBS = -ldl -lc
+    LDLIBS = $(LIBDL) -lc
     ifeq ($(USE_PTHREADS),true)
       LDLIBS += -lpthread
     endif # USE_PTHREADS 
@@ -236,6 +236,21 @@ ifeq ($(PLATFORM), aix)
 
   library:: $(STATIC_LIBRARY)
 endif # PLATFORM aix
+
+ifeq ($(PLATFORM), bsd)
+  STATIC_LIBRARY_DIR = $(OBJDIR)/static
+  STATIC_LIBRARY_NAME = lib$(LIBRARY).a
+  STATIC_LIBRARY = $(STATIC_LIBRARY_DIR)/$(STATIC_LIBRARY_NAME)
+
+  $(STATIC_LIBRARY_DIR): | $(OBJDIR)
+	@$(MKDIR) $(STATIC_LIBRARY_DIR)
+
+  $(STATIC_LIBRARY): $(STATIC_LIBRARY_DIR) $(FILES_o)
+	@$(prep-target)
+	$(AR) $(ARFLAGS) $@ $(FILES_o)
+
+  library:: $(STATIC_LIBRARY)
+endif # PLATFORM bsd
 
 vpath %.c $(LAUNCHER_SHARE_SRC) $(LAUNCHER_PLATFORM_SRC)
 ifneq ($(SYSTEM_ZLIB),true)

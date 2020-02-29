@@ -23,7 +23,7 @@
  * questions.
  */
 
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
 #include <string.h>
 #endif /* __linux__ */
 #include <stdio.h>
@@ -131,6 +131,22 @@ static char *fullSolarisFontPath[] = {
 
 #elif defined(MACOSX)
 static char *full_MACOSX_X11FontPath[] = {
+    X11_PATH "/lib/X11/fonts/TrueType",
+    X11_PATH "/lib/X11/fonts/truetype",
+    X11_PATH "/lib/X11/fonts/tt",
+    X11_PATH "/lib/X11/fonts/TTF",
+    X11_PATH "/lib/X11/fonts/OTF",
+    PACKAGE_PATH "/share/fonts/TrueType",
+    PACKAGE_PATH "/share/fonts/truetype",
+    PACKAGE_PATH "/share/fonts/tt",
+    PACKAGE_PATH "/share/fonts/TTF",
+    PACKAGE_PATH "/share/fonts/OTF",
+    X11_PATH "/lib/X11/fonts/Type1",
+    PACKAGE_PATH "/share/fonts/Type1",
+    NULL, /* terminates the list */
+};
+#elif defined(_ALLBSD_SOURCE)
+static char *fullBSDFontPath[] = {
     X11_PATH "/lib/X11/fonts/TrueType",
     X11_PATH "/lib/X11/fonts/truetype",
     X11_PATH "/lib/X11/fonts/tt",
@@ -409,7 +425,7 @@ static char **getX11FontPath ()
 
 #endif /* !HEADLESS */
 
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
 /* from awt_LoadLibrary.c */
 JNIEXPORT jboolean JNICALL AWTIsHeadless();
 #endif
@@ -538,6 +554,8 @@ static char *getPlatformFontPathChars(JNIEnv *env, jboolean noType1) {
     knowndirs = fullLinuxFontPath;
 #elif defined(MACOSX)
     knowndirs = full_MACOSX_X11FontPath;
+#elif defined(_ALLBSD_SOURCE)
+    knowndirs = fullBSDFontPath;
 #elif defined(__solaris__)
     knowndirs = fullSolarisFontPath;
 #elif defined(AIX)
@@ -550,7 +568,7 @@ static char *getPlatformFontPathChars(JNIEnv *env, jboolean noType1) {
      * be initialised.
      */
 #ifndef HEADLESS
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
     /* There's no headless build on linux ... */
     if (!AWTIsHeadless()) { /* .. so need to call a function to check */
 #endif
@@ -566,7 +584,7 @@ static char *getPlatformFontPathChars(JNIEnv *env, jboolean noType1) {
         x11dirs = getX11FontPath();
     }
     AWT_UNLOCK();
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
     }
 #endif
 #endif /* !HEADLESS */

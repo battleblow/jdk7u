@@ -19,7 +19,7 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH javap 1 "10 May 2011"
+.TH javap 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
@@ -46,11 +46,11 @@ The \f3javap\fP command disassembles one or more class files. Its output depends
 .LP
 .RS 3
 .TP 3
-options
-Command\-line options.
+options 
+Command\-line options. 
 .TP 3
-classes
-List of one or more classes (separated by spaces) to be processed for annotations (such as \f2DocFooter.class\fP). You may specify a class that can be found in the class path, by its file name (for example, \f2/home/user/myproject/src/DocFooter.class\fP), or with a URL (for example, \f2file:///home/user/myproject/src/DocFooter.class\fP).
+classes 
+List of one or more classes (separated by spaces) to be processed for annotations (such as \f2DocFooter.class\fP). You may specify a class that can be found in the class path, by its file name (for example, \f2/home/user/myproject/src/DocFooter.class\fP), or with a URL (for example, \f2file:///home/user/myproject/src/DocFooter.class\fP). 
 .RE
 
 .LP
@@ -148,11 +148,11 @@ public class DocFooter extends java.applet.Applet {
 .fl
     Code:
 .fl
-       0: aload_0
+       0: aload_0       
 .fl
        1: invokespecial #1                  // Method java/applet/Applet."<init>":()V
 .fl
-       4: return
+       4: return        
 .fl
 
 .fl
@@ -160,7 +160,7 @@ public class DocFooter extends java.applet.Applet {
 .fl
     Code:
 .fl
-       0: aload_0
+       0: aload_0       
 .fl
        1: sipush        500
 .fl
@@ -168,9 +168,9 @@ public class DocFooter extends java.applet.Applet {
 .fl
        6: invokevirtual #2                  // Method resize:(II)V
 .fl
-       9: aload_0
+       9: aload_0       
 .fl
-      10: aload_0
+      10: aload_0       
 .fl
       11: ldc           #3                  // String LAST_UPDATED
 .fl
@@ -178,9 +178,9 @@ public class DocFooter extends java.applet.Applet {
 .fl
       16: putfield      #5                  // Field date:Ljava/lang/String;
 .fl
-      19: aload_0
+      19: aload_0       
 .fl
-      20: aload_0
+      20: aload_0       
 .fl
       21: ldc           #6                  // String EMAIL
 .fl
@@ -188,7 +188,7 @@ public class DocFooter extends java.applet.Applet {
 .fl
       26: putfield      #7                  // Field email:Ljava/lang/String;
 .fl
-      29: return
+      29: return        
 .fl
 
 .fl
@@ -196,21 +196,21 @@ public class DocFooter extends java.applet.Applet {
 .fl
     Code:
 .fl
-       0: aload_1
+       0: aload_1       
 .fl
        1: new           #8                  // class java/lang/StringBuilder
 .fl
-       4: dup
+       4: dup           
 .fl
        5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
 .fl
-       8: aload_0
+       8: aload_0       
 .fl
        9: getfield      #5                  // Field date:Ljava/lang/String;
 .fl
       12: invokevirtual #10                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
 .fl
-      15: ldc           #11                 // String  by
+      15: ldc           #11                 // String  by 
 .fl
       17: invokevirtual #10                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
 .fl
@@ -222,9 +222,9 @@ public class DocFooter extends java.applet.Applet {
 .fl
       27: invokevirtual #13                 // Method java/awt/Graphics.drawString:(Ljava/lang/String;II)V
 .fl
-      30: aload_1
+      30: aload_1       
 .fl
-      31: aload_0
+      31: aload_0       
 .fl
       32: getfield      #7                  // Field email:Ljava/lang/String;
 .fl
@@ -234,7 +234,7 @@ public class DocFooter extends java.applet.Applet {
 .fl
       40: invokevirtual #13                 // Method java/awt/Graphics.drawString:(Ljava/lang/String;II)V
 .fl
-      43: return
+      43: return        
 .fl
 }
 .fl
@@ -246,29 +246,29 @@ public class DocFooter extends java.applet.Applet {
 .LP
 .RS 3
 .TP 3
-\-help \-\-help \-?
-Prints out help message for \f3javap\fP.
+\-help \-\-help \-? 
+Prints out help message for \f3javap\fP. 
 .TP 3
-\-version
-Prints out version information.
+\-version 
+Prints out version information. 
 .TP 3
-\-l
-Prints out line and local variable tables.
+\-l 
+Prints out line and local variable tables. 
 .TP 3
-\-public
-Shows only public classes and members.
+\-public 
+Shows only public classes and members. 
 .TP 3
-\-protected
-Shows only protected and public classes and members.
+\-protected 
+Shows only protected and public classes and members. 
 .TP 3
-\-package
-Shows only package, protected, and public classes and members. This is the default.
+\-package 
+Shows only package, protected, and public classes and members. This is the default. 
 .TP 3
-\-private \-p
-Shows all classes and members.
+\-private \-p 
+Shows all classes and members. 
 .TP 3
-\-Jflag
-Pass \f2flag\fP directly to the runtime system. Some examples:
+\-Jflag 
+Pass \f2flag\fP directly to the runtime system. Some examples: 
 .nf
 \f3
 .fl
@@ -279,33 +279,33 @@ javap \-J\-Djava.security.manager \-J\-Djava.security.policy=MyPolicy MyClassNam
 \fP
 .fi
 .TP 3
-\-s
-Prints internal type signatures.
+\-s 
+Prints internal type signatures. 
 .TP 3
-\-sysinfo
-Shows system information (path, size, date, MD5 hash) of the class being processed.
+\-sysinfo 
+Shows system information (path, size, date, MD5 hash) of the class being processed. 
 .TP 3
-\-constants
-Shows static final constants.
+\-constants 
+Shows static final constants. 
 .TP 3
-\-c
-Prints out disassembled code, i.e., the instructions that comprise the Java bytecodes, for each of the methods in the class. These are documented in the
+\-c 
+Prints out disassembled code, i.e., the instructions that comprise the Java bytecodes, for each of the methods in the class. These are documented in the 
 .na
 \f2Java Virtual Machine Specification\fP @
 .fi
-http://java.sun.com/docs/books/vmspec/.
+http://java.sun.com/docs/books/vmspec/. 
 .TP 3
-\-verbose
-Prints stack size, number of \f2locals\fP and \f2args\fP for methods.
+\-verbose 
+Prints stack size, number of \f2locals\fP and \f2args\fP for methods. 
 .TP 3
-\-classpath path
-Specifies the path \f3javap\fP uses to look up classes. Overrides the default or the CLASSPATH environment variable if it is set.
+\-classpath path 
+Specifies the path \f3javap\fP uses to look up classes. Overrides the default or the CLASSPATH environment variable if it is set. 
 .TP 3
-\-bootclasspath path
-Specifies path from which to load bootstrap classes. By default, the bootstrap classes are the classes implementing the core Java platform located in \f2jre/lib/rt.jar\fP and several other jar files.
+\-bootclasspath path 
+Specifies path from which to load bootstrap classes. By default, the bootstrap classes are the classes implementing the core Java platform located in \f2jre/lib/rt.jar\fP and several other jar files. 
 .TP 3
-\-extdirs dirs
-Overrides location at which installed extensions are searched for. The default location for extensions is the value of \f2java.ext.dirs\fP.
+\-extdirs dirs 
+Overrides location at which installed extensions are searched for. The default location for extensions is the value of \f2java.ext.dirs\fP. 
 .RE
 
 .LP
@@ -314,4 +314,4 @@ Overrides location at which installed extensions are searched for. The default l
 .LP
 javac(1), java(1), jdb(1), javah(1), javadoc(1)
 .LP
-
+ 

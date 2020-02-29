@@ -46,9 +46,13 @@ endif
 ifeq ($(PLATFORM), macosx)
 include $(BUILDDIR)/common/Classes.gmk
 endif
+ifeq ($(OS_VENDOR), OpenBSD)
+include $(BUILDDIR)/common/Classes.gmk
+endif
 
 ifneq ($(PLATFORM), windows)
 ifneq ($(PLATFORM), macosx)
+ifneq ($(OS_VENDOR), OpenBSD)
 include $(BUILDDIR)/common/Mapfile-vers.gmk
 include $(BUILDDIR)/common/Library.gmk
 
@@ -75,6 +79,7 @@ ifeq ($(PLATFORM), solaris)
 #LIBSCTP = -lsctp
 OTHER_LDLIBS += $(LIBSOCKET) -L$(LIBDIR)/$(LIBARCH) -lnet -lnio
 endif
+endif # OpenBSD
 endif # macosx
 endif # windows
 

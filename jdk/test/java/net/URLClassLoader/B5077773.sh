@@ -34,7 +34,7 @@
 
 OS=`uname -s`
 case "$OS" in
-  SunOS | Darwin | AIX )
+  SunOS | Linux | *BSD | Darwin | AIX )
     PS=":"
     FS="/"
     ;;

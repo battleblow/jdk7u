@@ -23,12 +23,12 @@
  * questions.
  */
 
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <errno.h>
 #include <netinet/in.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/socket.h>
 
 #ifdef __solaris__
 #include <fcntl.h>
@@ -357,13 +357,21 @@ Java_java_net_PlainDatagramSocketImpl_disconnect0(JNIEnv *env, jobject this, jin
 #ifdef AF_INET6
         if (ipv6_available()) {
             struct sockaddr_in6 *him6 = (struct sockaddr_in6 *)&addr;
+#ifdef __FreeBSD__
+            him6->sin6_family = AF_INET6;
+#else
             him6->sin6_family = AF_UNSPEC;
+#endif
             len = sizeof(struct sockaddr_in6);
         } else
 #endif
         {
             struct sockaddr_in *him4 = (struct sockaddr_in*)&addr;
+#ifdef __FreeBSD__
+            him4->sin_family = AF_INET;
+#else
             him4->sin_family = AF_UNSPEC;
+#endif
             len = sizeof(struct sockaddr_in);
         }
         JVM_Connect(fd, (struct sockaddr *)&addr, len);

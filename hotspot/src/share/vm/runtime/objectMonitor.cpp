@@ -1740,7 +1740,7 @@ void ObjectMonitor::notify(TRAPS) {
      }
      iterator->_notified = 1 ;
      Thread * Self = THREAD;
-     iterator->_notifier_tid = Self->osthread()->thread_id();
+     iterator->_notifier_tid = (jlong) Self->osthread()->thread_id();
 
      ObjectWaiter * List = _EntryList ;
      if (List != NULL) {
@@ -1866,7 +1866,7 @@ void ObjectMonitor::notifyAll(TRAPS) {
      guarantee (iterator->_notified == 0, "invariant") ;
      iterator->_notified = 1 ;
      Thread * Self = THREAD;
-     iterator->_notifier_tid = Self->osthread()->thread_id();
+     iterator->_notifier_tid = (jlong) Self->osthread()->thread_id();
      if (Policy != 4) {
         iterator->TState = ObjectWaiter::TS_ENTER ;
      }

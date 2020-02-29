@@ -97,7 +97,7 @@ endif # PLATFORM
 # Turn off aliasing with GCC for ExtensionSubtables.cpp (and others on GCC < 4.3)
 # Turn off strict overflow with GCC for IndicRearrangementProcessor.cpp on GCC >= 4.3
 # Ensure signed integers wrap with GCC for IndicRearrangementProcessor.cpp on GCC < 4.3
-ifeq ($(PLATFORM), linux)
+ifneq (,$(findstring $(PLATFORM), bsd linux))
   CXXFLAGS += $(CXXFLAGS_$(@F))
   CXXFLAGS_ExtensionSubtables.o = -fno-strict-aliasing
 ifeq "$(shell expr \( $(CC_VER_MAJOR) \> 4 \) \| \( \( $(CC_VER_MAJOR) = 4 \) \& \( $(CC_VER_MINOR) \>= 3 \) \))" "0"
@@ -194,7 +194,7 @@ else # PLATFORM
 # Libraries to link, and other C flags.
 #
 
-ifeq ($(PLATFORM), macosx)
+ifneq (,$(findstring $(PLATFORM), bsd macosx))
 OTHER_INCLUDES += -I$(X11_PATH)/include
 OTHER_LDLIBS  += -lawt $(LIBM) $(LIBCXX)
  ifeq ($(OS_VENDOR),Apple)

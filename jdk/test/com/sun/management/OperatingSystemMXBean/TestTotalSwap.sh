@@ -72,6 +72,16 @@ solaris_swap_size()
    done
 }
 
+bsd_swap_size()
+{
+   total_swap=0
+   for i in `/usr/sbin/swapinfo -k | awk '{print $2}' | grep -v blocks`
+   do
+      # swapinfo -k returns size in kilobytes.
+      total_swap=`expr $i \* 1024 + $total_swap`
+   done
+}
+
 # Test GetTotalSwapSpaceSize if we are running on Unix
 total_swap=0
 case `uname -s` in
@@ -83,6 +93,9 @@ case `uname -s` in
        total_swap=`free -b | grep -i swap | awk '{print $2}'`
        runOne GetTotalSwapSpaceSize $total_swap 
        ;;
+     *BSD )
+       bsd_swap_size
+       runOne GetTotalSwapSpaceSize $total_swap 
      Darwin )
        # $ sysctl -n vm.swapusage 
        # total = 8192.00M  used = 7471.11M  free = 720.89M  (encrypted)

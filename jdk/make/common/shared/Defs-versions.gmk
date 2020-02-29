@@ -44,6 +44,11 @@ ifeq ($(PLATFORM), linux)
   override CC_VERSION = gcc
 endif
 
+# BSD uses GNU compilers by default
+ifeq ($(PLATFORM), bsd)
+  override CC_VERSION = gcc
+endif
+
 # Mac OS X uses LLVM by default
 ifeq ($(PLATFORM), macosx)
   override CC_VERSION = llvm
@@ -172,6 +177,13 @@ ifeq ($(PLATFORM), linux)
       REQUIRED_CC_VER           = 5.10
     endif
   endif
+endif
+
+# BSD specific
+ifeq ($(PLATFORM), macosx)
+  REQUIRED_COMPILER_NAME      = GCC4
+  REQUIRED_COMPILER_VERSION   = GCC4
+  REQUIRED_CC_VER             = 4.2.1
 endif
 
 # Mac specific

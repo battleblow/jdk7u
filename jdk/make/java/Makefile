@@ -53,7 +53,7 @@ ifeq ($(PLATFORM), solaris)
   endif
 endif # PLATFORM
 
-ifeq ($(PLATFORM), linux)
+ifneq (,$(findstring $(PLATFORM), linux bsd))
   SUBDIRS += jexec
 endif # PLATFORM
 

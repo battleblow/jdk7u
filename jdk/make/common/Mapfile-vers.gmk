@@ -76,7 +76,7 @@ endif
 
 endif # PLATFORM
 
-ifeq ($(PLATFORM), linux)
+ifneq (,$(findstring $(PLATFORM), linux bsd))
 
 ifeq ($(VARIANT), OPT)
   # OPT build MUST have a mapfile?

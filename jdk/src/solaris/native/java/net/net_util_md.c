@@ -46,6 +46,10 @@
 #endif
 #endif
 
+#ifdef __OpenBSD__
+#include <sys/socketvar.h>
+#endif
+
 #ifdef __solaris__
 #include <sys/sockio.h>
 #include <stropts.h>
@@ -1557,7 +1561,22 @@ NET_SetSockOpt(int fd, int level, int  opt, const void *arg,
         }
     }
 
-#endif
+#ifndef __APPLE__
+    /*
+     * Don't allow SO_LINGER value to be too big.
+     * Current max value (240) is empiric value based on tcp_timer.h's
+     * constant TCP_LINGERTIME, which was doubled.
+     *
+     * XXXBSD: maybe we should step it down to 120 ?
+     */
+    if (level == SOL_SOCKET && opt == SO_LINGER) {
+        ling = (struct linger *)arg;
+       if (ling->l_linger > 240 || ling->l_linger < 0) {
+           ling->l_linger = 240;
+       }
+    }
+#endif __APPLE__
+#endif _ALLBSD_SOURCE
 
     return setsockopt(fd, level, opt, arg, len);
 }

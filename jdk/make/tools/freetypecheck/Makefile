@@ -52,8 +52,15 @@ else
   else 
     ifeq ($(PLATFORM), macosx)
       FT_LD_OPTIONS += -lfreetype -lz
-    else # everything else
-     FT_LD_OPTIONS += -R $(FREETYPE_LIB_PATH) -lfreetype 
+    else
+      ifeq ($(PLATFORM), bsd)
+        ifeq ($(OS_NAME), netbsd)
+          FT_LD_OPTIONS += -Wl,-R$(FREETYPE_LIB_PATH)
+        endif
+        FT_LD_OPTIONS += -lfreetype -lz
+      else # everything else
+        FT_LD_OPTIONS += -R $(FREETYPE_LIB_PATH) -lfreetype 
+      endif
     endif
   endif
 endif

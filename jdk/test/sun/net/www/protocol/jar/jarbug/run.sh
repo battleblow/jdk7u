@@ -31,7 +31,7 @@ DEST=`pwd`
 
 OS=`uname -s`
 case "$OS" in
-  SunOS | Linux | Darwin | AIX )
+  SunOS | Linux | *BSD | Darwin | AIX )
     PS=":"
     FS="/"
     CHMOD="${FS}bin${FS}chmod"

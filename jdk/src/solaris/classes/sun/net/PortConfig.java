@@ -59,7 +59,7 @@ public final class PortConfig {
                     } else if (os.startsWith("AIX")) {
                         defaultLower = 32768;
                         defaultUpper = 65535;
-                    } else if (os.contains("OS X")) {
+                    } else if (os.contains("OS X") || os.endsWith("BSD")) {
                         defaultLower = 49152;
                         defaultUpper = 65535;
                     } else {

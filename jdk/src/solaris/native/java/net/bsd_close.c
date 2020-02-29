@@ -68,7 +68,7 @@ static int fdCount;
 
 /*
  * This limit applies if getlimit() returns unlimited.
- * Unfortunately, this means if someone wants a higher limt
+ * Unfortunately, this means if someone wants a higher limit
  * then they have to set an explicit limit, higher than this,
  * which is probably counter-intuitive.
  */
@@ -320,11 +320,8 @@ int NET_SendTo(int s, const void *msg, int len,  unsigned  int
 }
 
 int NET_Accept(int s, struct sockaddr *addr, int *addrlen) {
-    socklen_t len = *addrlen;
-    int error = accept(s, addr, &len);
-    if (error != -1)
-        *addrlen = (int)len;
-    BLOCKING_IO_RETURN_INT( s, error );
+    /* See NET_RecvFrom() */
+    BLOCKING_IO_RETURN_INT( s, accept(s, addr, (socklen_t *)addrlen) );
 }
 
 int NET_Connect(int s, struct sockaddr *addr, int addrlen) {
@@ -349,6 +346,68 @@ int NET_Select(int s, fd_set *readfds, fd_set *writefds,
  * signal other than our wakeup signal.
  */
 int NET_Timeout0(int s, long timeout, long currentTime) {
+/*
+ * On MacOS X, poll(2) is not working correctly, so a select(2) based
+ * implementation is preferred.  See
+ *
+ * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7131399
+ *
+ * However, on FreeBSD, the select(2) based implementation can cause
+ * crashes under load and poll(2) is preferred.  See
+ *
+ * http://docs.freebsd.org/cgi/getmsg.cgi?fetch=215525+0+current/freebsd-java
+ *
+ * Other *BSD will use poll(2) for now, but please adjust as appropriate.
+ */
+#ifndef __APPLE__
+    long prevtime = currentTime, newtime;
+    struct timeval t;
+    fdEntry_t *fdEntry = getFdEntry(s);
+
+    /*
+     * Check that fd hasn't been closed.
+     */
+    if (fdEntry == NULL) {
+        errno = EBADF;
+        return -1;
+    }
+
+    for(;;) {
+        struct pollfd pfd;
+        int rv;
+        threadEntry_t self;
+
+        /*
+         * Poll the fd. If interrupted by our wakeup signal
+         * errno will be set to EBADF.
+         */
+        pfd.fd = s;
+        pfd.events = POLLIN | POLLERR;
+
+        startOp(fdEntry, &self);
+        rv = poll(&pfd, 1, timeout);
+        endOp(fdEntry, &self);
+
+        /*
+         * If interrupted then adjust timeout. If timeout
+         * has expired return 0 (indicating timeout expired).
+         */
+        if (rv < 0 && errno == EINTR) {
+            if (timeout > 0) {
+                gettimeofday(&t, NULL);
+                newtime = t.tv_sec * 1000  +  t.tv_usec / 1000;
+                timeout -= newtime - prevtime;
+                if (timeout <= 0) {
+                    return 0;
+                }
+                prevtime = newtime;
+            }
+        } else {
+            return rv;
+        }
+
+    }
+#else
     long prevtime = currentTime, newtime;
     struct timeval t, *tp = &t;
     fd_set fds;
@@ -432,4 +491,5 @@ int NET_Timeout0(int s, long timeout, long currentTime) {
         }
 
     }
+#endif
 }

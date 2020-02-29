@@ -61,6 +61,12 @@ JAVALIB=
 
 CFLAGS += -DSPLASHSCREEN
 
+CPPFLAGS += -I$(SHARE_SRC)/native/$(PKGDIR)/splashscreen
+CPPFLAGS += -I$(SHARE_SRC)/native/$(PKGDIR)/image/jpeg
+ifneq ($(SYSTEM_ZLIB),true)
+  CPPFLAGS += -I$(SHARE_SRC)/native/java/util/zip/zlib-$(ZLIB_VERSION)
+endif
+
 ifeq ($(PLATFORM), macosx)
   CFLAGS += -DWITH_MACOSX
 
@@ -83,14 +89,25 @@ ifeq ($(PLATFORM), macosx)
 				  -framework JavaNativeFoundation
 else ifneq ($(PLATFORM), windows)
   CFLAGS += -DWITH_X11
-  ifeq ($(PLATFORM), macosx)
-    OTHER_LDLIBS += -liconv
-    CPPFLAGS += -I$(OPENWIN_HOME)/include \
-                -I$(OPENWIN_HOME)/include/X11/extensions
-    OTHER_LDLIBS += -L$(OPENWIN_LIB) -lX11 -lXext $(LIBM) -pthread
-  else
+  ifeq ($(PLATFORM), bsd)
+    ifeq ($(OS_NAME), netbsd)
+      OTHER_LDLIBS += -Wl,-R$(OPENWIN_LIB)
+    else
+      CPPFLAGS += -I$(PACKAGE_PATH)/include
+      OTHER_LDLIBS += -L$(PACKAGE_PATH)/lib -liconv
+    endif
     CPPFLAGS += -I$(OPENWIN_HOME)/include -I$(OPENWIN_HOME)/include/X11/extensions
     OTHER_LDLIBS += -L$(OPENWIN_LIB) -lX11 -lXext $(LIBM) -lpthread
+  else
+    ifeq ($(PLATFORM), macosx)
+      OTHER_LDLIBS += -liconv
+      CPPFLAGS += -I$(OPENWIN_HOME)/include \
+                  -I$(OPENWIN_HOME)/include/X11/extensions
+      OTHER_LDLIBS += -L$(OPENWIN_LIB) -lX11 -lXext $(LIBM) -pthread
+    else
+      CPPFLAGS += -I$(OPENWIN_HOME)/include -I$(OPENWIN_HOME)/include/X11/extensions
+      OTHER_LDLIBS += -L$(OPENWIN_LIB) -lX11 -lXext $(LIBM) -lpthread
+    endif
   endif
 else # PLATFORM
   CFLAGS += -DWITH_WIN32

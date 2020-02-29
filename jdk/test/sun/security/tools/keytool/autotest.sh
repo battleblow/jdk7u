@@ -71,6 +71,27 @@ case "$OS" in
             "/usr/lib/x86_64-linux-gnu/nss/libsoftokn3.so"`
     fi
     ;;
+  *BSD | Darwin )
+    case "${OS}" in
+      *BSD )
+        LIBNAME=libsoftokn3.so
+        ;;
+      Darwin )
+        LIBNAME=libsoftokn3.dylib
+        ;;
+    esac
+    ARCH=`uname -m`
+    FS="/"
+    case "$ARCH" in
+      i[3-6]86 )
+        PF="bsd-i586"
+        ;;
+      * )
+        echo "Will not run test on: ${OS} ${ARCH}"
+        exit 0;
+        ;;
+    esac
+    ;;
   * )
     echo "Will not run test on: ${OS}"
     exit 0;

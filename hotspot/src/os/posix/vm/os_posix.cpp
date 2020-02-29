@@ -183,11 +183,19 @@ void os::Posix::print_rlimit_info(outputStream* st) {
   if (rlim.rlim_cur == RLIM_INFINITY) st->print("infinity");
   else st->print("%d", rlim.rlim_cur);
 
+#ifdef __OpenBSD__
+  st->print(", DATA ");
+  getrlimit(RLIMIT_DATA, &rlim);
+  if (rlim.rlim_cur == RLIM_INFINITY) st->print("infinity");
+  else st->print("%uk", rlim.rlim_cur >> 10);
+  st->cr();
+#else
   st->print(", AS ");
   getrlimit(RLIMIT_AS, &rlim);
   if (rlim.rlim_cur == RLIM_INFINITY) st->print("infinity");
   else st->print("%uk", rlim.rlim_cur >> 10);
   st->cr();
+#endif
 }
 
 void os::Posix::print_uname_info(outputStream* st) {

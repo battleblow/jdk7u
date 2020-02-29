@@ -111,6 +111,21 @@ ifeq ($(PLATFORM), linux)
   #MXSPP_ADD = $(PLATFORM)-$(ARCH)/
 endif # PLATFORM linux
 
+ifeq ($(PLATFORM), bsd)
+ifeq ($(OS_VENDOR), FreeBSD)
+  # ALSA handles directaudio, ports, and MIDI
+  SUBDIRS += jsoundalsa
+  EXTRA_SOUND_JNI_LIBS += jsoundalsa
+else
+    # build with empty MIDI i/o
+    INCLUDE_MIDI = TRUE
+    # build with empty ports
+    INCLUDE_PORTS = TRUE
+    # build with empty direct audio
+    INCLUDE_DAUDIO = TRUE
+endif
+endif # PLATFORM bsd
+
 ifeq ($(PLATFORM), macosx)
   CPPFLAGS += -DUSE_PORTS=TRUE \
               -DUSE_DAUDIO=TRUE \

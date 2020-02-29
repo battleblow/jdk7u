@@ -41,7 +41,7 @@ echo "CLASSPATH=${CLASSPATH}"
 # set platform-dependent variables
 OS=`uname -s`
 case "$OS" in
-  SunOS | Linux | Darwin | CYGWIN* )
+  SunOS | Linux | *BSD | Darwin | CYGWIN* )
     FS="/"
     ;;
   Windows_95 | Windows_98 | Windows_NT )

@@ -29,6 +29,7 @@
 
 ifneq ($(PLATFORM), windows)
 ifneq ($(PLATFORM), macosx)
+ifneq ($(OS_VENDOR), OpenBSD)
 FILES_export = \
     sun/nio/ch/SctpAssocChange.java \
     sun/nio/ch/SctpChannelImpl.java \
@@ -37,5 +38,6 @@ FILES_export = \
     sun/nio/ch/SctpResultContainer.java \
     sun/nio/ch/SctpServerChannelImpl.java \
     sun/nio/ch/SctpStdSocketOption.java
+endif
 endif
 endif

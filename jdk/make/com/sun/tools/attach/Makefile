@@ -38,7 +38,7 @@ endif
 ifeq ($(PLATFORM), linux)
 FILES_m = mapfile-linux
 endif
-ifeq ($(PLATFORM), macosx)
+ifneq (,$(findstring $(PLATFORM), bsd macosx))
 FILES_m = mapfile-bsd 
 endif
 include $(BUILDDIR)/common/Mapfile-vers.gmk
@@ -57,7 +57,7 @@ ifeq ($(PLATFORM), windows)
 EXTRA_LIBS += psapi.lib
 endif
 
-ifeq ($PLATFORM), macosx)
+ifeq ($(PLATFORM), macosx)
   vpath %.c $(call NativeSrcDirList,,native/sun/tools/attach)
 else
   vpath %.c $(PLATFORM_SRC)/native/sun/tools/attach

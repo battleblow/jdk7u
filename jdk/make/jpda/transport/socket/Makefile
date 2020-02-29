@@ -38,6 +38,11 @@ FILES_m = mapfile-vers
 
 include $(BUILDDIR)/common/Defs.gmk
 
+ifeq ($(PLATFORM), bsd))
+  LIBSOCKET =
+  OTHER_LDLIBS += -pthread
+endif
+
 ifeq ($(PLATFORM), linux)
   OTHER_LDLIBS += $(LIBNSL) $(LIBSOCKET) -lpthread
 endif

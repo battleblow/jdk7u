@@ -35,6 +35,7 @@ import sun.jvm.hotspot.debugger.cdbg.*;
 import sun.jvm.hotspot.debugger.windbg.*;
 import sun.jvm.hotspot.debugger.linux.*;
 import sun.jvm.hotspot.debugger.sparc.*;
+import sun.jvm.hotspot.debugger.bsd.*;
 import sun.jvm.hotspot.debugger.remote.*;
 import sun.jvm.hotspot.livejvm.*;
 import sun.jvm.hotspot.memory.*;

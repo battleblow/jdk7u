@@ -64,7 +64,7 @@
 
 
 // following is needed for _LP64
-#if ((X_PLATFORM == X_SOLARIS) || (X_PLATFORM == X_LINUX) || (X_PLATFORM == X_MACOSX))
+#if ((X_PLATFORM == X_SOLARIS) || (X_PLATFORM == X_LINUX) || (X_PLATFORM == X_BSD) || (X_PLATFORM == X_MACOSX))
 #include <sys/types.h>
 #endif
 

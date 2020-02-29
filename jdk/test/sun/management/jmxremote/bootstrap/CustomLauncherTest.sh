@@ -45,37 +45,53 @@ fi
 # has to locate libjvm.so. Also $! is not reliable on some releases of MKS.
 #{
 OS=`uname -s`
-if [ "$OS" != "Linux" -a "$OS" != "SunOS" ]; then
-    echo "Test not designed to run on this operating system, skipping..."
-    exit 0
-fi
+case "${OS}" in
+    Windows* | CYGWIN* )
+        echo "Test not designed to run on this operating system, skipping..."
+        exit 0
+        ;;
+esac
 
 #
 # Locate the custom launcher for this platform
 #
 PLATFORM=unknown
 ARCH=unknown
-if [ "$OS" = "SunOS" ]; then
-    PLATFORM=solaris
-    case "`uname -p`" in
-	i[3-9]86)
-	    ARCH=i586
-	    ;;
-	sparc)
-	    ARCH=sparc
-	    ;;
-    esac
-else
-    PLATFORM=linux
-    case "`uname -m`" in
-	i[3-6]86)
-	    ARCH=i586
-	    ;;
-	x86_64)
-	    ARCH=amd64
-	    ;;
-    esac
-fi
+case "${OS}" in
+    SunOS )
+        PLATFORM=solaris
+        case "`uname -p`" in
+            i[3-9]86)
+                ARCH=i586
+                ;;
+            sparc)
+                ARCH=sparc
+                ;;
+        esac
+        ;;
+    Linux )
+        PLATFORM=linux
+        case "`uname -m`" in
+            i[3-6]86)
+                ARCH=i586
+                ;;
+            x86_64)
+                ARCH=amd64
+                ;;
+        esac
+	;;
+    *BSD | Darwin )
+        PLATFORM=bsd
+        case "`uname -m`" in
+            i[3-6]86)
+                ARCH=i586
+                ;;
+            x86_64)
+                ARCH=amd64
+                ;;
+        esac
+	;;
+esac
 
 
 #

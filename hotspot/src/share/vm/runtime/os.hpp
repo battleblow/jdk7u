@@ -30,6 +30,9 @@
 #include "runtime/extendedPC.hpp"
 #include "runtime/handles.hpp"
 #include "utilities/top.hpp"
+#ifdef TARGET_OS_FAMILY_bsd
+# include "jvm_bsd.h"
+#endif
 #ifdef TARGET_OS_FAMILY_linux
 # include "jvm_linux.h"
 # include <setjmp.h>
@@ -775,8 +778,8 @@ class os: AllStatic {
 # include "os_posix.hpp"
 #endif
 #ifdef TARGET_OS_FAMILY_bsd
-# include "os_posix.hpp"
 # include "os_bsd.hpp"
+# include "os_posix.hpp"
 #endif
 #ifdef TARGET_OS_ARCH_linux_x86
 # include "os_linux_x86.hpp"

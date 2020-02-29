@@ -19,7 +19,7 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH jps 1 "10 May 2011"
+.TH jps 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
@@ -41,11 +41,11 @@ jps \- Java Virtual Machine Process Status Tool
 .LP
 .RS 3
 .TP 3
-options
-Command\-line options.
+options 
+Command\-line options. 
 .TP 3
-hostid
-The host identifier of the host for which the process report should be generated. The \f2hostid\fP may include optional components that indicate the communications protocol, port number, and other implementation specific data.
+hostid 
+The host identifier of the host for which the process report should be generated. The \f2hostid\fP may include optional components that indicate the communications protocol, port number, and other implementation specific data. 
 .RE
 
 .LP
@@ -76,27 +76,27 @@ The \f3jps\fP command supports a number of options that modify the output of the
 .LP
 .RS 3
 .TP 3
-\-q
-Suppress the output of the class name, JAR file name, and arguments passed to the \f2main\fP method, producing only a list of local VM identifiers.
+\-q 
+Suppress the output of the class name, JAR file name, and arguments passed to the \f2main\fP method, producing only a list of local VM identifiers. 
 .TP 3
-\-m
-Output the arguments passed to the main method. The output may be null for embedded JVMs.
+\-m 
+Output the arguments passed to the main method. The output may be null for embedded JVMs.  
 .TP 3
-\-l
-Output the full package name for the application's main class or the full path name to the application's JAR file.
+\-l 
+Output the full package name for the application's main class or the full path name to the application's JAR file. 
 .TP 3
-\-v
-Output the arguments passed to the JVM.
+\-v 
+Output the arguments passed to the JVM. 
 .TP 3
-\-V
-Output the arguments passed to the JVM through the flags file (the .hotspotrc file or the file specified by the \-XX:Flags=<\f2filename\fP> argument).
+\-V 
+Output the arguments passed to the JVM through the flags file (the .hotspotrc file or the file specified by the \-XX:Flags=<\f2filename\fP> argument). 
 .TP 3
-\-Joption
-Pass \f2option\fP to the \f3java\fP launcher called by \f3jps\fP. For example, \f3\-J\-Xms48m\fP sets the startup memory to 48 megabytes. It is a common convention for \f3\-J\fP to pass options to the underlying VM executing applications written in Java.
+\-Joption 
+Pass \f2option\fP to the \f3java\fP launcher called by \f3jps\fP. For example, \f3\-J\-Xms48m\fP sets the startup memory to 48 megabytes. It is a common convention for \f3\-J\fP to pass options to the underlying VM executing applications written in Java. 
 .RE
 
 .LP
-.SS
+.SS 
 HOST IDENTIFIER
 .LP
 .LP
@@ -115,17 +115,17 @@ The host identifier, or \f2hostid\fP is a string that indicates the target syste
 .LP
 .RS 3
 .TP 3
-protocol
-The communications protocol. If the \f2protocol\fP is omitted and a \f2hostname\fP is not specified, the default protocol is a platform specific, optimized, local protocol. If the \f2protocol\fP is omitted and a \f2hostname\fP is specified, then the default protocol is \f3rmi\fP.
+protocol 
+The communications protocol. If the \f2protocol\fP is omitted and a \f2hostname\fP is not specified, the default protocol is a platform specific, optimized, local protocol. If the \f2protocol\fP is omitted and a \f2hostname\fP is specified, then the default protocol is \f3rmi\fP. 
 .TP 3
-hostname
-A hostname or IP address indicating the target host. If \f2hostname\fP is omitted, then the target host is the local host.
+hostname 
+A hostname or IP address indicating the target host. If \f2hostname\fP is omitted, then the target host is the local host. 
 .TP 3
-port
-The default port for communicating with the remote server. If the \f2hostname\fP is omitted or the \f2protocol\fP specifies an optimized, local protocol, then \f2port\fP is ignored. Otherwise, treatment of the \f2port\fP parameter is implementation specific. For the default \f3rmi\fP protocol the \f2port\fP indicates the port number for the rmiregistry on the remote host. If \f2port\fP is omitted, and \f2protocol\fP indicates \f3rmi\fP, then the default rmiregistry port (1099) is used.
+port 
+The default port for communicating with the remote server. If the \f2hostname\fP is omitted or the \f2protocol\fP specifies an optimized, local protocol, then \f2port\fP is ignored. Otherwise, treatment of the \f2port\fP parameter is implementation specific. For the default \f3rmi\fP protocol the \f2port\fP indicates the port number for the rmiregistry on the remote host. If \f2port\fP is omitted, and \f2protocol\fP indicates \f3rmi\fP, then the default rmiregistry port (1099) is used. 
 .TP 3
-servername
-The treatment of this parameter depends on the implementation. For the optimized, local protocol, this field is ignored. For the \f3rmi\fP protocol, this parameter is a string representing the name of the RMI remote object on the remote host. See the \f3\-n\fP option for the jstatd(1) command.
+servername 
+The treatment of this parameter depends on the implementation. For the optimized, local protocol, this field is ignored. For the \f3rmi\fP protocol, this parameter is a string representing the name of the RMI remote object on the remote host. See the \f3\-n\fP option for the jstatd(1) command. 
 .RE
 
 .LP
@@ -234,17 +234,17 @@ This example assumes that the \f3jstatd\fP server, with an internal RMI registry
 .RS 3
 .TP 2
 o
-java(1) \- the Java Application Launcher
+java(1) \- the Java Application Launcher 
 .TP 2
 o
-jstat(1) \- the Java virtual machine Statistics Monitoring Tool
+jstat(1) \- the Java virtual machine Statistics Monitoring Tool 
 .TP 2
 o
-jstatd(1) \- the jstat daemon
+jstatd(1) \- the jstat daemon 
 .TP 2
 o
-rmiregistry(1) \- the Java Remote Object Registry
+rmiregistry(1) \- the Java Remote Object Registry 
 .RE
 
 .LP
-
+ 

@@ -51,7 +51,7 @@ JNIEXPORT jlong JNICALL Java_sun_security_pkcs11_Secmod_nssGetLibraryHandle
 {
     const char *libName = (*env)->GetStringUTFChars(env, jLibName, NULL);
     // look up existing handle only, do not load
-#if defined(AIX)
+#if !defined(RTLD_NOLOAD)
     void *hModule = dlopen(libName, RTLD_LAZY);
 #else
     void *hModule = dlopen(libName, RTLD_NOLOAD);

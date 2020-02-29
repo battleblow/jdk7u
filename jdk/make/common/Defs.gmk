@@ -179,7 +179,7 @@ DEVTOOLS_FT_DIR_EXISTS = $(shell \
 
   ifdef ALT_FREETYPE_LIB_PATH
     FREETYPE_LIB_PATH = $(ALT_FREETYPE_LIB_PATH)
-    ifeq ($(PLATFORM), macosx)
+    ifneq (,$(findstring $(PLATFORM), bsd macosx))
       USING_SYSTEM_FT_LIB=true
     endif
     ifeq ($(PLATFORM), aix)
@@ -189,8 +189,8 @@ DEVTOOLS_FT_DIR_EXISTS = $(shell \
     ifeq ($(DEVTOOLS_FT_DIR_EXISTS), true)
       FREETYPE_LIB_PATH = $(DEVTOOLS_FT_DIR)/lib
     else
-      ifeq ($(PLATFORM), macosx)
-        FREETYPE_LIB_PATH = /usr/X11R6/lib
+      ifneq (,$(findstring $(PLATFORM), bsd macosx))
+        FREETYPE_LIB_PATH = $(X11_PATH)/lib
       else
         FREETYPE_LIB_PATH = /usr/lib
       endif
@@ -204,8 +204,8 @@ DEVTOOLS_FT_DIR_EXISTS = $(shell \
     ifeq ($(DEVTOOLS_FT_DIR_EXISTS), true)
       FREETYPE_HEADERS_PATH = $(DEVTOOLS_FT_DIR)/include
     else
-      ifeq ($(PLATFORM), macosx)
-        FREETYPE_HEADERS_PATH = /usr/X11R6/include
+      ifneq (,$(findstring $(PLATFORM), bsd macosx))
+        FREETYPE_HEADERS_PATH = $(X11_PATH)/include
       else
         FREETYPE_HEADERS_PATH = /usr/include
       endif
@@ -252,6 +252,10 @@ ifdef PROGRAM
   endif
 
   ifeq ($(PLATFORM), macosx)
+    LDLIBS_COMMON = -pthread
+  endif
+
+  ifeq ($(PLATFORM), bsd)
     LDLIBS_COMMON = -pthread
   endif
 
@@ -402,7 +406,7 @@ OTHER_CPPFLAGS += $(INCLUDES)
 # We define an intermediate variable for Java files because
 # we use its value later to help define $SOURCEPATH
 
-ifeq ($(PLATFORM), macosx)
+ifneq (,$(findstring $(PLATFORM), bsd macosx))
   VPATH0.java = $(subst $(ONESPACE),:,$(GENSRCDIR) $(call JavaSrcDirList,,classes))
 else
   VPATH0.java = $(GENSRCDIR)$(CLASSPATH_SEPARATOR)$(PLATFORM_SRC)/classes$(CLASSPATH_SEPARATOR)$(SHARE_SRC)/classes

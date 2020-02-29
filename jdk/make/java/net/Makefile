@@ -95,7 +95,7 @@ include $(BUILDDIR)/common/Mapfile-vers.gmk
 
 include $(BUILDDIR)/common/Library.gmk
 
-ifeq ($(PLATFORM), macosx)
+ifneq (,$(findstring $(PLATFORM), macosx bsd))
 ifdef DONT_ENABLE_IPV6
   OTHER_CFLAGS += -DDONT_ENABLE_IPV6
 endif

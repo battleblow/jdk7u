@@ -46,7 +46,7 @@
 #include "wsutils.h"
 #include "list.h"
 #include "multiVis.h"
-#if defined(__linux__) || defined(MACOSX)
+#if defined(__linux__) || defined(_ALLBSD_SOURCE)
 #include <sys/socket.h>
 #endif
 

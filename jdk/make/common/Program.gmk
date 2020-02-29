@@ -95,6 +95,17 @@ ifeq ($(PLATFORM), macosx)
   endif # SYSTEM_ZLIB
 endif # PLATFORM
 
+ifeq ($(PLATFORM), bsd)
+  LDFLAGS += -Wl,--whole-archive
+  LDFLAGS += $(OUTPUTDIR)/tmp/java/jli/$(OBJDIRNAME)/static/libjli.a
+  LDFLAGS += -Wl,--no-whole-archive
+# Work-around an dlsym(RTLD_DEFAULT) bug in at least FreeBSD & OpenBSD
+  LDFLAGS += -Wl,--export-dynamic
+  ifeq ($(SYSTEM_ZLIB),true)
+      OTHER_LDLIBS += -lz
+  endif
+endif #PLATFORM
+
 ifneq (,$(findstring $(PLATFORM), linux solaris)) # UNIX systems
   LDFLAGS += -L $(LIBDIR)/$(LIBARCH)/jli
   OTHER_LDLIBS += -ljli
@@ -232,6 +243,11 @@ else # *NIXES
     INFO_PLIST_FILE=
   endif # MACOSX
 
+  ifeq ($(PLATFORM), bsd)
+    THREADLIBS = -pthread
+    OTHER_CPPFLAGS += -DPACKAGE_PATH='"$(PACKAGE_PATH)"'
+  endif
+
   #
   # This rule only applies on unix.  It supports quantify and its ilk.
   #
@@ -291,8 +307,12 @@ else # *NIXES
             ifeq ($(PLATFORM), solaris)
 	      $(STRIP) -x $@
             else
-              # assume Linux
-	      $(STRIP) -g $@
+              ifeq ($(PLATFORM), linux)
+	        $(STRIP) -g $@
+              else
+                # assume BSD
+	        $(STRIP) -S $@
+              endif
             endif
           # implied else here is no stripping at all
           endif
@@ -360,7 +380,9 @@ endif #PLATFORM
 
 
 ifneq ($(PLATFORM), windows)
-  HAVE_GETHRTIME=true
+  ifneq ($(PLATFORM), bsd)
+    HAVE_GETHRTIME=true
+  endif
 endif #PLATFORM
 
 ifeq ($(HAVE_GETHRTIME),true)
@@ -370,12 +392,10 @@ endif
 OTHER_INCLUDES += -I$(LAUNCHER_SHARE_SRC)/bin -I$(LAUNCHER_PLATFORM_SRC)/bin
 ifeq ($(PLATFORM), macosx)
   OTHER_INCLUDES += -I$(LAUNCHER_SOLARIS_PLATFORM_SRC)/bin
-  ifneq ($(SYSTEM_ZLIB), true)
-    OTHER_INCLUDES += -I$(SHARE_SRC)/native/java/util/zip/zlib
-  endif # SYSTEM_ZLIB
-else # PLATFORM !MACOSX
+endif # PLATFORM !MACOSX
+ifneq ($(SYSTEM_ZLIB), true)
   OTHER_INCLUDES += -I$(SHARE_SRC)/native/java/util/zip/zlib
-endif
+endif # SYSTEM_ZLIB
 
 OTHER_CPPFLAGS  += -DPROGNAME='"$(PROGRAM)"'
 VERSION_DEFINES += -DFULL_VERSION='"$(FULL_VERSION)"'

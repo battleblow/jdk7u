@@ -19,7 +19,7 @@
 ." or visit www.oracle.com if you need additional information or have any
 ." questions.
 ."
-.TH jrunscript 1 "10 May 2011"
+.TH jrunscript 1 "16 Mar 2012"
 
 .LP
 .SH "Name"
@@ -39,11 +39,11 @@ jrunscript \- command line script shell
 .LP
 .RS 3
 .TP 3
-options
-Options, if used, should follow immediately after the command name.
+options 
+Options, if used, should follow immediately after the command name. 
 .TP 3
-arguments
-Arguments, if used, should follow immediately after options or command name.
+arguments 
+Arguments, if used, should follow immediately after options or command name. 
 .RE
 
 .LP
@@ -59,41 +59,41 @@ Arguments, if used, should follow immediately after options or command name.
 .LP
 .RS 3
 .TP 3
-\-classpath path
-Specify where to find the user's .class files that are accessed by the script.
+\-classpath path 
+Specify where to find the user's .class files that are accessed by the script. 
 .TP 3
-\-cp path
-This is a synonym for \-classpath \f2path\fP
+\-cp path 
+This is a synonym for \-classpath \f2path\fP 
 .TP 3
-\-Dname=value
-Set a Java system property.
+\-Dname=value 
+Set a Java system property. 
 .TP 3
-\-J<flag>
-Pass <flag> directly to the Java virtual machine on which jrunscript is run.
+\-J<flag> 
+Pass <flag> directly to the Java virtual machine on which jrunscript is run. 
 .TP 3
-\-l language
-Use the specified scripting language. By default, JavaScript is used. Note that to use other scripting languages, you also need to specify the corresponding script engine's jar file using \-cp or \-classpath option.
+\-l language 
+Use the specified scripting language. By default, JavaScript is used. Note that to use other scripting languages, you also need to specify the corresponding script engine's jar file using \-cp or \-classpath option. 
 .TP 3
-\-e script
-Evaluate the given script. This option can be used to run "one liner" scripts specified completely on the command line.
+\-e script 
+Evaluate the given script. This option can be used to run "one liner" scripts specified completely on the command line. 
 .TP 3
-\-encoding encoding
-Specify the character encoding used while reading script files.
+\-encoding encoding 
+Specify the character encoding used while reading script files. 
 .TP 3
-\-f script\-file
-Evaluate the given script file (batch mode).
+\-f script\-file 
+Evaluate the given script file (batch mode). 
 .TP 3
-\-f \-
-Read and evaluate a script from standard input (interactive mode).
+\-f \- 
+Read and evaluate a script from standard input (interactive mode). 
 .TP 3
-\-help\
-Output help message and exit.
+\-help\  
+Output help message and exit. 
 .TP 3
-\-?\
-Output help message and exit.
+\-?\  
+Output help message and exit. 
 .TP 3
-\-q\
-List all script engines available and exit.
+\-q\  
+List all script engines available and exit. 
 .RE
 
 .LP
@@ -104,7 +104,7 @@ If [arguments...] are present and if no \f3\-e\fP or \f3\-f\fP option is used, t
 .LP
 .SH "EXAMPLES"
 .LP
-.SS
+.SS 
 Executing inline scripts
 .LP
 .nf
@@ -118,7 +118,7 @@ jrunscript \-e "cat('http://java.sun.com')"
 .fi
 
 .LP
-.SS
+.SS 
 Use specified language and evaluate given script file
 .LP
 .nf
@@ -130,7 +130,7 @@ jrunscript \-l js \-f test.js
 .fi
 
 .LP
-.SS
+.SS 
 Interactive mode
 .LP
 .nf
@@ -162,7 +162,7 @@ js>
 .fi
 
 .LP
-.SS
+.SS 
 Run script file with script arguments
 .LP
 .nf
@@ -174,14 +174,14 @@ jrunscript test.js arg1 arg2 arg3
 .fi
 
 .LP
-test.js is script file to execute and arg1, arg2 and arg3 are passed to script as script arguments. Script can access these using "arguments" array.
+test.js is script file to execute and arg1, arg2 and arg3 are passed to script as script arguments. Script can access these using "arguments" array.  
 .SH "SEE ALSO"
 .LP
 .LP
-If JavaScript is used, then before evaluating any user defined script, jrunscript initializes certain built\-in functions and objects. These JavaScript built\-ins are documented in
+If JavaScript is used, then before evaluating any user defined script, jrunscript initializes certain built\-in functions and objects. These JavaScript built\-ins are documented in 
 .na
 \f2jsdocs\fP @
 .fi
-http://download.oracle.com/javase/7/docs/technotes/tools/share/jsdocs/allclasses\-noframe.html.
+http://docs.oracle.com/javase/7/docs/technotes/tools/share/jsdocs/allclasses\-noframe.html.
 .LP
-
+ 

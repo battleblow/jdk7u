@@ -25,7 +25,7 @@
 
 OS=`uname -s`
 case "$OS" in
-  SunOS | Linux | Darwin )
+  SunOS | Linux | Darwin | *BSD )
     FS="/"
     CHMOD="${FS}bin${FS}chmod"
     ;;

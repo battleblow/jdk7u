@@ -33,7 +33,7 @@ if [ "${TESTJAVA}" = "" ]; then TESTJAVA=$1; shift; fi
 
 case `uname -s` in
   Windows* | CYGWIN*) OS=Windows;;
-  SunOS|Linux) OS=Unix;;
+  SunOS|Linux|*BSD|Darwin) OS=Unix;;
 esac
 
 N2A=$TESTJAVA/bin/native2ascii

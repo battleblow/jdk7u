@@ -204,7 +204,7 @@ Java_sun_nio_ch_FileChannelImpl_transferTo0(JNIEnv *env, jobject this,
         return IOS_THROWN;
     }
     return result;
-#elif defined(__APPLE__)
+#elif defined(__APPLE__) || defined(__FreeBSD__)
     off_t numBytes;
     int result;
 
@@ -212,6 +212,8 @@ Java_sun_nio_ch_FileChannelImpl_transferTo0(JNIEnv *env, jobject this,
 
 #ifdef __APPLE__
     result = sendfile(srcFD, dstFD, position, &numBytes, NULL, 0);
+#elif defined(__FreeBSD__)
+    result = sendfile(srcFD, dstFD, position, count, NULL, &numBytes, 0);
 #endif
 
     if (numBytes > 0)
