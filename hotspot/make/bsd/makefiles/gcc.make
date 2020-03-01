@@ -113,6 +113,7 @@ ifeq ($(TYPE),SHARK)
   CFLAGS += $(LIBFFI_CFLAGS)
   CFLAGS += $(LLVM_CFLAGS)
 endif
+CFLAGS += -std=gnu++98
 CFLAGS += $(VM_PICFLAG)
 CFLAGS += -fno-rtti
 CFLAGS += -fno-exceptions
