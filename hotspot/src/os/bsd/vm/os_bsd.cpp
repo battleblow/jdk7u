@@ -445,7 +445,7 @@ void os::init_system_properties_values() {
  *        7: The default directories, normally /lib and /usr/lib.
  */
 #ifndef DEFAULT_LIBPATH
-#define DEFAULT_LIBPATH "/lib:/usr/lib"
+#define DEFAULT_LIBPATH "/lib:/usr/lib:/usr/local/lib"
 #endif
 
 #define EXTENSIONS_DIR  "/lib/ext"
