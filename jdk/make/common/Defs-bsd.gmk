@@ -245,6 +245,8 @@ ifeq ($(ARCH), amd64)
  CFLAGS_COMMON += -pipe
 endif
 
+CFLAGS_COMMON += -fstack-protector
+
 # BSD 64bit machines use Dwarf2, which can be HUGE, have fastdebug use -g1
 DEBUG_FLAG = -g
 ifeq ($(FASTDEBUG), true)
@@ -337,6 +339,9 @@ LDFLAGS_COMMON += $(LD_RUNPATH_EXTRAS:%=$(LDFLAG_Z_ORIGIN) -Xlinker -rpath -Xlin
 LDFLAGS_OPT     = -Xlinker -O1
 LDFLAGS_COMMON += -L$(LIBDIR)/$(LIBARCH)
 LDFLAGS_COMMON += -Wl,-soname=$(LIB_PREFIX)$(LIBRARY).$(LIBRARY_SUFFIX)
+
+LDFLAGS_RELRO_OPTION = -Xlinker -z -Xlinker relro
+LDFLAGS_COMMON  += $(LDFLAGS_RELRO_OPTION)
 
 #
 # -static-libgcc is a gcc-3 flag to statically link libgcc, gcc-2.9x always
